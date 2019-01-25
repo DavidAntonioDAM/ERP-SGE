@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="mainWindow" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.mainWindow.MainWindowController">
+   <top>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="51.0" prefWidth="1366.0" style="-fx-background-color: #004878;" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton layoutY="-12.0" onMouseClicked="#goHome" prefHeight="75.0" prefWidth="58.0" ripplerFill="WHITE" textAlignment="CENTER" textFill="WHITE">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="HOME" size="40" wrappingWidth="40.0" />
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="56.0" layoutY="-12.0" onMouseClicked="#goBack" prefHeight="75.0" prefWidth="36.0" ripplerFill="WHITE" textAlignment="CENTER">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="KEYBOARD_BACKSPACE" size="40" />
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="1308.0" layoutY="-12.0" onMouseClicked="#close" prefHeight="63.0" prefWidth="68.0" textAlignment="CENTER">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="WINDOW_CLOSE" size="40" />
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="1265.0" layoutY="2.0" onMouseClicked="#minimize" prefHeight="55.0" prefWidth="67.0" textAlignment="CENTER">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="WINDOW_MINIMIZE" size="40" wrappingWidth="39.0" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
