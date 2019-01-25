@@ -7,7 +7,7 @@
 
 <BorderPane fx:id="mainWindow" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.mainWindow.MainWindowController">
    <top>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="51.0" prefWidth="1366.0" style="-fx-background-color: #004878;" BorderPane.alignment="CENTER">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="51.0" prefWidth="1366.0" style="-fx-background-color: #242f3d;" BorderPane.alignment="CENTER">
          <children>
             <JFXButton layoutY="-12.0" onMouseClicked="#goHome" prefHeight="75.0" prefWidth="58.0" ripplerFill="WHITE" textAlignment="CENTER" textFill="WHITE">
                <graphic>
