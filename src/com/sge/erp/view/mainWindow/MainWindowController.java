@@ -1,5 +1,6 @@
 package com.sge.erp.view.mainWindow;
 
+import com.sge.erp.view.home.HomeController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +27,7 @@ public class MainWindowController implements Initializable {
         back.put("Clients", "home");
         back.put("Project", "Projects");
 
+        loadUI("../home/home");
     }
 
     private HashMap<String, String> back;
@@ -55,7 +57,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     void goHome(MouseEvent event) {
-
+        loadUI("../home/home");
     }
 
     public void loadUI(String ui) {
@@ -71,10 +73,9 @@ public class MainWindowController implements Initializable {
 
                 switch (ui) {
                     case "home":
-                        /*
-                        MainController c = loader.getController();
-                        c.setControladorPrincipal(this);
-                        break;*/
+                        HomeController c = loader.getController();
+                        c.setMainController(this);
+                        break;
 
                 }
 
