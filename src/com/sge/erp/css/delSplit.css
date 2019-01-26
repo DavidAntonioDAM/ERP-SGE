@@ -2,3 +2,29 @@
     -fx-padding: 1 0 1 0
 }
 
+.split-pane
+{
+    -fx-padding: 0;
+}
+
+.list-view, .split-pane {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: #2e70a5;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #CEEBFF;
+}
+

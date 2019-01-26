@@ -9,7 +9,7 @@
    <children>
       <Pane prefHeight="67.0" prefWidth="690.0" style="-fx-background-color: #17212B; -fx-border-color: #17212B;">
          <children>
-            <Label fx:id="lClientName" layoutX="14.0" layoutY="5.0" prefHeight="58.0" prefWidth="726.0" text="Nombre del Cliente" textFill="WHITE">
+            <Label fx:id="lClientName" layoutX="14.0" layoutY="5.0" prefHeight="58.0" prefWidth="663.0" text="Nombre del Cliente" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="48.0" />
                </font>
@@ -18,7 +18,7 @@
       </Pane>
       <Pane layoutY="67.0" prefHeight="67.0" prefWidth="690.0" style="-fx-border-color: #17212B;">
          <children>
-            <Label fx:id="lEmail" layoutX="14.0" layoutY="12.0" prefHeight="43.0" prefWidth="726.0" text="Email del Cliente">
+            <Label fx:id="lEmail" layoutX="14.0" layoutY="12.0" prefHeight="43.0" prefWidth="663.0" text="Email del Cliente">
                <font>
                   <Font name="Segoe UI" size="36.0" />
                </font>
@@ -27,7 +27,7 @@
       </Pane>
       <Pane layoutY="134.0" prefHeight="66.0" prefWidth="1000.0" style="-fx-border-color: #17212B;">
          <children>
-            <Label fx:id="lAddress" layoutX="14.0" layoutY="15.0" prefHeight="37.0" prefWidth="1028.0" text="Direccion del Cliente">
+            <Label fx:id="lAddress" layoutX="14.0" layoutY="15.0" prefHeight="37.0" prefWidth="973.0" text="Direccion del Cliente">
                <font>
                   <Font name="Segoe UI" size="30.0" />
                </font>
