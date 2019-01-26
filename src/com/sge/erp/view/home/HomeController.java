@@ -21,7 +21,7 @@ public class HomeController {
 
     @FXML
     void goClients(MouseEvent event) {
-
+        mainController.loadUI("../clients/clients");
     }
 
     @FXML

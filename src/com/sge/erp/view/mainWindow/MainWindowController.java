@@ -1,5 +1,6 @@
 package com.sge.erp.view.mainWindow;
 
+import com.sge.erp.view.clients.ClientsController;
 import com.sge.erp.view.home.HomeController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,11 +73,15 @@ public class MainWindowController implements Initializable {
                 root = loader.load();
 
                 switch (ui) {
-                    case "home":
-                        HomeController c = loader.getController();
-                        c.setMainController(this);
+                    case "../home/home":
+                        HomeController hc = loader.getController();
+                        hc.setMainController(this);
                         break;
-
+                        /*
+                    case "../clients/clients":
+                        ClientsController cc = loader.getController();
+                        cc.setMainController(this);
+                        break;*/
                 }
 
                 windows.put(ui, root);
