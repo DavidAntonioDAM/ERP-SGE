@@ -27,7 +27,7 @@ public class MainWindowController implements Initializable {
         back.put("Clients", "home");
         back.put("Project", "Projects");
 
-        loadUI("../home/home");
+        loadUI("../login/login");
     }
 
     private HashMap<String, String> back;
