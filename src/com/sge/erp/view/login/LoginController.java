@@ -1,9 +1,6 @@
 package com.sge.erp.view.login;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import com.sge.erp.model.User;
 import com.sge.erp.persistence.ManagerUsers;
 import com.sge.erp.view.mainWindow.MainWindowController;
@@ -48,7 +45,7 @@ public class LoginController implements Initializable {
     private JFXTextField tfUser;
 
     @FXML
-    private JFXTextField tfPass;
+    private JFXPasswordField tfPass1;
 
     @FXML
     private StackPane login;
@@ -56,7 +53,7 @@ public class LoginController implements Initializable {
     @FXML
     void login(MouseEvent event) {
 
-        User uLocal = new User(tfUser.getText(), tfPass.getText());
+        User uLocal = new User(tfUser.getText(), tfPass1.getText());
 
         try {
             User uBBDD = mu.readUser(uLocal.getUser());
