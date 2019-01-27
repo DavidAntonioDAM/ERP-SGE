@@ -24,6 +24,10 @@
     -fx-background-color: #2e70a5;
 }
 
+.list-cell:unfocused {
+    -fx-background-color: black;
+}
+
 .list-cell:filled:hover {
     -fx-background-color: #CEEBFF;
 }

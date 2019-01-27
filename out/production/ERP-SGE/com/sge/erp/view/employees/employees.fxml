@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.employees.EmployeesController">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1366.0" style="-fx-padding: 0;" stylesheets="@../../css/delSplit.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.employees.EmployeesController">
     <items>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="715.0" prefWidth="305.0" style="-fx-background-color: #17212b;">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="719.0" prefWidth="305.0" style="-fx-background-color: #17212b;">
             <children>
                 <JFXButton alignment="TOP_LEFT" layoutY="116.0" prefHeight="67.0" prefWidth="305.0" text="Agregar" textFill="WHITE">
                     <font>
@@ -43,9 +43,9 @@
                     </graphic>
                 </JFXButton>
             </children></AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: white;">
             <children>
-                <JFXListView layoutX="24.0" layoutY="32.0" prefHeight="650.0" prefWidth="1000.0" />
+                <JFXListView layoutX="3.0" layoutY="64.0" prefHeight="650.0" prefWidth="1000.0" style="-fx-border-width: 0px; -fx-background-color: white;" />
             </children></AnchorPane>
     </items>
 </SplitPane>
