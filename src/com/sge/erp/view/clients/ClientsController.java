@@ -1,6 +1,7 @@
 package com.sge.erp.view.clients;
 
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Client;
 import com.sge.erp.persistence.ManagerClient;
 import javafx.fxml.FXML;
@@ -22,11 +23,12 @@ public class ClientsController implements Initializable {
 
         try {
             mc = new ManagerClient();
+            clients = mc.readClients();
             loadList();
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -34,21 +36,41 @@ public class ClientsController implements Initializable {
     @FXML
     private JFXListView<AnchorPane> list;
 
+    @FXML
+    private JFXTextField jtfSearch;
+
     private ArrayList<Client> clients;
     private ManagerClient mc;
 
     @FXML
-    void cargar(MouseEvent event) throws IOException {
-        loadList();
-    }
-
-    private void loadList() throws IOException {
+    void loadAll(MouseEvent event) {
 
         try {
             clients = mc.readClients();
+            loadList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void filterName(MouseEvent event) {
+
+        try {
+            clients = mc.getClientsFilter(jtfSearch.getText());
+            loadList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadList() {
+
+        try {
+
             list.getItems().clear();
 
-            for (Client c:clients) {
+            for (Client c : clients) {
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("client_card.fxml"));
                 AnchorPane card = loader.load();
@@ -62,7 +84,7 @@ public class ClientsController implements Initializable {
 
                 list.getItems().add(card);
             }
-        } catch (SQLException e) {
+        }  catch (IOException e) {
             e.printStackTrace();
         }
     }

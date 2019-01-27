@@ -51,6 +51,28 @@ public class ManagerClient extends AdminDataBase {
         return client;
     }
 
+    public ArrayList<Client> getClientsFilter(String nameFilter) throws SQLException {
+        ArrayList<Client> client = new ArrayList<>();
+        verifyConnection();
+
+        String sql = "SELECT * FROM client WHERE name LIKE '%"+nameFilter+"%';";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+            String nif = rs.getString(1);
+            String name = rs.getString(2);
+            String email = rs.getString(3);
+            String phone = Integer.toString(rs.getInt(4));
+            String address = rs.getString(5);
+            client.add(new Client(nif, name, email, phone, address));
+        }
+
+        rs.close();
+        st.close();
+        return client;
+    }
+
     public ArrayList<Client> readClients() throws SQLException {
         ArrayList<Client> client = new ArrayList<>();
         verifyConnection();

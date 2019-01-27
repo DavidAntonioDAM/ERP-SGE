@@ -35,7 +35,7 @@
                   <Image url="@../../resources/desarrollap.png" />
                </image>
             </ImageView>
-            <JFXButton alignment="TOP_LEFT" layoutX="3.0" layoutY="49.0" onMouseClicked="#cargar" prefHeight="67.0" prefWidth="305.0" text="Resumen" textFill="WHITE">
+            <JFXButton alignment="TOP_LEFT" layoutX="3.0" layoutY="49.0" onMouseClicked="#loadAll" prefHeight="67.0" prefWidth="305.0" text="Resumen" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="36.0" />
                </font>
@@ -52,7 +52,7 @@
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXButton contentDisplay="CENTER" layoutX="936.0" layoutY="18.0" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #14385B;">
+            <JFXButton contentDisplay="CENTER" layoutX="936.0" layoutY="18.0" onMouseClicked="#filterName" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #14385B;">
                <graphic>
                   <MaterialDesignIconView fill="WHITE" glyphName="MAGNIFY" size="25" />
                </graphic>
