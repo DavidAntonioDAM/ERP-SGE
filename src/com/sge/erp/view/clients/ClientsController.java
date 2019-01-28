@@ -4,9 +4,12 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Client;
 import com.sge.erp.persistence.ManagerClient;
+import com.sge.erp.view.home.HomeController;
+import com.sge.erp.view.login.LoginController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -20,72 +23,54 @@ public class ClientsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         try {
             mc = new ManagerClient();
-            clients = mc.readClients();
-            loadList();
-
+            loadUI("clients_list");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
+
     }
 
     @FXML
-    private JFXListView<AnchorPane> list;
+    private AnchorPane container;
 
-    @FXML
-    private JFXTextField jtfSearch;
-
-    private ArrayList<Client> clients;
     private ManagerClient mc;
+    private AnchorPane listPane;
+    ClientListController cl;
+
 
     @FXML
     void loadAll(MouseEvent event) {
-
-        try {
-            clients = mc.readClients();
-            loadList();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        cl.loadAll();
+        loadUI("clients_list");
     }
 
-    @FXML
-    void filterName(MouseEvent event) {
+    public void loadUI(String ui) {
+        AnchorPane root = null;
 
-        try {
-            clients = mc.getClientsFilter(jtfSearch.getText());
-            loadList();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+        if (listPane == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                root = loader.load();
 
-    private void loadList() {
+                cl = loader.getController();
+                cl.setMc(mc);
+                cl.loadAll();
 
-        try {
-
-            list.getItems().clear();
-
-            for (Client c : clients) {
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("client_card.fxml"));
-                AnchorPane card = loader.load();
-                ClientCardController cc = loader.getController();
-
-                cc.getlClientName().setText(c.getName());
-                cc.getlAddress().setText(c.getAddress());
-                cc.getlNIF().setText(c.getNif());
-                cc.getlTelf().setText(c.getPhone());
-                cc.getlEmail().setText(c.getEmail());
-
-                list.getItems().add(card);
+                listPane = root;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }  catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            switch (ui){
+                case "clients_list":
+                    root = listPane;
+
+                    break;
+            }
         }
+
+        container.getChildren().setAll(root);
     }
 }

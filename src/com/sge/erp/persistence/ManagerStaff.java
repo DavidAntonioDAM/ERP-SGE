@@ -42,8 +42,11 @@ public class ManagerStaff extends AdminDataBase {
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
 
-            sfs.add(new Staff(rs.getString(0), rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
-
+            sfs.add(new Staff(
+                    rs.getString(0),
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3)));
         }
         rs.close();
         st.close();
@@ -59,15 +62,16 @@ public class ManagerStaff extends AdminDataBase {
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
-
-            sfs.add(new Staff(rs.getString(0), rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
-
+            sfs.add(new Staff(
+                    rs.getString("dni"),
+                    rs.getString("name"),
+                    rs.getString("surname"),
+                    rs.getString("job")));
         }
         rs.close();
         st.close();
 
         return sfs;
-
     }
 
     public void deleteStaff(String dni) throws SQLException {

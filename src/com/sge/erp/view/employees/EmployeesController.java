@@ -1,21 +1,13 @@
 package com.sge.erp.view.employees;
 
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
-import com.sge.erp.model.Client;
-import com.sge.erp.model.Staff;
-import com.sge.erp.persistence.ManagerClient;
 import com.sge.erp.persistence.ManagerStaff;
-import com.sge.erp.view.clients.ClientCardController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class EmployeesController implements Initializable {
@@ -23,51 +15,52 @@ public class EmployeesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
+        try {
+            ms = new ManagerStaff();
+            loadUI("employees_list");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    private ArrayList<Staff> staff;
+    @FXML
+    private AnchorPane container;
+
     private ManagerStaff ms;
-
-    @FXML
-    private JFXListView<AnchorPane> list;
-
-    @FXML
-    private JFXTextField jtfSearch;
-
-    @FXML
-    void filterName(MouseEvent event) {
-
-    }
+    private AnchorPane listPane;
+    EmployeesListController elc;
 
     @FXML
     void loadAll(MouseEvent event) {
 
     }
 
-    private void loadList() {
+    public void loadUI(String ui) {
+        AnchorPane root = null;
 
-        try {
+        if (listPane == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                root = loader.load();
 
-            list.getItems().clear();
+                elc = loader.getController();
+                elc.setMs(ms);
+                elc.loadAll();
 
-            for (Staff s : staff) {
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("employee_card.fxml.fxml"));
-                AnchorPane card = loader.load();
-                EmployeesCardController cc = loader.getController();
-
-                cc.getlEmployeeName().setText(s.getName());
-                cc.getlEmployeeSurname().setText(s.getSurname());
-                cc.getlDNI().setText(s.getDni());
-                cc.getlJob().setText(s.getJob());
-
-                list.getItems().add(card);
+                listPane = root;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }  catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            switch (ui) {
+                case "clients_list":
+                    root = listPane;
+
+                    break;
+            }
         }
+        container.getChildren().setAll(root);
     }
 
 }

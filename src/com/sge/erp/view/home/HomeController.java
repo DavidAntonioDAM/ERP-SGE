@@ -26,7 +26,7 @@ public class HomeController {
 
     @FXML
     void goEmployees(MouseEvent event) {
-        mainController.loadUI("../clients/clients");
+        mainController.loadUI("../employees/employees");
     }
 
     @FXML
