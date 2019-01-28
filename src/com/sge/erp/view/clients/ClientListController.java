@@ -20,16 +20,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ClientListController implements Initializable {
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-
-    }
+public class ClientListController{
 
     private ArrayList<Client> clients;
     private ManagerClient mc;
+    private Client clientSelected;
+    private ClientsController cc;
 
     @FXML
     private JFXListView<AnchorPane> list;
@@ -40,15 +36,30 @@ public class ClientListController implements Initializable {
     @FXML
     void selectClient(MouseEvent event) {
 
-       // System.out.println(list.getSelectionModel().getSelectedIndices());
+        String dni = "";
+
         ObservableList<AnchorPane> prueba = list.getSelectionModel().getSelectedItems();
+/*
         ObservableList<Node> prueba2 = prueba.get(0).getChildren();
+        Pane panel = (Pane) prueba2.get(3);
+*/
 
-        Pane panel = (Pane) prueba2.get(0);
+        Pane panel = (Pane)  prueba.get(0).getChildren().get(3);
+        dni = ((Label)panel.getChildren().get(0)).getText();
 
+/*
         for (Node n:panel.getChildren()) {
-            System.out.println(((Label)n).getText());
+            dni = ((Label)n).getText();
         }
+*/
+        try {
+            clientSelected = mc.readClient(dni);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        cc.setClientSelected(clientSelected);
+        cc.loadUI("mod_client");
     }
 
     void loadAll() {
@@ -97,11 +108,11 @@ public class ClientListController implements Initializable {
         }
     }
 
-    public ManagerClient getMc() {
-        return mc;
-    }
-
     public void setMc(ManagerClient mc) {
         this.mc = mc;
+    }
+
+    public void setCc(ClientsController cc) {
+        this.cc = cc;
     }
 }

@@ -38,6 +38,7 @@ public class ClientsController implements Initializable {
     private ManagerClient mc;
     private AnchorPane listPane;
     ClientListController cl;
+    Client clientSelected;
 
 
     @FXML
@@ -64,6 +65,7 @@ public class ClientsController implements Initializable {
                 root = loader.load();
 
                 cl = loader.getController();
+                cl.setCc(this);
                 cl.setMc(mc);
                 cl.loadAll();
 
@@ -90,9 +92,28 @@ public class ClientsController implements Initializable {
                     }
 
                     break;
+                case "mod_client":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader.load();
+
+                        ClientModController cmcc = loader.getController();
+                        cmcc.setMc(mc);
+                        cmcc.setCc(this);
+                        cmcc.setClientToModify(clientSelected);
+                        cmcc.setFields();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    break;
             }
         }
 
         container.getChildren().setAll(root);
+    }
+
+    public void setClientSelected(Client clientSelected) {
+        this.clientSelected = clientSelected;
     }
 }

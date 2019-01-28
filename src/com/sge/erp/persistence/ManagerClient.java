@@ -28,22 +28,22 @@ public class ManagerClient extends AdminDataBase {
 
     }
 
-    public ArrayList<Client> readClient(String nifClient) throws SQLException {
-        ArrayList<Client> client = new ArrayList<>();
+    public Client readClient(String nifClient) throws SQLException {
+        Client client;
         verifyConnection();
 
         String sql = "SELECT * FROM client WHERE nif = '" + nifClient + "';";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
 
-        while (rs.next()) {
-            String nif = rs.getString(1);
-            String name = rs.getString(2);
-            String email = rs.getString(3);
-            String phone = rs.getString(4);
-            String address = rs.getString(5);
-            client.add(new Client(nif, name, email, phone, address));
-        }
+        rs.next();
+        String nif = rs.getString(1);
+        String name = rs.getString(2);
+        String email = rs.getString(3);
+        String phone = rs.getString(4);
+        String address = rs.getString(5);
+
+        client = new Client(nif, name, email, phone, address);
 
         rs.close();
         st.close();
@@ -55,7 +55,7 @@ public class ManagerClient extends AdminDataBase {
         ArrayList<Client> client = new ArrayList<>();
         verifyConnection();
 
-        String sql = "SELECT * FROM client WHERE name LIKE '%"+nameFilter+"%';";
+        String sql = "SELECT * FROM client WHERE name LIKE '%" + nameFilter + "%';";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
 
@@ -95,9 +95,9 @@ public class ManagerClient extends AdminDataBase {
         return client;
     }
 
-    public void updateClient(Client c) throws SQLException {
+    public void updateClient(Client c, String nif) throws SQLException {
         verifyConnection();
-        String sql = "UPDATE client SET nif = '" + c.getNif() + "', name = '" + c.getName() + "', email = '" + c.getEmail() + "', phone = '" + c.getPhone() + "', address = '" + c.getAddress() + "' WHERE nif = '" + c.getNif() + "';";
+        String sql = "UPDATE client SET nif = '" + c.getNif() + "', name = '" + c.getName() + "', email = '" + c.getEmail() + "', phone = '" + c.getPhone() + "', address = '" + c.getAddress() + "' WHERE nif = '" + nif + "';";
         Statement st = connection.createStatement();
         st.executeUpdate(sql);
         st.close();
