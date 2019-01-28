@@ -24,7 +24,7 @@ public class MainWindowController implements Initializable {
         windows = new HashMap();
 
         back = new HashMap<>();
-        back.put("Projects", "../home/home");
+        back.put("../projects/projects", "../home/home");
         back.put("../employees/employees", "../home/home");
         back.put("../clients/clients", "../home/home");
         back.put("Project", "/projects");
