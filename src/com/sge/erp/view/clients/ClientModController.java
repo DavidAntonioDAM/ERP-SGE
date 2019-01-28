@@ -60,8 +60,6 @@ public class ClientModController {
         jtfAddress.setText(clientToModify.getAddress());
         jtfEmail.setText(clientToModify.getEmail());
         jtfPhone.setText(clientToModify.getPhone());
-
-
     }
 
     public ClientsController getCc() {
