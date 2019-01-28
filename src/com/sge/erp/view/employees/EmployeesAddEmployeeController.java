@@ -43,17 +43,74 @@ public class EmployeesAddEmployeeController implements Initializable {
         );
 
         try {
-            ms.insertStaff(s);
+            if (fieldValidation()){
+                if (dniValidate()){
+                    ms.insertStaff(s);
+
+                    ec.reloadList();
+                    ec.loadUI("employees_list");
+
+                    // POP UP EMPLEADO INSERTADO
+                } else {
+                    // POP UP EL DNI ESTA MAL
+                }
+            } else {
+                // POP UP RELLENAR TODOS LOS CAMPOS
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        ec.reloadList();
-        ec.loadUI("employees_list");
     }
 
     @FXML
     void cancel(MouseEvent event) {
         ec.loadUI("employees_list");
+    }
+
+    private boolean dniValidate() {
+        String letter = "";
+        String dni = jtfDNI.getText();
+
+        if (dni.length() != 9 || !Character.isLetter(dni.charAt(8))){
+            return false;
+        } else if (numbersOnly(dni)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean numbersOnly(String dni) {
+        String number;
+        String dniTMP = "";
+
+        for (int i = 0; i < dni.length() - 1; i++){
+            number = dni.substring(i, i+1);
+
+            for (int j = 0; j < 10; j++){
+                if (number.equals(String.valueOf(j))){
+                    dniTMP += String.valueOf(j);
+                }
+            }
+        }
+
+        if (dniTMP.length() != 8) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean fieldValidation() {
+        String name = jtfName.getText();
+        String surname = jtfSurname.getText();
+        String job = jtfJob.getText();
+
+        if (name.length() == 0 || surname.length() == 0 || job.length() == 0){
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public ManagerStaff getMs() {
