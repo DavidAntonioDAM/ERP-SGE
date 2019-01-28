@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.projects.AddProject">
+<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.clients.ClientsAddClientController">
     <children>
         <Label layoutX="299.0" layoutY="48.0" prefHeight="29.0" prefWidth="464.0" text="NIF del Cliente">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXTextField focusColor="#004878" layoutX="299.0" layoutY="77.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+        <JFXTextField fx:id="jtfNIF" focusColor="#004878" layoutX="299.0" layoutY="77.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
             <font>
                 <Font name="Segoe UI" size="18.0" />
             </font>
@@ -23,17 +23,17 @@
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXTextField alignment="CENTER" focusColor="#004878" layoutX="299.0" layoutY="186.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+        <JFXTextField fx:id="jtfName" alignment="CENTER" focusColor="#004878" layoutX="299.0" layoutY="186.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
             <font>
                 <Font name="Segoe UI" size="18.0" />
             </font>
         </JFXTextField>
-        <JFXButton buttonType="RAISED" layoutX="325.0" layoutY="645.0" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
+        <JFXButton buttonType="RAISED" layoutX="325.0" layoutY="645.0" onMouseClicked="#addClient" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </JFXButton>
-        <JFXButton buttonType="RAISED" layoutX="608.0" layoutY="645.0" style="-fx-background-color: #780000;" text="Cancelar" textFill="WHITE">
+        <JFXButton buttonType="RAISED" layoutX="608.0" layoutY="645.0" onMouseClicked="#cancel" style="-fx-background-color: #780000;" text="Cancelar" textFill="WHITE">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
@@ -43,7 +43,7 @@
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXTextField focusColor="#004878" layoutX="299.0" layoutY="295.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+        <JFXTextField fx:id="jtfEmail" focusColor="#004878" layoutX="299.0" layoutY="295.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
             <font>
                 <Font name="Segoe UI" size="18.0" />
             </font>
@@ -53,7 +53,7 @@
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXTextField alignment="CENTER" focusColor="#004878" layoutX="299.0" layoutY="404.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+        <JFXTextField fx:id="jtfPhone" alignment="CENTER" focusColor="#004878" layoutX="299.0" layoutY="404.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
             <font>
                 <Font name="Segoe UI" size="18.0" />
             </font>
@@ -63,7 +63,7 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <JFXTextField alignment="CENTER" focusColor="#004878" layoutX="299.0" layoutY="513.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+      <JFXTextField fx:id="jtfAddress" alignment="CENTER" focusColor="#004878" layoutX="299.0" layoutY="513.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>

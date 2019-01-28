@@ -12,17 +12,6 @@ public class ManagerProjects extends AdminDataBase {
     public ManagerProjects() throws ClassNotFoundException {
         super();
     }
-    
-    public void insertAlex() throws SQLException {
-        verifyConnection();
-        String sql = "INSERT INTO alex (nombre, edad) VALUES (?, ?)";
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, "AndresPruebaxddd");
-        ps.setInt(2, 20);
-
-        ps.executeUpdate();
-
-    }
 
     public void insertProject(Project pj) throws SQLException {
         verifyConnection();
@@ -69,7 +58,12 @@ public class ManagerProjects extends AdminDataBase {
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
 
-            pjs.add(new Project(rs.getInt(0), rs.getString(1), rs.getString(2)));
+            pjs.add(new Project(
+                    rs.getInt(0),
+                    rs.getString(1),
+                    rs.getString(2)
+                    )
+            );
 
         }
         rs.close();

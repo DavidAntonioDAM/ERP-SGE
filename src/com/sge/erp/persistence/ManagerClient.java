@@ -22,7 +22,7 @@ public class ManagerClient extends AdminDataBase {
         ps.setString(1, c.getNif());
         ps.setString(2, c.getName());
         ps.setString(3, c.getEmail());
-        ps.setInt(4, Integer.parseInt(c.getPhone()));
+        ps.setString(4, c.getPhone());
         ps.setString(5, c.getAddress());
         ps.executeUpdate();
 
@@ -40,7 +40,7 @@ public class ManagerClient extends AdminDataBase {
             String nif = rs.getString(1);
             String name = rs.getString(2);
             String email = rs.getString(3);
-            String phone = Integer.toString(rs.getInt(4));
+            String phone = rs.getString(4);
             String address = rs.getString(5);
             client.add(new Client(nif, name, email, phone, address));
         }
@@ -63,7 +63,7 @@ public class ManagerClient extends AdminDataBase {
             String nif = rs.getString(1);
             String name = rs.getString(2);
             String email = rs.getString(3);
-            String phone = Integer.toString(rs.getInt(4));
+            String phone = rs.getString(4);
             String address = rs.getString(5);
             client.add(new Client(nif, name, email, phone, address));
         }
@@ -85,7 +85,7 @@ public class ManagerClient extends AdminDataBase {
             String nif = rs.getString(1);
             String name = rs.getString(2);
             String email = rs.getString(3);
-            String phone = Integer.toString(rs.getInt(4));
+            String phone = rs.getString(4);
             String address = rs.getString(5);
             client.add(new Client(nif, name, email, phone, address));
         }

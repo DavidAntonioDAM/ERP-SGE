@@ -23,7 +23,7 @@
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXTextField alignment="CENTER" focusColor="#004878" layoutX="299.0" layoutY="258.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+        <JFXTextField focusColor="#004878" layoutX="299.0" layoutY="258.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
             <font>
                 <Font name="Segoe UI" size="18.0" />
             </font>
@@ -53,7 +53,7 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <JFXTextField alignment="CENTER" focusColor="#004878" layoutX="299.0" layoutY="516.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+      <JFXTextField focusColor="#004878" layoutX="299.0" layoutY="516.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>

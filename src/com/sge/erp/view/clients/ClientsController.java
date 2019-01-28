@@ -46,6 +46,15 @@ public class ClientsController implements Initializable {
         loadUI("clients_list");
     }
 
+    @FXML
+    void addClient(MouseEvent event) {
+        loadUI("add_client");
+    }
+
+    public void reloadList(){
+        cl.loadAll();
+    }
+
     public void loadUI(String ui) {
         AnchorPane root = null;
 
@@ -66,6 +75,19 @@ public class ClientsController implements Initializable {
             switch (ui){
                 case "clients_list":
                     root = listPane;
+
+                    break;
+                case "add_client":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader.load();
+
+                        ClientsAddClientController cacc = loader.getController();
+                        cacc.setMc(mc);
+                        cacc.setCc(this);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                     break;
             }
