@@ -1,6 +1,7 @@
 package com.sge.erp.persistence;
 
 import com.sge.erp.model.Staff;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,10 +34,30 @@ public class ManagerStaff extends AdminDataBase {
         st.close();
     }
 
-    public ArrayList<Staff> getStaff(String dni) throws SQLException {
-        ArrayList<Staff> sfs = new ArrayList<>();
+    public Staff getStaff(String dni) throws SQLException {
+
         verifyConnection();
         String sql = "SELECT * FROM staff WHERE dni = '" + dni + "'";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        rs.next();
+
+        Staff sff =new Staff(
+                rs.getString(0),
+                rs.getString(1),
+                rs.getString(2),
+                rs.getString(3));
+
+        rs.close();
+        st.close();
+
+        return sff;
+    }
+
+    public ArrayList<Staff> getStaffFilter(String name) throws SQLException {
+        ArrayList<Staff> sfs = new ArrayList<>();
+        verifyConnection();
+        String sql = "SELECT * FROM staff WHERE name = '%" +name+ "%'";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
@@ -51,7 +72,6 @@ public class ManagerStaff extends AdminDataBase {
         st.close();
 
         return sfs;
-
     }
 
     public ArrayList<Staff> getStaffs() throws SQLException {
