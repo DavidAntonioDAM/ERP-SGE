@@ -33,7 +33,17 @@ public class EmployeesController implements Initializable {
 
     @FXML
     void loadAll(MouseEvent event) {
+        elc.loadAll();
+        loadUI("employees_list");
+    }
 
+    @FXML
+    void addEmployee(MouseEvent event) {
+        loadUI("add_employee");
+    }
+
+    public void reloadList(){
+        elc.loadAll();
     }
 
     public void loadUI(String ui) {
@@ -54,9 +64,21 @@ public class EmployeesController implements Initializable {
             }
         } else {
             switch (ui) {
-                case "clients_list":
+                case "employees_list":
                     root = listPane;
 
+                    break;
+                case "add_employee":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader.load();
+
+                        EmployeesAddEmployeeController eaec = loader.getController();
+                        eaec.setMs(ms);
+                        eaec.setEc(this);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
             }
         }

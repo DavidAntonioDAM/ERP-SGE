@@ -2,7 +2,6 @@ package com.sge.erp.model;
 
 public class Staff {
     private String dni;
-    private int id_task;
     private String name;
     private String surname;
     private String job;
@@ -20,14 +19,6 @@ public class Staff {
 
     public void setDni(String dni) {
         this.dni = dni;
-    }
-
-    public int getId_task() {
-        return id_task;
-    }
-
-    public void setId_task(int id_task) {
-        this.id_task = id_task;
     }
 
     public String getName() {

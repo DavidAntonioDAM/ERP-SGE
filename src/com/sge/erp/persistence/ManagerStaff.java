@@ -15,20 +15,19 @@ public class ManagerStaff extends AdminDataBase {
 
     public void insertStaff(Staff sf) throws SQLException {
         verifyConnection();
-        String sql = "INSERT INTO staff (dni, id_task, name, surname, job) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO staff (dni, name, surname, job) VALUES (?, ?, ?, ?)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, sf.getDni());
-        ps.setInt(2, sf.getId_task());
-        ps.setString(3, sf.getName());
-        ps.setString(4, sf.getSurname());
-        ps.setString(5, sf.getJob());
+        ps.setString(2, sf.getName());
+        ps.setString(3, sf.getSurname());
+        ps.setString(4, sf.getJob());
         ps.executeUpdate();
 
     }
 
     public void updateStaff(String dni, Staff sf) throws SQLException {
         verifyConnection();
-        String sql = "UPDATE staff SET id_task = '" + sf.getId_task() + "' , name = '" + sf.getName() + "' , surname = '" + sf.getSurname() + "', job = '" + sf.getJob() + "'  WHERE dni =  '" + dni + "' ";
+        String sql = "UPDATE staff SET name = '" + sf.getName() + "' , surname = '" + sf.getSurname() + "', job = '" + sf.getJob() + "'  WHERE dni =  '" + dni + "' ";
         Statement st = connection.createStatement();
         st.executeUpdate(sql);
         st.close();
