@@ -56,7 +56,7 @@ public class ClientsAddClientController implements Initializable {
                         cc.reloadList();
                         cc.loadUI("clients_list");
 
-                        // POP UP CLIENTE MODIFICADO
+                        // POP UP CLIENTE AGREGADO
                     } else {
                         // POP UP NIF INCORRECTO
                     }
