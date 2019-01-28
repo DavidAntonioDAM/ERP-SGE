@@ -4,8 +4,11 @@ import com.sge.erp.persistence.ManagerStaff;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,7 +31,7 @@ public class EmployeesController implements Initializable {
     private AnchorPane container;
 
     private ManagerStaff ms;
-    private AnchorPane listPane;
+    private Parent listPane;
     EmployeesListController elc;
 
     @FXML
@@ -47,7 +50,7 @@ public class EmployeesController implements Initializable {
     }
 
     public void loadUI(String ui) {
-        AnchorPane root = null;
+        Parent root = null;
 
         if (listPane == null) {
             try {
@@ -71,7 +74,7 @@ public class EmployeesController implements Initializable {
                 case "add_employee":
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
-                        root = loader.load();
+                        root =  loader.load();
 
                         EmployeesAddEmployeeController eaec = loader.getController();
                         eaec.setMs(ms);

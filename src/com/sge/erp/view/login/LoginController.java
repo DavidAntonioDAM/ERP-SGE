@@ -3,6 +3,7 @@ package com.sge.erp.view.login;
 import com.jfoenix.controls.*;
 import com.sge.erp.model.User;
 import com.sge.erp.persistence.ManagerUsers;
+import com.sge.erp.utility.DialogCreator;
 import com.sge.erp.view.mainWindow.MainWindowController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,10 +27,13 @@ public class LoginController implements Initializable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+        dc = new DialogCreator(login);
     }
 
     private ManagerUsers mu;
     private MainWindowController mainController;
+    private DialogCreator dc;
 
     public MainWindowController getMainController() {
         return mainController;
@@ -59,43 +63,18 @@ public class LoginController implements Initializable {
             if (uLocal.getPassword().equals(uBBDD.getPassword())) {
                 mainController.loadUI("../home/home");
             } else {
-                showDialog(
+                dc.showDialog(
                         new Text("Error de autentificacion"),
                         new Text("La contraseña introducida no concuerda con la del usuario.\n\n" +
                                 "Por favor, intentelo de nuevo."));
             }
         } catch (SQLException e) {
-            showDialog(
+            dc.showDialog(
                     new Text("Error con la base de datos"),
                     new Text("Ha habido un error con la base de datos o el usuario que intentas\n" +
                             "introducir no existe.\n\n" +
                             "Por favor, intentelo de nuevo."));
 
         }
-    }
-
-    private void showDialog(Text title, Text text) {
-        JFXDialogLayout content = new JFXDialogLayout();
-        content.setHeading(title);
-        content.setBody(text);
-
-        JFXButton done = new JFXButton("Aceptar");
-        done.setButtonType(JFXButton.ButtonType.RAISED);
-        done.setStyle("-fx-background-color: #17212B;");
-        done.setPrefHeight(32);
-        done.setRipplerFill(Paint.valueOf("#ffffff"));
-        done.setTextFill(Paint.valueOf("#ffffff"));
-
-        content.setActions(done);
-
-        final JFXDialog dialog = new JFXDialog(login, content, JFXDialog.DialogTransition.TOP);
-        done.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                dialog.close();
-            }
-        });
-
-        dialog.show();
     }
 }
