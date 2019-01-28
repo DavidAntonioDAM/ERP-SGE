@@ -48,17 +48,87 @@ public class ClientsAddClientController implements Initializable {
         );
 
         try {
-            mc.insertClient(c);
+            if (fieldValidation()){
+                if (phoneValidation()){
+                    if (nifValidate()){
+                        mc.insertClient(c);
+
+                        cc.reloadList();
+                        cc.loadUI("clients_list");
+
+                        // POP UP CLIENTE MODIFICADO
+                    } else {
+                        // POP UP NIF INCORRECTO
+                    }
+                } else {
+                    // POP UP TELEFONO INCORRECTO
+                }
+            } else {
+                // POP UP RELLENAR CAMPOS
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        cc.reloadList();
-        cc.loadUI("clients_list");
     }
 
     @FXML
     void cancel(MouseEvent event) {
         cc.loadUI("clients_list");
+    }
+
+    private boolean nifValidate() {
+        String nif = jtfNIF.getText();
+
+        if (nif.length() != 9 || !Character.isLetter(nif.charAt(0)) || !Character.isLetter(nif.charAt(8))) {
+            return false;
+        } else if (numbersOnly(nif)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean numbersOnly(String dni) {
+        String number;
+        String nifTMP = "";
+
+        for (int i = 1; i < dni.length() - 1; i++){
+            number = dni.substring(i, i+1);
+
+            for (int j = 0; j < 10; j++){
+                if (number.equals(String.valueOf(j))){
+                    nifTMP += String.valueOf(j);
+                }
+            }
+        }
+
+        if (nifTMP.length() != 7) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean phoneValidation(){
+        String phone = jtfPhone.getText();
+
+        if (phone.length() != 9){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean fieldValidation() {
+        String name = jtfName.getText();
+        String email = jtfEmail.getText();
+        String address = jtfAddress.getText();
+
+        if (name.length() == 0 || email.length() == 0 || address.length() == 0){
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public ManagerClient getMc() {
