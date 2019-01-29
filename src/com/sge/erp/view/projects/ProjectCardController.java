@@ -1,11 +1,20 @@
 package com.sge.erp.view.projects;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 
-public class ProjectCardController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ProjectCardController implements Initializable {
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 
     @FXML
     private Label lProjectName;
