@@ -50,7 +50,7 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </JFXButton>
-      <JFXDatePicker defaultColor="#17212b" layoutX="299.0" layoutY="317.0" prefHeight="25.0" prefWidth="464.0" />
+      <JFXDatePicker defaultColor="#17212b" layoutX="299.0" layoutY="317.0" prefHeight="25.0" prefWidth="464.0" stylesheets="@../../css/datePîcker.css" />
       <Label layoutX="299.0" layoutY="278.0" prefHeight="29.0" prefWidth="464.0" text="Fecha de Entrega del Proyecto">
          <font>
             <Font name="Segoe UI Bold" size="24.0" />

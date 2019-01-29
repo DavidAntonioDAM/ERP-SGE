@@ -1,3 +1,8 @@
 .text-area .scroll-pane:disabled{
     -fx-opacity: 1;
+
+}
+
+.pane {
+    -fx-border-color:  #17212B;
 }
