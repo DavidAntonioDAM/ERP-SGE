@@ -9,9 +9,9 @@
 
 <AnchorPane prefHeight="200.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.projects.ProjectCardController">
     <children>
-        <Pane prefHeight="67.0" prefWidth="800.0" style="-fx-background-color: #17212B; -fx-border-color: #17212B;">
+        <Pane prefHeight="67.0" prefWidth="645.0" style="-fx-background-color: #17212B; -fx-border-color: #17212B;">
             <children>
-                <Label fx:id="lProjectName" layoutX="14.0" layoutY="5.0" prefHeight="58.0" prefWidth="775.0" text="Nombre del Proyecto" textFill="WHITE">
+                <Label fx:id="lProjectName" layoutX="14.0" layoutY="5.0" prefHeight="58.0" prefWidth="620.0" text="Nombre del Proyecto" textFill="WHITE">
                     <font>
                         <Font name="Segoe UI Bold" size="36.0" />
                     </font>
@@ -40,5 +40,14 @@
                </children>
             </Pane>
          </children></Pane>
+      <Pane layoutX="645.0" prefHeight="67.0" prefWidth="155.0" style="-fx-border-color: #17212B; -fx-background-color: #004878;">
+         <children>
+            <Label fx:id="lProjectName1" layoutX="10.0" layoutY="5.0" prefHeight="58.0" prefWidth="137.0" style="-fx-text-fill: white;" text="99/99/9999">
+               <font>
+                  <Font name="Segoe UI Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
     </children>
 </AnchorPane>
