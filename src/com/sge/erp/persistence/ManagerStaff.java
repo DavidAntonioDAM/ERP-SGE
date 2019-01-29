@@ -1,5 +1,6 @@
 package com.sge.erp.persistence;
 
+import com.sge.erp.model.Client;
 import com.sge.erp.model.Staff;
 
 import java.sql.PreparedStatement;
@@ -54,6 +55,29 @@ public class ManagerStaff extends AdminDataBase {
 
         return sfs;
 
+    }
+
+    public ArrayList<Staff> getStaffsFilter(String nameFilter) throws SQLException {
+        ArrayList<Staff> staffs = new ArrayList<>();
+        verifyConnection();
+
+        String sql = "SELECT * FROM staff WHERE name LIKE '%" + nameFilter + "%';";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+
+            staffs.add(new Staff(
+                    rs.getString("dni"),
+                    rs.getString("name"),
+                    rs.getString("surname"),
+                    rs.getString("job")));
+
+        }
+
+        rs.close();
+        st.close();
+        return staffs;
     }
 
     public ArrayList<Staff> getStaffs() throws SQLException {

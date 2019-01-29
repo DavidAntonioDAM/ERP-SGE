@@ -39,19 +39,10 @@ public class ClientListController{
         String dni = "";
 
         ObservableList<AnchorPane> prueba = list.getSelectionModel().getSelectedItems();
-/*
-        ObservableList<Node> prueba2 = prueba.get(0).getChildren();
-        Pane panel = (Pane) prueba2.get(3);
-*/
 
         Pane panel = (Pane)  prueba.get(0).getChildren().get(3);
         dni = ((Label)panel.getChildren().get(0)).getText();
 
-/*
-        for (Node n:panel.getChildren()) {
-            dni = ((Label)n).getText();
-        }
-*/
         try {
             clientSelected = mc.getClient(dni);
         } catch (SQLException e) {

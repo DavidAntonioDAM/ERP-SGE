@@ -34,6 +34,12 @@ public class EmployeesListController {
     @FXML
     void filterName(MouseEvent event) {
 
+        try {
+            staffs = ms.getStaffsFilter(jtfSearch.getText());
+            loadList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -42,19 +48,9 @@ public class EmployeesListController {
         String dni = "";
 
         ObservableList<AnchorPane> prueba = list.getSelectionModel().getSelectedItems();
-/*
-        ObservableList<Node> prueba2 = prueba.get(0).getChildren();
-        Pane panel = (Pane) prueba2.get(3);
-*/
-
         Pane panel = (Pane)  prueba.get(0).getChildren().get(3);
         dni = ((Label)panel.getChildren().get(0)).getText();
 
-/*
-        for (Node n:panel.getChildren()) {
-            dni = ((Label)n).getText();
-        }
-*/
         try {
             staffSelected = ms.getStaff(dni);
         } catch (SQLException e) {

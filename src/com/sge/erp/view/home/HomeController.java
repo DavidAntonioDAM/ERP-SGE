@@ -26,4 +26,9 @@ public class HomeController {
     void goProjects(MouseEvent event) {
         mainController.loadUI("../projects/projects");
     }
+
+    @FXML
+    void goReports(MouseEvent event) {
+        //mainController.loadUI("../reports/reports");
+    }
 }
