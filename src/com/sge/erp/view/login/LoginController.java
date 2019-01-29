@@ -58,7 +58,7 @@ public class LoginController implements Initializable {
         User uLocal = new User(tfUser.getText(), tfPass1.getText());
 
         try {
-            User uBBDD = mu.readUser(uLocal.getUser());
+            User uBBDD = mu.getUser(uLocal.getUser());
 
             if (uLocal.getPassword().equals(uBBDD.getPassword())) {
                 mainController.loadUI("../home/home");

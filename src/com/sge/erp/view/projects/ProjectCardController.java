@@ -2,6 +2,7 @@ package com.sge.erp.view.projects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 
 public class ProjectCardController {
@@ -12,6 +13,17 @@ public class ProjectCardController {
     @FXML
     private TextArea jtaProjectDesc;
 
+
+    @FXML
+    private ProgressIndicator chart;
+
+    public ProgressIndicator getChart() {
+        return chart;
+    }
+
+    public void setChart(ProgressIndicator chart) {
+        this.chart = chart;
+    }
 
     public Label getlProjectName() {
         return lProjectName;

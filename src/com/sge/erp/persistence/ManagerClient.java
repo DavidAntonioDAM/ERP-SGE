@@ -28,19 +28,21 @@ public class ManagerClient extends AdminDataBase {
 
     }
 
-    public ArrayList<Client> getClient(String nifClient) throws SQLException {
-        ArrayList<Client> client = new ArrayList<>();
+    public Client getClient(String nifClient) throws SQLException {
+        Client client;
         verifyConnection();
 
         String sql = "SELECT * FROM client WHERE nif = '" + nifClient + "';";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
 
-        while (rs.next()) {
+        rs.next();
 
-            client.add(new Client(rs.getString("nif"), rs.getString("name"), rs.getString("email"), rs.getString("phone"), rs.getString("address")));
-
-        }
+        client = new Client(rs.getString("nif"),
+                rs.getString("name"),
+                rs.getString("email"),
+                rs.getString("phone"),
+                rs.getString("address"));
 
         rs.close();
         st.close();
@@ -60,6 +62,28 @@ public class ManagerClient extends AdminDataBase {
 
             client.add(new Client(rs.getString("nif"), rs.getString("name"), rs.getString("email"), rs.getString("phone"), rs.getString("address")));
 
+        }
+
+        rs.close();
+        st.close();
+        return client;
+    }
+
+    public ArrayList<Client> getClientsFilter(String nameFilter) throws SQLException {
+        ArrayList<Client> client = new ArrayList<>();
+        verifyConnection();
+
+        String sql = "SELECT * FROM client WHERE name LIKE '%" + nameFilter + "%';";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+            String nif = rs.getString(1);
+            String name = rs.getString(2);
+            String email = rs.getString(3);
+            String phone = rs.getString(4);
+            String address = rs.getString(5);
+            client.add(new Client(nif, name, email, phone, address));
         }
 
         rs.close();

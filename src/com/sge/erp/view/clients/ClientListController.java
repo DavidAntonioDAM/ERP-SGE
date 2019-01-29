@@ -53,7 +53,7 @@ public class ClientListController{
         }
 */
         try {
-            clientSelected = mc.readClient(dni);
+            clientSelected = mc.getClient(dni);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,7 +64,7 @@ public class ClientListController{
 
     void loadAll() {
         try {
-            clients = mc.readClients();
+            clients = mc.getClients();
             loadList();
         } catch (SQLException e) {
             e.printStackTrace();

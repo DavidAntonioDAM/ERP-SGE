@@ -78,4 +78,27 @@ public class ManagerTask extends AdminDataBase {
 
     }
 
+    public ArrayList<Task> getProjectTask(int id_project) throws SQLException {
+
+        ArrayList<Task> tks = new ArrayList<>();
+        verifyConnection();
+        String sql = "SELECT * FROM task WHERE id_project = '" + id_project + "';";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+
+            tks.add(new Task(
+                    rs.getInt("id_task"),
+                    rs.getInt("id_project"),
+                    rs.getString("dni"),
+                    rs.getString("name"),
+                    rs.getString("state")));
+        }
+
+        rs.close();
+        st.close();
+        return tks;
+
+    }
+
 }

@@ -75,7 +75,7 @@ public class ProjectsController implements Initializable {
             }
         } else {
             switch (ui){
-                case "clients_list":
+                case "projects_list":
                     root = listPane;
 
                     break;

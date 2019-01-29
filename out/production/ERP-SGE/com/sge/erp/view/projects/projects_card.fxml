@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.ProgressIndicator?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,6 +27,9 @@
             </TextArea>
          </children>
         </Pane>
-        <Pane layoutX="800.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #14385B; -fx-border-color: #17212B;" />
+        <Pane layoutX="800.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #17212B;">
+         <children>
+            <ProgressIndicator fx:id="chart" layoutX="16.0" layoutY="16.0" progress="0.29" radius="80.0" />
+         </children></Pane>
     </children>
 </AnchorPane>
