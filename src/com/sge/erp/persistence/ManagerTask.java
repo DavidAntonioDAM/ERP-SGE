@@ -32,7 +32,7 @@ public class ManagerTask extends AdminDataBase {
         st.executeUpdate(sql);
         st.close();
     }
-
+/*
     public ArrayList<Task> getTask(int id_task) throws SQLException {
         ArrayList<Task> tks = new ArrayList<>();
         verifyConnection();
@@ -41,7 +41,10 @@ public class ManagerTask extends AdminDataBase {
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
 
-            tks.add(new Task(rs.getInt(0), rs.getInt(1), rs.getString(2), rs.getString(3)));
+            tks.add(new Task(rs.getInt(0),
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getString(3)));
 
         }
         rs.close();
@@ -67,7 +70,7 @@ public class ManagerTask extends AdminDataBase {
         return tks;
 
     }
-
+*/
     public void deleteTask(int id_task) throws SQLException {
         verifyConnection();
         String sql = "DELETE FROM task WHERE id_task = '" + id_task + "'";

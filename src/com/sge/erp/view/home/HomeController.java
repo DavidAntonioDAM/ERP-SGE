@@ -8,16 +8,9 @@ import javafx.scene.layout.AnchorPane;
 public class HomeController {
     private MainWindowController mainController;
 
-    public MainWindowController getMainController() {
-        return mainController;
-    }
-
     public void setMainController(MainWindowController mainController) {
         this.mainController = mainController;
     }
-
-    @FXML
-    private AnchorPane home;
 
     @FXML
     void goClients(MouseEvent event) {

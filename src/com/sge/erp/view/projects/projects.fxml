@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
@@ -14,7 +12,7 @@
     <items>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="717.0" prefWidth="305.0" style="-fx-background-color: #17212b;">
             <children>
-                <JFXButton alignment="TOP_LEFT" layoutY="116.0" prefHeight="67.0" prefWidth="305.0" text="Agregar" textFill="WHITE">
+                <JFXButton alignment="TOP_LEFT" layoutY="116.0" onMouseClicked="#addProject" prefHeight="67.0" prefWidth="305.0" text="Agregar" textFill="WHITE">
                     <font>
                         <Font name="Segoe UI" size="36.0" />
                     </font>
@@ -22,7 +20,7 @@
                         <MaterialDesignIconView fill="WHITE" glyphName="PLUS_CIRCLE_OUTLINE" size="45" />
                     </graphic>
                 </JFXButton>
-                <JFXButton alignment="TOP_LEFT" layoutY="183.0" prefHeight="67.0" prefWidth="305.0" text="Equipos" textFill="WHITE">
+                <JFXButton alignment="TOP_LEFT" layoutY="183.0" onMouseClicked="#showTeams" prefHeight="67.0" prefWidth="305.0" text="Equipos" textFill="WHITE">
                     <font>
                         <Font name="Segoe UI" size="36.0" />
                     </font>
@@ -35,7 +33,7 @@
                         <Image url="@../../resources/desarrollap.png" />
                     </image>
                 </ImageView>
-                <JFXButton alignment="TOP_LEFT" layoutY="49.0" prefHeight="67.0" prefWidth="305.0" text="Resumen" textFill="WHITE">
+                <JFXButton alignment="TOP_LEFT" layoutY="49.0" onMouseClicked="#loadAll" prefHeight="67.0" prefWidth="305.0" text="Resumen" textFill="WHITE">
                     <font>
                         <Font name="Segoe UI" size="36.0" />
                     </font>
@@ -44,19 +42,6 @@
                     </graphic>
                 </JFXButton>
             </children></AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="717.0" prefWidth="100.0" style="-fx-background-color: white;">
-            <children>
-                <JFXListView fx:id="list" layoutX="3.0" layoutY="64.0" prefHeight="650.0" prefWidth="1042.0" style="-fx-border-width: 0px; -fx-background-color: white;" />
-                <JFXTextField fx:id="jtfSearch" focusColor="#14385b" layoutX="15.0" layoutY="18.0" prefHeight="35.0" prefWidth="909.0" promptText="Buscar..." unFocusColor="BLACK">
-                    <font>
-                        <Font name="Segoe UI" size="18.0" />
-                    </font>
-                </JFXTextField>
-                <JFXButton contentDisplay="CENTER" layoutX="936.0" layoutY="18.0" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #14385B;">
-                    <graphic>
-                        <MaterialDesignIconView fill="WHITE" glyphName="MAGNIFY" size="25" />
-                    </graphic>
-                </JFXButton>
-            </children></AnchorPane>
+        <AnchorPane fx:id="container" minHeight="0.0" minWidth="0.0" prefHeight="717.0" prefWidth="100.0" style="-fx-background-color: white;" />
     </items>
 </SplitPane>

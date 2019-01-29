@@ -41,7 +41,13 @@ public class ManagerProjects extends AdminDataBase {
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
 
-            pjs.add(new Project(rs.getInt(0), rs.getString(1), rs.getString(2)));
+            pjs.add(new Project(
+                    rs.getInt("id_project"),
+                    rs.getString("nif_client"),
+                    rs.getString("name"),
+                    rs.getString("description"),
+                    rs.getString("deliver_date")
+                    ));
 
         }
         rs.close();
@@ -59,11 +65,12 @@ public class ManagerProjects extends AdminDataBase {
         while (rs.next()) {
 
             pjs.add(new Project(
-                    rs.getInt(0),
-                    rs.getString(1),
-                    rs.getString(2)
-                    )
-            );
+                    rs.getInt("id_project"),
+                    rs.getString("nif_client"),
+                    rs.getString("name"),
+                    rs.getString("description"),
+                    rs.getString("deliver_date")
+            ));
 
         }
         rs.close();
