@@ -89,7 +89,7 @@ public class ProjectsListController implements Initializable {
                 cc.getlProjectName().setText(p.getName());
                 cc.getJtaProjectDesc().setText(p.getDescription());
                 cc.getChart().setProgress(projectComplete);
-                cc.getPercent().setText(String.valueOf(projectComplete*100)+"%");
+                cc.getPercent().setText(String.valueOf(((int)(projectComplete*100)))+"%");
 
                 list.getItems().add(card);
             }
