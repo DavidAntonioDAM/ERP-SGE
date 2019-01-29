@@ -13,9 +13,19 @@ public class ProjectCardController {
     @FXML
     private TextArea jtaProjectDesc;
 
-
     @FXML
     private ProgressIndicator chart;
+
+    @FXML
+    private Label percent;
+
+    public Label getPercent() {
+        return percent;
+    }
+
+    public void setPercent(Label percent) {
+        this.percent = percent;
+    }
 
     public ProgressIndicator getChart() {
         return chart;
