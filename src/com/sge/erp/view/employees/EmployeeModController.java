@@ -61,10 +61,12 @@ public class EmployeeModController implements Initializable {
                     ms.updateStaff(staffToModify.getDni(), s);
 
                     ec.reloadList();
-                    ec.loadUI("employees_list");
 
                     dg.showDialog(new Text("Éxito"),
                             new Text("El empleado ha sido modificado con éxito."));
+
+
+                    ec.loadUI("employees_list");
                 } else {
                     dg.showDialog(new Text("Error con el DNI"),
                             new Text("El DNI del empleado no está puesto correctamente.\n\n" +
