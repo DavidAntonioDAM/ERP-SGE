@@ -14,16 +14,16 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class EmployeesAddEmployeeController implements Initializable {
+public class EmployeeModController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         dg = new DialogCreator(container);
     }
 
-    private ManagerStaff ms;
     private EmployeesController ec;
+    private ManagerStaff ms;
+    private Staff staffToModify;
     private DialogCreator dg;
 
     @FXML
@@ -42,7 +42,12 @@ public class EmployeesAddEmployeeController implements Initializable {
     private JFXTextField jtfJob;
 
     @FXML
-    void addEmployee(MouseEvent event) {
+    void cancel(MouseEvent event) {
+        ec.loadUI("employees_list");
+    }
+
+    @FXML
+    void modEmployee(MouseEvent event) {
         Staff s = new Staff(
                 jtfDNI.getText(),
                 jtfName.getText(),
@@ -53,13 +58,13 @@ public class EmployeesAddEmployeeController implements Initializable {
         try {
             if (fieldValidation()){
                 if (dniValidate()){
-                    ms.insertStaff(s);
+                    ms.updateStaff(staffToModify.getDni(), s);
 
                     ec.reloadList();
                     ec.loadUI("employees_list");
 
                     dg.showDialog(new Text("Éxito"),
-                            new Text("El empleado ha sido añadido con éxito a la base de datos."));
+                            new Text("El empleado ha sido modificado con éxito."));
                 } else {
                     dg.showDialog(new Text("Error con el DNI"),
                             new Text("El DNI del empleado no está puesto correctamente.\n\n" +
@@ -75,9 +80,11 @@ public class EmployeesAddEmployeeController implements Initializable {
         }
     }
 
-    @FXML
-    void cancel(MouseEvent event) {
-        ec.loadUI("employees_list");
+    public void setFields(){
+        jtfDNI.setText(staffToModify.getDni());
+        jtfName.setText(staffToModify.getName());
+        jtfSurname.setText(staffToModify.getSurname());
+        jtfJob.setText(staffToModify.getJob());
     }
 
     private boolean dniValidate() {
@@ -125,6 +132,14 @@ public class EmployeesAddEmployeeController implements Initializable {
         }
     }
 
+    public EmployeesController getEc() {
+        return ec;
+    }
+
+    public void setEc(EmployeesController ec) {
+        this.ec = ec;
+    }
+
     public ManagerStaff getMs() {
         return ms;
     }
@@ -133,11 +148,11 @@ public class EmployeesAddEmployeeController implements Initializable {
         this.ms = ms;
     }
 
-    public EmployeesController getEc() {
-        return ec;
+    public Staff getStaffToModify() {
+        return staffToModify;
     }
 
-    public void setEc(EmployeesController ec) {
-        this.ec = ec;
+    public void setStaffToModify(Staff staffToModify) {
+        this.staffToModify = staffToModify;
     }
 }

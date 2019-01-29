@@ -28,7 +28,7 @@ public class ManagerStaff extends AdminDataBase {
 
     public void updateStaff(String dni, Staff sf) throws SQLException {
         verifyConnection();
-        String sql = "UPDATE staff SET name = '" + sf.getName() + "' , surname = '" + sf.getSurname() + "', job = '" + sf.getJob() + "'  WHERE dni =  '" + dni + "';";
+        String sql = "UPDATE staff SET dni = '" + sf.getDni() + "', name = '" + sf.getName() + "' , surname = '" + sf.getSurname() + "', job = '" + sf.getJob() + "'  WHERE dni =  '" + dni + "';";
         Statement st = connection.createStatement();
         st.executeUpdate(sql);
         st.close();

@@ -6,10 +6,13 @@ import com.sge.erp.model.Client;
 import com.sge.erp.model.Staff;
 import com.sge.erp.persistence.ManagerClient;
 import com.sge.erp.persistence.ManagerStaff;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,6 +22,8 @@ public class EmployeesListController {
 
     private ArrayList<Staff> staffs;
     private ManagerStaff ms;
+    private Staff staffSelected;
+    private EmployeesController ec;
 
     @FXML
     private JFXListView<AnchorPane> list;
@@ -29,6 +34,35 @@ public class EmployeesListController {
     @FXML
     void filterName(MouseEvent event) {
 
+    }
+
+    @FXML
+    void selectEmployee(MouseEvent event) {
+
+        String dni = "";
+
+        ObservableList<AnchorPane> prueba = list.getSelectionModel().getSelectedItems();
+/*
+        ObservableList<Node> prueba2 = prueba.get(0).getChildren();
+        Pane panel = (Pane) prueba2.get(3);
+*/
+
+        Pane panel = (Pane)  prueba.get(0).getChildren().get(3);
+        dni = ((Label)panel.getChildren().get(0)).getText();
+
+/*
+        for (Node n:panel.getChildren()) {
+            dni = ((Label)n).getText();
+        }
+*/
+        try {
+            staffSelected = ms.getStaff(dni);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ec.setStaffSelected(staffSelected);
+        ec.loadUI("mod_employee");
     }
 
     public void loadAll() {
@@ -70,5 +104,13 @@ public class EmployeesListController {
 
     public void setMs(ManagerStaff ms) {
         this.ms = ms;
+    }
+
+    public EmployeesController getEc() {
+        return ec;
+    }
+
+    public void setEc(EmployeesController ec) {
+        this.ec = ec;
     }
 }

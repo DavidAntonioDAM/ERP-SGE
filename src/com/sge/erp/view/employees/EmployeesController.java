@@ -1,5 +1,6 @@
 package com.sge.erp.view.employees;
 
+import com.sge.erp.model.Staff;
 import com.sge.erp.persistence.ManagerStaff;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +32,7 @@ public class EmployeesController implements Initializable {
     private AnchorPane container;
 
     private ManagerStaff ms;
+    private Staff staffSelected;
     private Parent listPane;
     EmployeesListController elc;
 
@@ -60,6 +62,7 @@ public class EmployeesController implements Initializable {
                 elc = loader.getController();
                 elc.setMs(ms);
                 elc.loadAll();
+                elc.setEc(this);
 
                 listPane = root;
             } catch (IOException e) {
@@ -83,9 +86,27 @@ public class EmployeesController implements Initializable {
                         e.printStackTrace();
                     }
                     break;
+                case "mod_employee":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root =  loader.load();
+
+                        EmployeeModController emc = loader.getController();
+                        emc.setMs(ms);
+                        emc.setEc(this);
+                        emc.setStaffToModify(staffSelected);
+                        emc.setFields();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
             }
         }
         container.getChildren().setAll(root);
+    }
+
+    public void setStaffSelected(Staff staffSelected) {
+        this.staffSelected = staffSelected;
     }
 
 }

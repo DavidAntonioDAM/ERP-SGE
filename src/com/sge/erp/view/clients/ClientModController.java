@@ -4,11 +4,19 @@ import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Client;
 import com.sge.erp.persistence.ManagerClient;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class ClientModController {
+public class ClientModController implements Initializable {
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 
     private ClientsController cc;
     private ManagerClient mc;
