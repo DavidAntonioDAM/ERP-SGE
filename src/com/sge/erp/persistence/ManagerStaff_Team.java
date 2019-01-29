@@ -17,7 +17,7 @@ public class ManagerStaff_Team extends AdminDataBase {
     public void insertStaff_Team(Staff_Team st) throws SQLException {
 
         verifyConnection();
-        String sql = "INSERT INTO staff_team (id_team, dni) VALUE (?, ?);";
+        String sql = "INSERT INTO staff_team (id_team, dni) VALUES (?, ?);";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setInt(1, st.getId_team());
         ps.setString(2, st.getDni());
@@ -25,9 +25,9 @@ public class ManagerStaff_Team extends AdminDataBase {
 
     }
 
-    public ArrayList<Staff_Team> getStaff_Team(String id_Team) throws SQLException {
-        ArrayList<Staff_Team> steam = new ArrayList<>();
+    public Staff_Team getStaff_Team(int id_Team) throws SQLException {
         verifyConnection();
+        Staff_Team steam = null;
 
         String sql = "SELECT * FROM staff_team WHERE id_team = '" + id_Team + "';";
         Statement st = connection.createStatement();
@@ -35,7 +35,7 @@ public class ManagerStaff_Team extends AdminDataBase {
 
         while (rs.next()) {
 
-            steam.add(new Staff_Team(rs.getInt("id_team"), rs.getString("dni")));
+            steam = new Staff_Team(rs.getInt("id_team"), rs.getString("dni"));
 
         }
 

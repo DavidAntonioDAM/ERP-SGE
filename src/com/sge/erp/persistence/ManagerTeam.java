@@ -1,11 +1,12 @@
 package com.sge.erp.persistence;
 
+import com.sge.erp.model.Team;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import com.sge.erp.model.Team;
 
 public class ManagerTeam extends AdminDataBase {
 
@@ -24,28 +25,27 @@ public class ManagerTeam extends AdminDataBase {
 
     }
 
-    public ArrayList<Team> readTeam(String id_Team) throws SQLException {
-        ArrayList<Team> team = new ArrayList<>();
+    public Team getTeam(String id_Team) throws SQLException {
         verifyConnection();
+        Team t = null;
 
         String sql = "SELECT * FROM team WHERE id_team = '" + id_Team + "';";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
 
         while (rs.next()) {
-            int id_team = rs.getInt(1);
-            int id_project = rs.getInt(2);
-            String name = rs.getString(3);
-            team.add(new Team(id_team, id_project, name));
+
+            t = new Team(rs.getInt("id_team"), rs.getInt("id_project"), rs.getString("name"));
+
         }
 
         rs.close();
         st.close();
 
-        return team;
+        return t;
     }
 
-    public ArrayList<Team> readTeams() throws SQLException {
+    public ArrayList<Team> getTeams() throws SQLException {
         ArrayList<Team> team = new ArrayList<>();
         verifyConnection();
 
@@ -54,10 +54,9 @@ public class ManagerTeam extends AdminDataBase {
         ResultSet rs = st.executeQuery(sql);
 
         while (rs.next()) {
-            int id_team = rs.getInt(1);
-            int id_project = rs.getInt(2);
-            String name = rs.getString(3);
-            team.add(new Team(id_team, id_project, name));
+
+            team.add(new Team(rs.getInt("id_team"), rs.getInt("id_project"), rs.getString("name")));
+
         }
 
         rs.close();
@@ -66,15 +65,15 @@ public class ManagerTeam extends AdminDataBase {
         return team;
     }
 
-    public void updateTeam(Team t) throws SQLException {
+    public void updateTeam(Team t, int id_team) throws SQLException {
         verifyConnection();
-        String sql = "UPDATE team SET id_team = '" + t.getId_team() + "', name = '" + t.getName() + "', id_project = '" + t.getId_project() + "' WHERE id_team = '" + t.getId_team() + "';";
+        String sql = "UPDATE team SET id_team = '" + t.getId_team() + "', name = '" + t.getName() + "', id_project = '" + t.getId_project() + "' WHERE id_team = '" + id_team + "';";
         Statement st = connection.createStatement();
         st.executeUpdate(sql);
         st.close();
     }
 
-    public void deleteTeam(String id_Team) throws SQLException {
+    public void deleteTeam(int id_Team) throws SQLException {
         verifyConnection();
         String sql = "DELETE FROM team WHERE id_team = '" + id_Team + "';";
         Statement st = connection.createStatement();

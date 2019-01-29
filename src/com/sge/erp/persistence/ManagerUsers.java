@@ -1,12 +1,12 @@
 package com.sge.erp.persistence;
 
+import com.sge.erp.model.User;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import com.sge.erp.model.User;
 
 public class ManagerUsers extends AdminDataBase {
 
@@ -17,7 +17,7 @@ public class ManagerUsers extends AdminDataBase {
     public void insertUsers(User u) throws SQLException {
         verifyConnection();
 
-        String sql = "INSERT INTO users (user, password) VALUE (?, ?);";
+        String sql = "INSERT INTO users (user, password) VALUES (?, ?);";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, u.getUser());
         ps.setString(2, u.getPassword());
@@ -25,7 +25,7 @@ public class ManagerUsers extends AdminDataBase {
 
     }
 
-    public User readUser(String user_Name) throws SQLException {
+    public User getUser(String user_Name) throws SQLException {
 
         verifyConnection();
 
@@ -35,9 +35,7 @@ public class ManagerUsers extends AdminDataBase {
 
         rs.next();
 
-        String usser = rs.getString(1);
-        String password = rs.getString(2);
-        User u = new User(usser, password);
+        User u = new User(rs.getString("user"), rs.getString("password"));
 
         rs.close();
         st.close();
@@ -45,7 +43,7 @@ public class ManagerUsers extends AdminDataBase {
         return u;
     }
 
-    public ArrayList<User> readUsers() throws SQLException {
+    public ArrayList<User> getUsers() throws SQLException {
         ArrayList<User> user = new ArrayList<>();
         verifyConnection();
 
@@ -54,9 +52,9 @@ public class ManagerUsers extends AdminDataBase {
         ResultSet rs = st.executeQuery(sql);
 
         while (rs.next()) {
-            String usser = rs.getString(1);
-            String password = rs.getString(2);
-            user.add(new User(usser, password));
+
+            user.add(new User(rs.getString("user"), rs.getString("password")));
+
         }
 
         rs.close();
@@ -65,10 +63,10 @@ public class ManagerUsers extends AdminDataBase {
         return user;
     }
 
-    public void updateUsers(User u) throws SQLException {
+    public void updateUsers(User u, String user) throws SQLException {
 
         verifyConnection();
-        String sql = "UPDATE users SET user = '" + u.getUser() + "', password = '" + u.getPassword() + "' WHERE user = '" + u.getUser() + "';";
+        String sql = "UPDATE users SET user = '" + u.getUser() + "', password = '" + u.getPassword() + "' WHERE user = '" + user + "';";
         Statement st = connection.createStatement();
         st.executeUpdate(sql);
         st.close();
