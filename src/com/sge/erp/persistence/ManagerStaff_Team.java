@@ -1,12 +1,12 @@
 package com.sge.erp.persistence;
 
+import com.sge.erp.model.Staff_Team;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import com.sge.erp.model.Staff_Team;
 
 public class ManagerStaff_Team extends AdminDataBase {
 
@@ -25,7 +25,7 @@ public class ManagerStaff_Team extends AdminDataBase {
 
     }
 
-    public ArrayList<Staff_Team> readStaff_Team(String id_Team) throws SQLException {
+    public ArrayList<Staff_Team> getStaff_Team(String id_Team) throws SQLException {
         ArrayList<Staff_Team> steam = new ArrayList<>();
         verifyConnection();
 
@@ -34,9 +34,9 @@ public class ManagerStaff_Team extends AdminDataBase {
         ResultSet rs = st.executeQuery(sql);
 
         while (rs.next()) {
-            int id_team = rs.getInt(1);
-            String dni = rs.getString(2);
-            steam.add(new Staff_Team(id_team, dni));
+
+            steam.add(new Staff_Team(rs.getInt("id_team"), rs.getString("dni")));
+
         }
 
         rs.close();
@@ -45,8 +45,8 @@ public class ManagerStaff_Team extends AdminDataBase {
         return steam;
     }
 
-    public ArrayList<Staff_Team> readStaff_Teams() throws SQLException {
-        ArrayList<Staff_Team> steam = null;
+    public ArrayList<Staff_Team> getStaff_Teams() throws SQLException {
+        ArrayList<Staff_Team> steam = new ArrayList<>();
         verifyConnection();
 
         String sql = "SELECT * FROM staff_team;";
@@ -54,9 +54,9 @@ public class ManagerStaff_Team extends AdminDataBase {
         ResultSet rs = st.executeQuery(sql);
 
         while (rs.next()) {
-            int id_team = rs.getInt(1);
-            String dni = rs.getString(2);
-            steam.add(new Staff_Team(id_team, dni));
+
+            steam.add(new Staff_Team(rs.getInt("id_team"), rs.getString("dni")));
+
         }
 
         rs.close();
@@ -65,22 +65,20 @@ public class ManagerStaff_Team extends AdminDataBase {
         return steam;
     }
 
-    public void updateStaff_Team(Staff_Team stm) throws SQLException {
+    public void updateStaff_Team(Staff_Team stm, int id_team) throws SQLException {
         verifyConnection();
-        String sql = "UPDATE staff_team SET id_team = '" + stm.getId_team() + "', dni = '" + stm.getDni() + "' WHERE dni = '" + stm.getDni() + "';";
+        String sql = "UPDATE staff_team SET id_team = '" + stm.getId_team() + "', dni = '" + stm.getDni() + "' WHERE id_team = '" + id_team + "';";
         Statement st = connection.createStatement();
         st.executeUpdate(sql);
         st.close();
 
     }
 
-    public void deleteStaff_Team(String dni) throws SQLException {
+    public void deleteStaff_Team(int id_team) throws SQLException {
         verifyConnection();
-        String sql = "DELETE FROM staff_team WHERE dni = '" + dni + "';";
+        String sql = "DELETE FROM staff_team WHERE id_team = '" + id_team + "';";
         Statement st = connection.createStatement();
-
         st.executeUpdate(sql);
-
         st.close();
 
     }

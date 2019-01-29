@@ -16,7 +16,7 @@ public class ManagerStaff extends AdminDataBase {
 
     public void insertStaff(Staff sf) throws SQLException {
         verifyConnection();
-        String sql = "INSERT INTO staff (dni, name, surname, job) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO staff (dni, name, surname, job) VALUES (?, ?, ?, ?);";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, sf.getDni());
         ps.setString(2, sf.getName());
@@ -28,69 +28,46 @@ public class ManagerStaff extends AdminDataBase {
 
     public void updateStaff(String dni, Staff sf) throws SQLException {
         verifyConnection();
-        String sql = "UPDATE staff SET name = '" + sf.getName() + "' , surname = '" + sf.getSurname() + "', job = '" + sf.getJob() + "'  WHERE dni =  '" + dni + "' ";
+        String sql = "UPDATE staff SET name = '" + sf.getName() + "' , surname = '" + sf.getSurname() + "', job = '" + sf.getJob() + "'  WHERE dni =  '" + dni + "';";
         Statement st = connection.createStatement();
         st.executeUpdate(sql);
         st.close();
     }
 
-    public Staff getStaff(String dni) throws SQLException {
-
-        verifyConnection();
-        String sql = "SELECT * FROM staff WHERE dni = '" + dni + "'";
-        Statement st = connection.createStatement();
-        ResultSet rs = st.executeQuery(sql);
-        rs.next();
-
-        Staff sff =new Staff(
-                rs.getString(0),
-                rs.getString(1),
-                rs.getString(2),
-                rs.getString(3));
-
-        rs.close();
-        st.close();
-
-        return sff;
-    }
-
-    public ArrayList<Staff> getStaffFilter(String name) throws SQLException {
+    public ArrayList<Staff> getStaff(String dni) throws SQLException {
         ArrayList<Staff> sfs = new ArrayList<>();
         verifyConnection();
-        String sql = "SELECT * FROM staff WHERE name = '%" +name+ "%'";
+        String sql = "SELECT * FROM staff WHERE dni = '" + dni + "';";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
 
-            sfs.add(new Staff(
-                    rs.getString(0),
-                    rs.getString(1),
-                    rs.getString(2),
-                    rs.getString(3)));
+            sfs.add(new Staff(rs.getString("dni"), rs.getString("name"), rs.getString("surname"), rs.getString("job")));
+
         }
         rs.close();
         st.close();
 
         return sfs;
+
     }
 
     public ArrayList<Staff> getStaffs() throws SQLException {
         ArrayList<Staff> sfs = new ArrayList<>();
         verifyConnection();
-        String sql = "SELECT * FROM staff";
+        String sql = "SELECT * FROM staff;";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
-            sfs.add(new Staff(
-                    rs.getString("dni"),
-                    rs.getString("name"),
-                    rs.getString("surname"),
-                    rs.getString("job")));
+
+            sfs.add(new Staff(rs.getString("dni"), rs.getString("name"), rs.getString("surname"), rs.getString("job")));
+
         }
         rs.close();
         st.close();
 
         return sfs;
+
     }
 
     public void deleteStaff(String dni) throws SQLException {

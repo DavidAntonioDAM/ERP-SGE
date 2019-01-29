@@ -12,7 +12,6 @@ public class ManagerUsers extends AdminDataBase {
 
     public ManagerUsers() throws ClassNotFoundException {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public void insertUsers(User u) throws SQLException {

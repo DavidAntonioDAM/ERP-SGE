@@ -1,12 +1,12 @@
 package com.sge.erp.persistence;
 
+import com.sge.erp.model.Client;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import com.sge.erp.model.Client;
 
 public class ManagerClient extends AdminDataBase {
 
@@ -28,22 +28,19 @@ public class ManagerClient extends AdminDataBase {
 
     }
 
-    public Client readClient(String nifClient) throws SQLException {
-        Client client;
+    public ArrayList<Client> getClient(String nifClient) throws SQLException {
+        ArrayList<Client> client = new ArrayList<>();
         verifyConnection();
 
         String sql = "SELECT * FROM client WHERE nif = '" + nifClient + "';";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
 
-        rs.next();
-        String nif = rs.getString(1);
-        String name = rs.getString(2);
-        String email = rs.getString(3);
-        String phone = rs.getString(4);
-        String address = rs.getString(5);
+        while (rs.next()) {
 
-        client = new Client(nif, name, email, phone, address);
+            client.add(new Client(rs.getString("nif"), rs.getString("name"), rs.getString("email"), rs.getString("phone"), rs.getString("address")));
+
+        }
 
         rs.close();
         st.close();
@@ -51,21 +48,18 @@ public class ManagerClient extends AdminDataBase {
         return client;
     }
 
-    public ArrayList<Client> getClientsFilter(String nameFilter) throws SQLException {
+    public ArrayList<Client> getClients() throws SQLException {
         ArrayList<Client> client = new ArrayList<>();
         verifyConnection();
 
-        String sql = "SELECT * FROM client WHERE name LIKE '%" + nameFilter + "%';";
+        String sql = "SELECT * FROM client;";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
 
         while (rs.next()) {
-            String nif = rs.getString(1);
-            String name = rs.getString(2);
-            String email = rs.getString(3);
-            String phone = rs.getString(4);
-            String address = rs.getString(5);
-            client.add(new Client(nif, name, email, phone, address));
+
+            client.add(new Client(rs.getString("nif"), rs.getString("name"), rs.getString("email"), rs.getString("phone"), rs.getString("address")));
+
         }
 
         rs.close();
@@ -73,46 +67,20 @@ public class ManagerClient extends AdminDataBase {
         return client;
     }
 
-    public ArrayList<Client> readClients() throws SQLException {
-        ArrayList<Client> client = new ArrayList<>();
+    public void updateClient(Client c, String nifClient) throws SQLException {
         verifyConnection();
-
-        String sql = "SELECT * FROM client ;";
-        Statement st = connection.createStatement();
-        ResultSet rs = st.executeQuery(sql);
-
-        while (rs.next()) {
-            String nif = rs.getString(1);
-            String name = rs.getString(2);
-            String email = rs.getString(3);
-            String phone = rs.getString(4);
-            String address = rs.getString(5);
-            client.add(new Client(nif, name, email, phone, address));
-        }
-
-        rs.close();
-        st.close();
-        return client;
-    }
-
-    public void updateClient(Client c, String nif) throws SQLException {
-        verifyConnection();
-        String sql = "UPDATE client SET nif = '" + c.getNif() + "', name = '" + c.getName() + "', email = '" + c.getEmail() + "', phone = '" + c.getPhone() + "', address = '" + c.getAddress() + "' WHERE nif = '" + nif + "';";
+        String sql = "UPDATE client SET nif = '" + c.getNif() + "', name = '" + c.getName() + "', email = '" + c.getEmail() + "', phone = '" + c.getPhone() + "', address = '" + c.getAddress() + "' WHERE nif = '" + nifClient + "';";
         Statement st = connection.createStatement();
         st.executeUpdate(sql);
         st.close();
-
     }
 
     public void deleteClient(String nifClient) throws SQLException {
         verifyConnection();
         String sql = "DELETE FROM client WHERE nif = '" + nifClient + "';";
         Statement st = connection.createStatement();
-
         st.executeUpdate(sql);
-
         st.close();
-
     }
 
 }
