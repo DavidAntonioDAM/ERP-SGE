@@ -27,17 +27,18 @@ public class ManagerTeam extends AdminDataBase {
 
     public Team getTeam(String id_Team) throws SQLException {
         verifyConnection();
-        Team t = null;
 
         String sql = "SELECT * FROM team WHERE id_team = '" + id_Team + "';";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
 
-        while (rs.next()) {
+        rs.next();
 
-            t = new Team(rs.getInt("id_team"), rs.getInt("id_project"), rs.getString("name"));
+        Team t = new Team(
+                rs.getInt("id_team"),
+                rs.getInt("id_project"),
+                rs.getString("name"));
 
-        }
 
         rs.close();
         st.close();
@@ -55,7 +56,10 @@ public class ManagerTeam extends AdminDataBase {
 
         while (rs.next()) {
 
-            team.add(new Team(rs.getInt("id_team"), rs.getInt("id_project"), rs.getString("name")));
+            team.add(new Team(
+                    rs.getInt("id_team"),
+                    rs.getInt("id_project"),
+                    rs.getString("name")));
 
         }
 

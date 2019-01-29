@@ -34,17 +34,21 @@ public class ManagerStaff extends AdminDataBase {
         st.close();
     }
 
-    public ArrayList<Staff> getStaff(String dni) throws SQLException {
-        ArrayList<Staff> sfs = new ArrayList<>();
+    public Staff getStaff(String dni) throws SQLException {
+
         verifyConnection();
         String sql = "SELECT * FROM staff WHERE dni = '" + dni + "';";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
-        while (rs.next()) {
+        rs.next();
 
-            sfs.add(new Staff(rs.getString("dni"), rs.getString("name"), rs.getString("surname"), rs.getString("job")));
+        Staff sfs = new Staff(
+                rs.getString("dni"),
+                rs.getString("name"),
+                rs.getString("surname"),
+                rs.getString("job"));
 
-        }
+
         rs.close();
         st.close();
 
@@ -60,7 +64,11 @@ public class ManagerStaff extends AdminDataBase {
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
 
-            sfs.add(new Staff(rs.getString("dni"), rs.getString("name"), rs.getString("surname"), rs.getString("job")));
+            sfs.add(new Staff(
+                    rs.getString("dni"),
+                    rs.getString("name"),
+                    rs.getString("surname"),
+                    rs.getString("job")));
 
         }
         rs.close();
