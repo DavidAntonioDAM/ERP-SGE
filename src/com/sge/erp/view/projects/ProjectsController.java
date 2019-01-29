@@ -42,7 +42,7 @@ public class ProjectsController implements Initializable {
 
     @FXML
     void addProject(MouseEvent event) {
-
+        loadUI("add_project");
     }
 
     @FXML
@@ -79,21 +79,21 @@ public class ProjectsController implements Initializable {
                     root = listPane;
 
                     break;
-                    /*
+
                 case "add_project":
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                         root = loader.load();
 
-                        ClientsAddClientController cacc = loader.getController();
-                        cacc.setMc(mc);
-                        cacc.setCc(this);
+                        ProjectAddController pac = loader.getController();
+                        pac.setMp(mp);
+                        pac.setPc(this);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
                     break;
-                case "mod_project":
+                /*case "mod_project":
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                         root = loader.load();
