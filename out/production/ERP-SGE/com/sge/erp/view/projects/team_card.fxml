@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="282.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.prueba.equiposPruebaController">
+    <children>
+        <Pane prefHeight="67.0" prefWidth="491.0" style="-fx-background-color: #17212B; -fx-border-color: #17212B;">
+            <children>
+                <Label fx:id="lClientName" layoutX="14.0" layoutY="5.0" prefHeight="58.0" prefWidth="456.0" text="Nombre del Equipo" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Bold" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <Pane layoutY="66.0" prefHeight="219.0" prefWidth="1000.0" style="-fx-border-color: #17212B;">
+            <children>
+                <Label fx:id="lEmail" layoutX="14.0" layoutY="12.0" prefHeight="43.0" prefWidth="663.0" text="Integrantes">
+                    <font>
+                        <Font name="Segoe UI" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <Pane layoutX="491.0" prefHeight="67.0" prefWidth="509.0" style="-fx-background-color: #14385B; -fx-border-color: #17212B;">
+         <children>
+                <Label fx:id="lNIF" layoutX="9.0" layoutY="8.0" prefHeight="58.0" prefWidth="362.0" text="Nombre del Proyecto" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Bold" size="24.0" />
+                    </font>
+                </Label>
+         </children>
+        </Pane>
+    </children>
+</AnchorPane>
