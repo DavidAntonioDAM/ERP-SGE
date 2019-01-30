@@ -67,7 +67,7 @@
          <graphic>
             <ImageView fitHeight="228.0" fitWidth="266.0" onMouseClicked="#goProjects" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/planning.png" />
+                  <Image url="@../../resources/clipboard.png" />
                </image>
             </ImageView>
          </graphic>
