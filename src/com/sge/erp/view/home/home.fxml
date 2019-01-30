@@ -45,7 +45,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label layoutX="230.0" layoutY="256.0" text="Projectos" textFill="WHITE">
+      <Label layoutX="230.0" layoutY="256.0" text="Proyectos" textFill="WHITE">
          <font>
             <Font size="55.0" />
          </font>

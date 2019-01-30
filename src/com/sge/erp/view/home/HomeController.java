@@ -27,7 +27,7 @@ public class HomeController {
     @FXML
     void goProjects(MouseEvent event) {
         mainController.loadUI("../projects/projects");
-        mainController.getTitleWindow().setText("Projectos");
+        mainController.getTitleWindow().setText("Proyectos");
     }
 
     @FXML
