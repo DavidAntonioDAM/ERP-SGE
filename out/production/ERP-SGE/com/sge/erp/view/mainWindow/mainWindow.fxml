@@ -2,8 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="mainWindow" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.mainWindow.MainWindowController">
    <top>
@@ -29,6 +31,11 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="WINDOW_MINIMIZE" size="40" wrappingWidth="39.0" />
                </graphic>
             </JFXButton>
+            <Label fx:id="titleWindow" alignment="CENTER" layoutX="512.0" layoutY="7.0" prefHeight="38.0" prefWidth="342.0" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="31.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </top>

@@ -15,20 +15,24 @@ public class HomeController {
     @FXML
     void goClients(MouseEvent event) {
         mainController.loadUI("../clients/clients");
+        mainController.getTitleWindow().setText("Clientes");
     }
 
     @FXML
     void goEmployees(MouseEvent event) {
         mainController.loadUI("../employees/employees");
+        mainController.getTitleWindow().setText("Personal");
     }
 
     @FXML
     void goProjects(MouseEvent event) {
         mainController.loadUI("../projects/projects");
+        mainController.getTitleWindow().setText("Projectos");
     }
 
     @FXML
     void goReports(MouseEvent event) {
         //mainController.loadUI("../reports/reports");
+        //mainController.getTitleWindow().setText("Informes");
     }
 }

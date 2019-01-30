@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -39,6 +40,9 @@ public class MainWindowController implements Initializable {
     @FXML
     private BorderPane mainWindow;
 
+    @FXML
+    private Label titleWindow;
+
 
     @FXML
     void close(MouseEvent event) {
@@ -55,11 +59,13 @@ public class MainWindowController implements Initializable {
     @FXML
     void goBack(MouseEvent event) {
         loadUI(back.get(lastWindow));
+        titleWindow.setText(back.get(lastWindow));
     }
 
     @FXML
     void goHome(MouseEvent event) {
         loadUI("../home/home");
+        titleWindow.setText("Home");
     }
 
     public void loadUI(String ui) {
@@ -94,5 +100,9 @@ public class MainWindowController implements Initializable {
 
         mainWindow.setCenter(root);
         lastWindow = ui;
+    }
+
+    public Label getTitleWindow() {
+        return titleWindow;
     }
 }
