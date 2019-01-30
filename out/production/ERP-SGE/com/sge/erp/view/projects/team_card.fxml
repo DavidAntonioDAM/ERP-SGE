@@ -17,9 +17,12 @@
                 </Label>
             </children>
         </Pane>
-        <Pane layoutY="66.0" prefHeight="219.0" prefWidth="1000.0" style="-fx-border-color: #17212B;">
+        <Pane layoutY="66.0" prefHeight="215.0" prefWidth="1000.0" style="-fx-border-color: #17212B;">
          <children>
-            <TextArea fx:id="jtaMembers" layoutX="1.0" prefHeight="217.0" prefWidth="998.0" />
+            <TextArea fx:id="jtaMembers" disable="true" editable="false" layoutX="1.0" layoutY="1.0" prefHeight="213.0" prefWidth="998.0" style="-fx-border-color: white; -fx-opacity: 1;" stylesheets="@../../css/textArea.css">
+               <font>
+                  <Font name="Segoe UI" size="20.0" />
+               </font></TextArea>
          </children>
         </Pane>
         <Pane layoutX="491.0" prefHeight="67.0" prefWidth="509.0" style="-fx-background-color: #14385B; -fx-border-color: #17212B;">

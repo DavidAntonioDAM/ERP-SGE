@@ -22,7 +22,7 @@
         </JFXButton>
       <JFXButton contentDisplay="CENTER" layoutX="993.0" layoutY="18.0" onMouseClicked="#addTeam" prefHeight="37.0" prefWidth="45.0" style="-fx-background-color: #14385B;">
          <graphic>
-            <MaterialDesignIconView fill="WHITE" glyphName="MAGNIFY" size="25" />
+            <MaterialDesignIconView fill="WHITE" glyphName="PLUS" size="30" />
          </graphic>
       </JFXButton>
     </children>

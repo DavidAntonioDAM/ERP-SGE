@@ -54,7 +54,7 @@ public class TeamListController {
                 tcc.getJlProjectName().setText(projectName);
                 ArrayList<Staff> members = mt.getMembers(t.getId_team());
                 for (Staff s : members){
-                    tcc.getJtaMembers().appendText(s.getName() + " " + s.getSurname() + " (" + s.getDni() + ") ;");
+                    tcc.getJtaMembers().appendText(s.getName() + " " + s.getSurname() + " (" + s.getDni() + ") \n");
                 }
                 list.getItems().add(card);
             }
