@@ -65,7 +65,7 @@ public class AddTeamController implements Initializable {
                     s.getJob());
             employees.add(e);
         }
-        
+
         tableTeam.getColumns().setAll(name,job);
         tableTeam.setShowRoot(false);
 

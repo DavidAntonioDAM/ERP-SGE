@@ -9,12 +9,12 @@
 
 <AnchorPane prefHeight="717.0" prefWidth="1061.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.projects.AddTeamController">
     <children>
-        <Label layoutX="163.0" layoutY="45.0" prefHeight="29.0" prefWidth="277.0" text="Nombre del equipo">
+        <Label layoutX="122.0" layoutY="45.0" prefHeight="29.0" prefWidth="277.0" text="Nombre del equipo">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXTextField fx:id="jtfTeamName" focusColor="#004878" layoutX="163.0" layoutY="74.0" prefHeight="35.0" prefWidth="277.0" unFocusColor="BLACK">
+        <JFXTextField fx:id="jtfTeamName" focusColor="#004878" layoutX="122.0" layoutY="74.0" prefHeight="35.0" prefWidth="277.0" unFocusColor="BLACK">
             <font>
                 <Font name="Segoe UI" size="18.0" />
             </font>
@@ -39,16 +39,16 @@
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </JFXButton>
-        <Label layoutX="683.0" layoutY="237.0" prefHeight="29.0" prefWidth="263.0" text="Integrantes del Equipo">
+        <Label layoutX="682.0" layoutY="145.0" prefHeight="29.0" prefWidth="263.0" text="Integrantes del Equipo">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-      <JFXTreeTableView fx:id="tableEmployees" layoutX="56.0" layoutY="280.0" prefHeight="319.0" prefWidth="407.0" stylesheets="@../../css/tableStyle.css" />
-      <JFXTreeTableView fx:id="tableTeam" layoutX="604.0" layoutY="283.0" prefHeight="319.0" prefWidth="392.0" stylesheets="@../../css/tableStyle.css" />
-      <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="316.0" prefHeight="86.0" prefWidth="116.0" style="-fx-background-color: red;" />
-      <JFXButton buttonType="RAISED" layoutX="484.0" layoutY="486.0" prefHeight="67.0" prefWidth="94.0" style="-fx-background-color: blue;" />
-      <Label layoutX="103.0" layoutY="237.0" prefHeight="29.0" prefWidth="263.0" text="Empleados sin equipo">
+      <JFXTreeTableView fx:id="tableEmployees" layoutX="57.0" layoutY="223.0" prefHeight="319.0" prefWidth="407.0" stylesheets="@../../css/tableStyle.css" />
+      <JFXTreeTableView fx:id="tableTeam" layoutX="604.0" layoutY="223.0" prefHeight="319.0" prefWidth="392.0" stylesheets="@../../css/tableStyle.css" />
+      <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="273.0" prefHeight="86.0" prefWidth="116.0" style="-fx-background-color: red;" />
+      <JFXButton buttonType="RAISED" layoutX="484.0" layoutY="439.0" prefHeight="67.0" prefWidth="94.0" style="-fx-background-color: blue;" />
+      <Label layoutX="129.0" layoutY="145.0" prefHeight="29.0" prefWidth="263.0" text="Empleados sin equipo">
          <font>
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
