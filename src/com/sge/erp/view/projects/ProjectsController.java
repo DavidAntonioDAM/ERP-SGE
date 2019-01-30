@@ -56,6 +56,10 @@ public class ProjectsController implements Initializable {
 
     }
 
+    public void reloadProjectlist(){
+        pl.loadAll();
+    }
+
     public void loadUI(String ui) {
         Parent root = null;
 

@@ -10,11 +10,14 @@ import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerTask;
 import com.sge.erp.view.clients.ClientCardController;
 import com.sge.erp.view.clients.ClientsController;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -48,6 +51,11 @@ public class ProjectsListController implements Initializable {
 
     @FXML
     void filterName(MouseEvent event) {
+
+    }
+
+    @FXML
+    void selectProject(MouseEvent event) {
 
     }
 

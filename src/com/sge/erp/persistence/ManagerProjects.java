@@ -15,45 +15,44 @@ public class ManagerProjects extends AdminDataBase {
 
     public void insertProject(Project pj) throws SQLException {
         verifyConnection();
-        String sql = "INSERT INTO project (id_project, nif_client, name) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO project (nif_client, name, description, deliver_date) VALUES (?, ?, ?, ?)";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setInt(1, pj.getId_project());
-        ps.setString(2, pj.getNif_client());
-        ps.setString(3, pj.getName());
+        ps.setString(1, pj.getNif_client());
+        ps.setString(2, pj.getName());
+        ps.setString(3, pj.getDescription());
+        ps.setString(4, pj.getDeliver_date());
         ps.executeUpdate();
 
     }
 
     public void updateProject(int id_project, Project pj) throws SQLException {
         verifyConnection();
-        String sql = "UPDATE project SET nif_client = '" + pj.getNif_client() + "' , name = '" + pj.getName() + "'  WHERE id_project =  '" + id_project + "' ";
-        Statement st = connection.createStatement();
-        st.executeUpdate(sql);
-        st.close();
+        String sql = "UPDATE project SET (?, ?, ?, ?) WHERE id_project = " + id_project + ";";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, pj.getNif_client());
+        ps.setString(2, pj.getName());
+        ps.setString(3, pj.getDescription());
+        ps.setString(4, pj.getDeliver_date());
+        ps.executeUpdate();
         
     }
 
-    public ArrayList<Project> getProject(int id_project) throws SQLException {
-        ArrayList<Project> pjs = new ArrayList<>();
+    public Project getProject(String name) throws SQLException {
         verifyConnection();
-        String sql = "SELECT * FROM project WHERE id_project = '" + id_project + "'";
+        String sql = "SELECT * FROM project WHERE name = '" + name + "'";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
-        while (rs.next()) {
+        rs.next();
 
-            pjs.add(new Project(
-                    rs.getInt("id_project"),
-                    rs.getString("nif_client"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getString("deliver_date")
-                    ));
-
-        }
-        rs.close();
+        Project pjs = new Project(
+            rs.getString("nif_client"),
+            rs.getString("name"),
+            rs.getString("description"),
+            rs.getString("deliver_date")
+        );
         st.close();
+        rs.close();
         return pjs;
-
     }
 
     public ArrayList<Project> getProjects() throws SQLException {

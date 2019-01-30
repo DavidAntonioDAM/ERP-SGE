@@ -15,7 +15,7 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <JFXTextField focusColor="#004878" layoutX="299.0" layoutY="89.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+      <JFXTextField fx:id="jtfNif" focusColor="#004878" layoutX="299.0" layoutY="89.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
@@ -25,7 +25,7 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <JFXTextField focusColor="#004878" layoutX="299.0" layoutY="198.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+      <JFXTextField fx:id="jtfName" focusColor="#004878" layoutX="299.0" layoutY="198.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
@@ -35,22 +35,22 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <JFXTextArea focusColor="#004878" layoutX="299.0" layoutY="426.0" prefHeight="145.0" prefWidth="464.0" unFocusColor="BLACK">
+      <JFXTextArea fx:id="jtaDescription" focusColor="#004878" layoutX="299.0" layoutY="426.0" prefHeight="145.0" prefWidth="464.0" unFocusColor="BLACK">
          <font>
             <Font size="18.0" />
          </font>
       </JFXTextArea>
-      <JFXButton buttonType="RAISED" layoutX="325.0" layoutY="645.0" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="325.0" layoutY="645.0" onMouseClicked="#addProject" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
          <font>
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="608.0" layoutY="645.0" style="-fx-background-color: #780000;" text="Cancelar" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="608.0" layoutY="645.0" onMouseClicked="#cancel" style="-fx-background-color: #780000;" text="Cancelar" textFill="WHITE">
          <font>
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </JFXButton>
-      <JFXDatePicker defaultColor="#17212b" layoutX="299.0" layoutY="317.0" prefHeight="25.0" prefWidth="464.0" stylesheets="@../../css/datePîcker.css" />
+      <JFXDatePicker fx:id="jdpDate" defaultColor="#17212b" layoutX="299.0" layoutY="317.0" prefHeight="25.0" prefWidth="464.0" stylesheets="@../../css/datePîcker.css" />
       <Label layoutX="299.0" layoutY="278.0" prefHeight="29.0" prefWidth="464.0" text="Fecha de Entrega del Proyecto">
          <font>
             <Font name="Segoe UI Bold" size="24.0" />

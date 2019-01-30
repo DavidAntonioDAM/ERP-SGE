@@ -15,6 +15,13 @@ public class Project {
         this.deliver_date = deliver_date;
     }
 
+    public Project(String nif_client, String name, String description, String deliver_date) {
+        this.nif_client = nif_client;
+        this.name = name;
+        this.description = description;
+        this.deliver_date = deliver_date;
+    }
+
     public int getId_project() {
         return id_project;
     }

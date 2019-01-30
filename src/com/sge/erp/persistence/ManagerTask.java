@@ -64,7 +64,6 @@ public class ManagerTask extends AdminDataBase {
         }
         rs.close();
         st.close();
-
         return tks;
 
     }
