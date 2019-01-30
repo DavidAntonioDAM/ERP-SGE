@@ -88,7 +88,7 @@ public class ManagerTeam extends AdminDataBase {
     }
 
     public ArrayList<Staff> getMembers(int id_team) throws SQLException {
-        ArrayList<Staff> members = null;
+        ArrayList<Staff> members = new ArrayList();
         verifyConnection();
         String sql = "SELECT s.name, s.surname, s.dni \n" +
                 "FROM staff s, team t, staff_team st\n" +

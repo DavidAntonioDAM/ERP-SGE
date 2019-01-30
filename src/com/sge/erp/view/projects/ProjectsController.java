@@ -26,6 +26,7 @@ public class ProjectsController implements Initializable {
 
         try {
             mp = new ManagerProjects();
+            mt = new ManagerTeam();
             loadUI("projects_list");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -107,7 +108,9 @@ public class ProjectsController implements Initializable {
 
                         TeamListController tlc = loader.getController();
                         tlc.setMt(mt);
+                        tlc.setMp(mp);
                         tlc.setPc(this);
+                        tlc.loadAll();
 
                     } catch (IOException e) {
                         e.printStackTrace();

@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ProjectsAddTeamController implements Initializable {
+public class AddTeamController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

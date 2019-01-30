@@ -66,4 +66,8 @@ public class TeamListController {
     public void setPc(ProjectsController pc) {
         this.pc = pc;
     }
+
+    public void setMp(ManagerProjects mp) {
+        this.mp = mp;
+    }
 }

@@ -61,6 +61,8 @@ public class ManagerProjects extends AdminDataBase {
         String sql = "SELECT name FROM project WHERE id_project = " + id_project + ";";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
+
+        rs.next();
         projectName = rs.getString("name");
         st.close();
         rs.close();
