@@ -15,10 +15,15 @@
                 <Font name="Segoe UI" size="18.0" />
             </font>
         </JFXTextField>
-        <JFXButton fx:id="jbSearch" contentDisplay="CENTER" layoutX="936.0" layoutY="18.0" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #14385B;">
+        <JFXButton fx:id="jbSearch" contentDisplay="CENTER" layoutX="936.0" layoutY="18.0" prefHeight="37.0" prefWidth="45.0" style="-fx-background-color: #14385B;">
             <graphic>
                 <MaterialDesignIconView fill="WHITE" glyphName="MAGNIFY" size="25" />
             </graphic>
         </JFXButton>
+      <JFXButton contentDisplay="CENTER" layoutX="993.0" layoutY="18.0" onMouseClicked="#addTeam" prefHeight="37.0" prefWidth="45.0" style="-fx-background-color: #14385B;">
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="MAGNIFY" size="25" />
+         </graphic>
+      </JFXButton>
     </children>
 </AnchorPane>

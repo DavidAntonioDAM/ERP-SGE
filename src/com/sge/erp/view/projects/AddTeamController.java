@@ -33,7 +33,7 @@ public class AddTeamController implements Initializable {
         }
 
         JFXTreeTableColumn<Employee, String> name = new JFXTreeTableColumn<>("Nombre");
-        name.setPrefWidth(50);
+        name.setPrefWidth(190);
         name.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Employee, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Employee, String> param) {
@@ -42,7 +42,7 @@ public class AddTeamController implements Initializable {
         });
 
         JFXTreeTableColumn<Employee, String> job = new JFXTreeTableColumn<>("Puesto");
-        job.setPrefWidth(50);
+        job.setPrefWidth(190);
         job.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Employee, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Employee, String> param) {
@@ -65,6 +65,9 @@ public class AddTeamController implements Initializable {
                     s.getJob());
             employees.add(e);
         }
+        
+        tableTeam.getColumns().setAll(name,job);
+        tableTeam.setShowRoot(false);
 
         TreeItem<Employee> root = new RecursiveTreeItem<Employee>(employees,  RecursiveTreeObject::getChildren);
         tableEmployees.getColumns().setAll(name, job);
@@ -86,8 +89,8 @@ public class AddTeamController implements Initializable {
         StringProperty job;
 
         public Employee(String name, String job) {
-            this.name = new SimpleStringProperty("name");
-            this.job = new SimpleStringProperty("job");
+            this.name = new SimpleStringProperty(name);
+            this.job = new SimpleStringProperty(job);
         }
     }
 }

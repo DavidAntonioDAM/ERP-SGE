@@ -7,6 +7,7 @@ import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerTeam;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -31,6 +32,11 @@ public class TeamListController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void addTeam(MouseEvent event) {
+        pc.loadUI("add_team");
     }
 
     public void loadList(){

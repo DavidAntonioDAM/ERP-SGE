@@ -117,6 +117,16 @@ public class ProjectsController implements Initializable {
                     }
 
                     break;
+                case "add_team":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader.load();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    break;
             }
         }
 
