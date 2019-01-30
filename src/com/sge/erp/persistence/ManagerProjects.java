@@ -55,6 +55,18 @@ public class ManagerProjects extends AdminDataBase {
         return pjs;
     }
 
+    public String getProjectName(int id_project) throws SQLException {
+        verifyConnection();
+        String projectName;
+        String sql = "SELECT name FROM project WHERE id_project = " + id_project + ";";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        projectName = rs.getString("name");
+        st.close();
+        rs.close();
+        return projectName;
+    }
+
     public ArrayList<Project> getProjects() throws SQLException {
         ArrayList<Project> pjs = new ArrayList<>();
         verifyConnection();

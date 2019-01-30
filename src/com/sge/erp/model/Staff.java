@@ -13,6 +13,12 @@ public class Staff {
         this.job = job;
     }
 
+    public Staff(String dni, String name, String surname) {
+        this.dni = dni;
+        this.name = name;
+        this.surname = surname;
+    }
+
     public String getDni() {
         return dni;
     }

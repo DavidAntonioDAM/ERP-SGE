@@ -4,6 +4,7 @@ import com.sge.erp.model.Client;
 import com.sge.erp.model.Project;
 import com.sge.erp.persistence.ManagerClient;
 import com.sge.erp.persistence.ManagerProjects;
+import com.sge.erp.persistence.ManagerTeam;
 import com.sge.erp.view.clients.ClientListController;
 import com.sge.erp.view.clients.ClientModController;
 import com.sge.erp.view.clients.ClientsAddClientController;
@@ -34,8 +35,10 @@ public class ProjectsController implements Initializable {
 
     private ManagerProjects mp;
     private Parent listPane;
-    ProjectsListController pl;
-    Project projectSelected;
+    private ProjectsListController pl;
+
+    private TeamListController tlc;
+    private ManagerTeam mt;
 
     @FXML
     private AnchorPane container;
@@ -53,7 +56,7 @@ public class ProjectsController implements Initializable {
 
     @FXML
     void showTeams(MouseEvent event) {
-
+        loadUI("team_list");
     }
 
     public void reloadProjectlist(){
@@ -97,21 +100,20 @@ public class ProjectsController implements Initializable {
                     }
 
                     break;
-                /*case "mod_project":
+                case "team_list":
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                         root = loader.load();
 
-                        ClientModController cmcc = loader.getController();
-                        cmcc.setMc(mc);
-                        cmcc.setCc(this);
-                        cmcc.setClientToModify(clientSelected);
-                        cmcc.setFields();
+                        TeamListController tlc = loader.getController();
+                        tlc.setMt(mt);
+                        tlc.setPc(this);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
-                    break;*/
+                    break;
             }
         }
 

@@ -1,5 +1,6 @@
 package com.sge.erp.persistence;
 
+import com.sge.erp.model.Staff;
 import com.sge.erp.model.Team;
 
 import java.sql.PreparedStatement;
@@ -84,6 +85,27 @@ public class ManagerTeam extends AdminDataBase {
         st.executeUpdate(sql);
         st.close();
 
+    }
+
+    public ArrayList<Staff> getMembers(int id_team) throws SQLException {
+        ArrayList<Staff> members = null;
+        verifyConnection();
+        String sql = "SELECT s.name, s.surname, s.dni \n" +
+                "FROM staff s, team t, staff_team st\n" +
+                "WHERE s.dni = st.dni AND t.id_team = st.id_team AND t.id_team = " + id_team + ";";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+            members.add(new Staff(
+                    rs.getString("dni"),
+                    rs.getString("name"),
+                    rs.getString("surname")));
+        }
+
+        rs.close();
+        st.close();
+        return members;
     }
 
 }

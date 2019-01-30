@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1366.0" style="-fx-padding: 0;" stylesheets="@../../css/delSplit.css">
+            <items>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="719.0" prefWidth="305.0" style="-fx-background-color: #17212b;">
+                    <children>
+                        <JFXButton alignment="TOP_LEFT" layoutY="81.0" prefHeight="67.0" prefWidth="305.0" text="Projectos Completados" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI" size="25.0" />
+                            </font>
+                        </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" layoutY="148.0" prefHeight="67.0" prefWidth="305.0" text="Projectos mas avanzados" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="24.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" layoutY="349.0" prefHeight="67.0" prefWidth="305.0" text="Clientes con mas projectos" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="23.0" />
+                     </font>
+                  </JFXButton>
+                        <ImageView fitHeight="217.0" fitWidth="229.0" layoutX="44.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../resources/desarrollap.png" />
+                            </image>
+                        </ImageView>
+                  <JFXButton alignment="TOP_LEFT" layoutY="282.0" prefHeight="67.0" prefWidth="305.0" text="Projectos a Finalizar" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="25.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" layoutY="215.0" prefHeight="67.0" prefWidth="305.0" text="Projectos con mas tareas" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="24.0" />
+                     </font>
+                  </JFXButton>
+                        <JFXButton alignment="TOP_LEFT" layoutY="14.0" prefHeight="67.0" prefWidth="305.0" text="Empleados sin Equipo" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI" size="25.0" />
+                            </font>
+                        </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" layoutY="416.0" prefHeight="67.0" prefWidth="305.0" text="Trabajadores Eficientes" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="25.0" />
+                     </font>
+                  </JFXButton>
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="container" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: white;" />
+            </items>
+        </SplitPane>
+    </children>
+</StackPane>
