@@ -66,7 +66,6 @@ public class EmployeeModController implements Initializable {
                     ec.getDc().showDialog(new Text("Éxito"),
                             new Text("El empleado ha sido añadido con éxito a la base de datos."));
 
-
                     ec.loadUI("employees_list");
                 } else {
                     dg.showDialog(new Text("Error con el DNI"),
