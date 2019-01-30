@@ -110,4 +110,25 @@ public class ManagerStaff extends AdminDataBase {
         st.close();
     }
 
+    public ArrayList<Staff> getStandbyEmployees() throws SQLException {
+
+        ArrayList<Staff> sfs = new ArrayList<>();
+        verifyConnection();
+        String sql = "select * from staff where dni != any (SELECT dni FROM `task` WHERE dni != '' OR dni is not null);";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+
+            sfs.add(new Staff(
+                    rs.getString("dni"),
+                    rs.getString("name"),
+                    rs.getString("surname"),
+                    rs.getString("job")));
+
+        }
+        rs.close();
+        st.close();
+
+        return sfs;
+    }
 }
