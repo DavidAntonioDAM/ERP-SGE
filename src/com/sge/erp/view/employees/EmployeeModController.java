@@ -62,8 +62,9 @@ public class EmployeeModController implements Initializable {
 
                     ec.reloadList();
 
-                    dg.showDialog(new Text("Éxito"),
-                            new Text("El empleado ha sido modificado con éxito."));
+                    ec.loadUI("employees_list");
+                    ec.getDc().showDialog(new Text("Éxito"),
+                            new Text("El empleado ha sido añadido con éxito a la base de datos."));
 
 
                     ec.loadUI("employees_list");

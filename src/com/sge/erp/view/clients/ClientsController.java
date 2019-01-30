@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Client;
 import com.sge.erp.persistence.ManagerClient;
+import com.sge.erp.utility.DialogCreator;
 import com.sge.erp.view.home.HomeController;
 import com.sge.erp.view.login.LoginController;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,6 +27,7 @@ public class ClientsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             mc = new ManagerClient();
+            dc = new DialogCreator(mainContainer);
             loadUI("clients_list");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -32,14 +35,17 @@ public class ClientsController implements Initializable {
 
     }
 
-    @FXML
-    private AnchorPane container;
-
     private ManagerClient mc;
-    private AnchorPane listPane;
+    private Parent listPane;
     ClientListController cl;
     Client clientSelected;
+    DialogCreator dc;
 
+    @FXML
+    private StackPane mainContainer;
+
+    @FXML
+    private AnchorPane container;
 
     @FXML
     void loadAll(MouseEvent event) {
@@ -57,7 +63,7 @@ public class ClientsController implements Initializable {
     }
 
     public void loadUI(String ui) {
-        AnchorPane root = null;
+        Parent root = null;
 
         if (listPane == null) {
             try {
@@ -115,5 +121,9 @@ public class ClientsController implements Initializable {
 
     public void setClientSelected(Client clientSelected) {
         this.clientSelected = clientSelected;
+    }
+
+    public DialogCreator getDc() {
+        return dc;
     }
 }

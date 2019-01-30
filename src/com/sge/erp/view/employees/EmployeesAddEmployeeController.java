@@ -57,9 +57,9 @@ public class EmployeesAddEmployeeController implements Initializable {
 
                     ec.reloadList();
                     ec.loadUI("employees_list");
-
-                    dg.showDialog(new Text("Éxito"),
+                    ec.getDc().showDialog(new Text("Éxito"),
                             new Text("El empleado ha sido añadido con éxito a la base de datos."));
+
                 } else {
                     dg.showDialog(new Text("Error con el DNI"),
                             new Text("El DNI del empleado no está puesto correctamente.\n\n" +

@@ -3,9 +3,12 @@ package com.sge.erp.view.clients;
 import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Client;
 import com.sge.erp.persistence.ManagerClient;
+import com.sge.erp.utility.DialogCreator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -15,12 +18,16 @@ public class ClientModController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        dg = new DialogCreator(container);
     }
 
     private ClientsController cc;
     private ManagerClient mc;
     private Client clientToModify;
+    private DialogCreator dg;
+
+    @FXML
+    private StackPane container;
 
     @FXML
     private JFXTextField jtfNIF;
@@ -54,17 +61,24 @@ public class ClientModController implements Initializable {
                         mc.updateClient(c, clientToModify.getNif());
 
                         cc.reloadList();
-                        cc.loadUI("clients_list");
 
-                        // POP UP CLIENTE MODIFICADO
+                        cc.loadUI("clients_list");
+                        cc.getDc().showDialog(new Text("Éxito"),
+                                new Text("El cliente ha sido modificado correctamente."));
                     } else {
-                        // POP UP NIF INCORRECTO
+                        dg.showDialog(new Text("Error con el NIF"),
+                                new Text("El NIF del cliente no está puesto correctamente.\n\n" +
+                                        "Intentelo de nuevo."));
                     }
                 } else {
-                    // POP UP TELEFONO INCORRECTO
+                    dg.showDialog(new Text("Error con el teléfono"),
+                            new Text("El teléfono del cliente no está puesto correctamente.\n\n" +
+                                    "Intentelo de nuevo."));
                 }
             } else {
-                // POP UP RELLENAR CAMPOS
+                dg.showDialog(new Text("Error en los campos"),
+                        new Text("Alguno, o varios, de los campos no están correctamente rellenos.\n\n" +
+                                "Intentelo de nuevo."));
             }
         } catch (SQLException e) {
             e.printStackTrace();

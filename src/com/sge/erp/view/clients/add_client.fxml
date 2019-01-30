@@ -4,69 +4,75 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.clients.ClientsAddClientController">
-    <children>
-        <Label layoutX="299.0" layoutY="48.0" prefHeight="29.0" prefWidth="464.0" text="NIF del Cliente">
-            <font>
-                <Font name="Segoe UI Bold" size="24.0" />
-            </font>
-        </Label>
-        <JFXTextField fx:id="jtfNIF" focusColor="#004878" layoutX="299.0" layoutY="77.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
-            <font>
-                <Font name="Segoe UI" size="18.0" />
-            </font>
-        </JFXTextField>
-        <Label layoutX="299.0" layoutY="157.0" prefHeight="29.0" prefWidth="464.0" text="Nombre del Cliente">
-            <font>
-                <Font name="Segoe UI Bold" size="24.0" />
-            </font>
-        </Label>
-        <JFXTextField fx:id="jtfName" focusColor="#004878" layoutX="299.0" layoutY="186.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
-            <font>
-                <Font name="Segoe UI" size="18.0" />
-            </font>
-        </JFXTextField>
-        <JFXButton buttonType="RAISED" layoutX="325.0" layoutY="645.0" onMouseClicked="#addClient" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
-            <font>
-                <Font name="Segoe UI Bold" size="24.0" />
-            </font>
-        </JFXButton>
-        <JFXButton buttonType="RAISED" layoutX="608.0" layoutY="645.0" onMouseClicked="#cancel" style="-fx-background-color: #780000;" text="Cancelar" textFill="WHITE">
-            <font>
-                <Font name="Segoe UI Bold" size="24.0" />
-            </font>
-        </JFXButton>
-        <Label layoutX="299.0" layoutY="266.0" prefHeight="29.0" prefWidth="464.0" text="E-mail del Cliente">
-            <font>
-                <Font name="Segoe UI Bold" size="24.0" />
-            </font>
-        </Label>
-        <JFXTextField fx:id="jtfEmail" focusColor="#004878" layoutX="299.0" layoutY="295.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
-            <font>
-                <Font name="Segoe UI" size="18.0" />
-            </font>
-        </JFXTextField>
-        <Label layoutX="299.0" layoutY="375.0" prefHeight="29.0" prefWidth="464.0" text="Télefono del Cliente">
-            <font>
-                <Font name="Segoe UI Bold" size="24.0" />
-            </font>
-        </Label>
-        <JFXTextField fx:id="jtfPhone" focusColor="#004878" layoutX="299.0" layoutY="404.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
-            <font>
-                <Font name="Segoe UI" size="18.0" />
-            </font>
-        </JFXTextField>
-      <Label layoutX="299.0" layoutY="484.0" prefHeight="29.0" prefWidth="464.0" text="Dirección del Cliente">
-         <font>
-            <Font name="Segoe UI Bold" size="24.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="jtfAddress" focusColor="#004878" layoutX="299.0" layoutY="513.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
-         <font>
-            <Font name="Segoe UI" size="18.0" />
-         </font>
-      </JFXTextField>
-    </children>
-</AnchorPane>
+
+<StackPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.clients.ClientsAddClientController">
+   <children>
+      <AnchorPane prefHeight="717.0" prefWidth="1061.0">
+         <children>
+            <Label layoutX="299.0" layoutY="48.0" prefHeight="29.0" prefWidth="464.0" text="NIF del Cliente">
+               <font>
+                  <Font name="Segoe UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="jtfNIF" focusColor="#004878" layoutX="299.0" layoutY="77.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="299.0" layoutY="157.0" prefHeight="29.0" prefWidth="464.0" text="Nombre del Cliente">
+               <font>
+                  <Font name="Segoe UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="jtfName" focusColor="#004878" layoutX="299.0" layoutY="186.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton buttonType="RAISED" layoutX="325.0" layoutY="645.0" onMouseClicked="#addClient" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="608.0" layoutY="645.0" onMouseClicked="#cancel" style="-fx-background-color: #780000;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="299.0" layoutY="266.0" prefHeight="29.0" prefWidth="464.0" text="E-mail del Cliente">
+               <font>
+                  <Font name="Segoe UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="jtfEmail" focusColor="#004878" layoutX="299.0" layoutY="295.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="299.0" layoutY="375.0" prefHeight="29.0" prefWidth="464.0" text="Télefono del Cliente">
+               <font>
+                  <Font name="Segoe UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="jtfPhone" focusColor="#004878" layoutX="299.0" layoutY="404.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="299.0" layoutY="484.0" prefHeight="29.0" prefWidth="464.0" text="Dirección del Cliente">
+               <font>
+                  <Font name="Segoe UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="jtfAddress" focusColor="#004878" layoutX="299.0" layoutY="513.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </JFXTextField>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

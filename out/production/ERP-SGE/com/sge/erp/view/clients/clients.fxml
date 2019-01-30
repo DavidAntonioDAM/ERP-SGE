@@ -6,34 +6,40 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1366.0" style="-fx-padding: 0;" stylesheets="@../../css/delSplit.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.clients.ClientsController">
-  <items>
-    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="717.0" prefWidth="305.0" style="-fx-background-color: #17212b;">
-         <children>
-            <JFXButton alignment="TOP_LEFT" layoutY="116.0" onMouseClicked="#addClient" prefHeight="67.0" prefWidth="305.0" text="Agregar" textFill="WHITE">
-               <font>
-                  <Font name="Segoe UI" size="36.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="PLUS_CIRCLE_OUTLINE" size="45" />
-               </graphic>
-            </JFXButton>
-            <ImageView fitHeight="217.0" fitWidth="229.0" layoutX="44.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../resources/desarrollap.png" />
-               </image>
-            </ImageView>
-            <JFXButton alignment="TOP_LEFT" layoutY="47.0" onMouseClicked="#loadAll" prefHeight="67.0" prefWidth="305.0" text="Resumen" textFill="WHITE">
-               <font>
-                  <Font name="Segoe UI" size="36.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="VIEW_DASHBOARD" size="45" />
-               </graphic>
-            </JFXButton>
-         </children></AnchorPane>
-    <AnchorPane fx:id="container" minHeight="0.0" minWidth="0.0" prefHeight="717.0" prefWidth="100.0" style="-fx-background-color: white;" />
-  </items>
-</SplitPane>
+<StackPane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.clients.ClientsController">
+   <children>
+      <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1366.0" style="-fx-padding: 0;" stylesheets="@../../css/delSplit.css">
+         <items>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="717.0" prefWidth="305.0" style="-fx-background-color: #17212b;">
+               <children>
+                  <JFXButton alignment="TOP_LEFT" layoutY="116.0" onMouseClicked="#addClient" prefHeight="67.0" prefWidth="305.0" text="Agregar" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="36.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="PLUS_CIRCLE_OUTLINE" size="45" />
+                     </graphic>
+                  </JFXButton>
+                  <ImageView fitHeight="217.0" fitWidth="229.0" layoutX="44.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/desarrollap.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton alignment="TOP_LEFT" layoutY="47.0" onMouseClicked="#loadAll" prefHeight="67.0" prefWidth="305.0" text="Resumen" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="36.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="VIEW_DASHBOARD" size="45" />
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="container" minHeight="0.0" minWidth="0.0" prefHeight="717.0" prefWidth="100.0" style="-fx-background-color: white;" />
+         </items>
+      </SplitPane>
+   </children>
+</StackPane>

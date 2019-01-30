@@ -2,6 +2,7 @@ package com.sge.erp.view.employees;
 
 import com.sge.erp.model.Staff;
 import com.sge.erp.persistence.ManagerStaff;
+import com.sge.erp.utility.DialogCreator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,20 +22,24 @@ public class EmployeesController implements Initializable {
 
         try {
             ms = new ManagerStaff();
+            dc = new DialogCreator(mainContainer);
             loadUI("employees_list");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
-
-    @FXML
-    private AnchorPane container;
 
     private ManagerStaff ms;
     private Staff staffSelected;
     private Parent listPane;
+    private DialogCreator dc;
     EmployeesListController elc;
+
+    @FXML
+    private StackPane mainContainer;
+
+    @FXML
+    private AnchorPane container;
 
     @FXML
     void loadAll(MouseEvent event) {
@@ -109,4 +114,7 @@ public class EmployeesController implements Initializable {
         this.staffSelected = staffSelected;
     }
 
+    public DialogCreator getDc() {
+        return dc;
+    }
 }
