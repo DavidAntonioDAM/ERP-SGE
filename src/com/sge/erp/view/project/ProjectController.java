@@ -2,11 +2,12 @@ package com.sge.erp.view.project;
 
 import com.jfoenix.controls.JFXButton;
 import com.sge.erp.model.Project;
-import com.sge.erp.persistence.ManagerClient;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
 import com.sge.erp.utility.DialogCreator;
 import com.sge.erp.view.mainWindow.MainWindowController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class ProjectController implements Initializable {
@@ -62,6 +65,10 @@ public class ProjectController implements Initializable {
     @FXML
     void loasTaskList(MouseEvent event) {
         //tlc.loadAll();
+        loadUI("task_list");
+    }
+
+    public void reloadTaskList() {
         loadUI("task_list");
     }
 
@@ -113,6 +120,27 @@ public class ProjectController implements Initializable {
                         tlc.setMs(ms);
                         tlc.setPc(this);
                         tlc.loadAll();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "add_task":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader.load();
+
+                        TaskAddController tac = loader.getController();
+                        tac.setMt(mt);
+                        tac.setPc(this);
+                        ObservableList<String> items =
+                                FXCollections.observableArrayList(
+                                        "Pendiente",
+                                        "Pausada",
+                                        "En Curso",
+                                        "Terminada"
+                                );
+                        tac.getJcbState().setItems(items);
 
                     } catch (IOException e) {
                         e.printStackTrace();

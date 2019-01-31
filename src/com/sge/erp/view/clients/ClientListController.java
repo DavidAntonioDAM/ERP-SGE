@@ -106,6 +106,4 @@ public class ClientListController {
     public void setCc(ClientsController cc) {
         this.cc = cc;
     }
-
-
 }
