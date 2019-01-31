@@ -29,7 +29,7 @@ public class MemberListController {
 
     void loadAll() {
         try {
-            tasks = mt.getProjectTask(1);
+            tasks = mt.getProjectTask(pc.getSelectedProject().getId_project());
             loadList();
         } catch (SQLException e) {
             e.printStackTrace();

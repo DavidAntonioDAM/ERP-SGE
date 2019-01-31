@@ -45,6 +45,7 @@ public class ManagerProjects extends AdminDataBase {
         rs.next();
 
         Project pjs = new Project(
+            rs.getInt("id_project"),
             rs.getString("nif_client"),
             rs.getString("name"),
             rs.getString("description"),

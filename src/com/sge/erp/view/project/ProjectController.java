@@ -20,6 +20,18 @@ import java.util.ResourceBundle;
 
 public class ProjectController implements Initializable {
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            mt = new ManagerTask();
+            ms = new ManagerStaff();
+            tlc = new TaskListController();
+            //dc = new DialogCreator(mainContainer);
+          //  loadUI("task_list");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     private MainWindowController mwc;
     private Project selectedProject;
@@ -27,19 +39,7 @@ public class ProjectController implements Initializable {
     private MemberListController mlc;
     private ManagerTask mt;
     private ManagerStaff ms;
-    private TaskListController tlc = new TaskListController();
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        try {
-            mt = new ManagerTask();
-            ms = new ManagerStaff();
-            //dc = new DialogCreator(mainContainer);
-            loadUI("task_list");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+    private TaskListController tlc;
 
     @FXML
     private JFXButton jbMembers;
@@ -68,7 +68,7 @@ public class ProjectController implements Initializable {
     public void loadUI(String ui){
         Parent root = null;
 
-        if (listPane == null) {
+       /* if (listPane == null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                 root = loader.load();
@@ -83,7 +83,7 @@ public class ProjectController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
+        } else {*/
             switch (ui) {
                 case "project_list":
                     root = listPane;
@@ -118,7 +118,7 @@ public class ProjectController implements Initializable {
                         e.printStackTrace();
                     }
                     break;
-            }
+           // }
         }
         container.getChildren().setAll(root);
     }

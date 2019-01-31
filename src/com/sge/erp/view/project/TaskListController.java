@@ -26,7 +26,7 @@ public class TaskListController {
 
     void loadAll() {
         try {
-            tasks = mt.getProjectTask(4);
+            tasks = mt.getProjectTask(pc.getSelectedProject().getId_project());
             loadList();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,7 +52,6 @@ public class TaskListController {
 
                 list.getItems().add(card);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {

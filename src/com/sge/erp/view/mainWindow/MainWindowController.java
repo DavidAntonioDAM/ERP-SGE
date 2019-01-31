@@ -104,8 +104,9 @@ public class MainWindowController implements Initializable {
                         pc.setSelectedProject(selectedProject);
                         break;
                 }
-
-                windows.put(ui, root);
+                if (!ui.equalsIgnoreCase("../project/project")){
+                    windows.put(ui, root);
+            }
 
             } catch (IOException e) {
                 e.printStackTrace();
