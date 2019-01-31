@@ -30,7 +30,7 @@ public class MainWindowController implements Initializable {
         back.put("../projects/projects", "../home/home");
         back.put("../employees/employees", "../home/home");
         back.put("../clients/clients", "../home/home");
-        back.put("Project", "/projects");
+        back.put("../project/project", "../projects/projects");
 
         loadUI("../login/login");
     }
