@@ -1,8 +1,10 @@
 package com.sge.erp.view.mainWindow;
 
-import com.sge.erp.view.clients.ClientsController;
+import com.sge.erp.model.Project;
 import com.sge.erp.view.home.HomeController;
 import com.sge.erp.view.login.LoginController;
+import com.sge.erp.view.project.ProjectController;
+import com.sge.erp.view.projects.ProjectsController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,6 +38,7 @@ public class MainWindowController implements Initializable {
     private HashMap<String, String> back;
     private HashMap windows;
     private String lastWindow;
+    private Project selectedProject;
 
     @FXML
     private BorderPane mainWindow;
@@ -89,6 +92,17 @@ public class MainWindowController implements Initializable {
                         LoginController lc = loader.getController();
                         lc.setMainController(this);
                         break;
+
+                    case "../projects/projects":
+                        ProjectsController psc = loader.getController();
+                        psc.setMwc(this);
+                        break;
+
+                    case "../project/project":
+                        ProjectController pc = loader.getController();
+                        pc.setMwc(this);
+                        pc.setSelectedProject(selectedProject);
+                        break;
                 }
 
                 windows.put(ui, root);
@@ -105,4 +119,13 @@ public class MainWindowController implements Initializable {
     public Label getTitleWindow() {
         return titleWindow;
     }
+
+    public Project getSelectedProject() {
+        return selectedProject;
+    }
+
+    public void setSelectedProject(Project selectedProject) {
+        this.selectedProject = selectedProject;
+    }
 }
+

@@ -10,6 +10,7 @@ import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerTask;
 import com.sge.erp.view.clients.ClientCardController;
 import com.sge.erp.view.clients.ClientsController;
+import com.sge.erp.view.mainWindow.MainWindowController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,9 +40,9 @@ public class ProjectsListController implements Initializable {
     private ArrayList<Project> projects;
     private ManagerProjects mp;
     private ManagerTask mt;
-
-    private Project projectSelected;
     private ProjectsController pc;
+    private Project projectSelected;
+    private MainWindowController mwc;
 
     @FXML
     private JFXListView<AnchorPane> list;
@@ -57,6 +58,23 @@ public class ProjectsListController implements Initializable {
     @FXML
     void selectProject(MouseEvent event) {
 
+        String name = "";
+
+        ObservableList<AnchorPane> panels = list.getSelectionModel().getSelectedItems();
+
+        Pane panel = (Pane)  panels.get(0).getChildren().get(0);
+        name = ((Label)panel.getChildren().get(0)).getText();
+
+        try {
+            projectSelected = mp.getProject(name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        pc.setProjectSelected(projectSelected);
+        mwc = pc.getMwc();
+        mwc.setSelectedProject(projectSelected);
+        mwc.loadUI("../project/project");
     }
 
     void loadAll() {
@@ -71,7 +89,6 @@ public class ProjectsListController implements Initializable {
     private void loadList() {
 
         try {
-
             list.getItems().clear();
 
             for (Project p : projects) {
@@ -117,5 +134,15 @@ public class ProjectsListController implements Initializable {
         this.pc = pc;
     }
 
+    public Project getProjectSelected() {
+        return projectSelected;
+    }
 
+    public void setProjectSelected(Project projectSelected) {
+        this.projectSelected = projectSelected;
+    }
+
+    public void setMwc(MainWindowController mwc) {
+        this.mwc = mwc;
+    }
 }

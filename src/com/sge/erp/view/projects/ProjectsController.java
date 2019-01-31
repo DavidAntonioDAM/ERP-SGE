@@ -1,13 +1,10 @@
 package com.sge.erp.view.projects;
 
-import com.sge.erp.model.Client;
 import com.sge.erp.model.Project;
-import com.sge.erp.persistence.ManagerClient;
 import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerTeam;
-import com.sge.erp.view.clients.ClientListController;
-import com.sge.erp.view.clients.ClientModController;
-import com.sge.erp.view.clients.ClientsAddClientController;
+import com.sge.erp.view.home.HomeController;
+import com.sge.erp.view.mainWindow.MainWindowController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,7 +28,6 @@ public class ProjectsController implements Initializable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     private ManagerProjects mp;
@@ -40,6 +36,8 @@ public class ProjectsController implements Initializable {
 
     private TeamListController tlc;
     private ManagerTeam mt;
+    private Project projectSelected;
+    private MainWindowController mwc;
 
     @FXML
     private AnchorPane container;
@@ -68,6 +66,7 @@ public class ProjectsController implements Initializable {
         Parent root = null;
 
         if (listPane == null) {
+
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                 root = loader.load();
@@ -115,8 +114,8 @@ public class ProjectsController implements Initializable {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                     break;
+
                 case "add_team":
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
@@ -125,12 +124,25 @@ public class ProjectsController implements Initializable {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                     break;
             }
         }
-
         container.getChildren().setAll(root);
     }
 
+    public Project getProjectSelected() {
+        return projectSelected;
+    }
+
+    public void setProjectSelected(Project projectSelected) {
+        this.projectSelected = projectSelected;
+    }
+
+    public void setMwc(MainWindowController mwc) {
+        this.mwc = mwc;
+    }
+
+    public MainWindowController getMwc() {
+        return mwc;
+    }
 }
