@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ClientListController{
+public class ClientListController {
 
     private ArrayList<Client> clients;
     private ManagerClient mc;
@@ -106,4 +106,6 @@ public class ClientListController{
     public void setCc(ClientsController cc) {
         this.cc = cc;
     }
+
+
 }

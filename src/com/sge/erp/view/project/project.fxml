@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.project.ProjectController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.project.ProjectController">
    <children>
       <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1366.0" style="-fx-padding: 0;" stylesheets="@../../css/delSplit.css">
          <items>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="717.0" prefWidth="305.0" style="-fx-background-color: #17212b;">
                <children>
-                  <JFXButton alignment="TOP_LEFT" layoutY="116.0" onMouseClicked="#addClient" prefHeight="67.0" prefWidth="305.0" text="Equipo" textFill="WHITE">
+                  <JFXButton fx:id="jbMembers" alignment="TOP_LEFT" layoutY="116.0" onMouseClicked="#loadAll" prefHeight="67.0" prefWidth="305.0" text="Equipo" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="36.0" />
                      </font>

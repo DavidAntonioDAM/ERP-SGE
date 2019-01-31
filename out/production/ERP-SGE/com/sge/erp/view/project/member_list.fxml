@@ -3,8 +3,8 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.clients.ClientListController">
+<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.project.MemberListController">
     <children>
-        <JFXListView fx:id="list" layoutX="-4.0" layoutY="-3.0" onMouseClicked="#selectClient" prefHeight="717.0" prefWidth="1061.0" style="-fx-border-width: 0px; -fx-background-color: white;" />
+        <JFXListView fx:id="list" layoutX="-4.0" layoutY="-3.0" prefHeight="717.0" prefWidth="1061.0" style="-fx-border-width: 0px; -fx-background-color: white;" />
     </children>
 </AnchorPane>
