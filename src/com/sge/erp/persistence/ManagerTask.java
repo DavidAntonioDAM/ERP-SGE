@@ -81,7 +81,7 @@ public class ManagerTask extends AdminDataBase {
 
         ArrayList<Task> tks = new ArrayList<>();
         verifyConnection();
-        String sql = "SELECT * FROM task WHERE id_project = '" + id_project + "';";
+        String sql = "SELECT * FROM task WHERE id_project = " + id_project + ";";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {

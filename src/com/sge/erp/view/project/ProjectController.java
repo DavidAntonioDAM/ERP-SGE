@@ -34,7 +34,7 @@ public class ProjectController implements Initializable {
             mt = new ManagerTask();
             ms = new ManagerStaff();
             //dc = new DialogCreator(mainContainer);
-            loadUI("member_list");
+            //loadUI("member_list");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -53,7 +53,7 @@ public class ProjectController implements Initializable {
 
     @FXML
     void loadAll(MouseEvent event) {
-        mlc.loadAll();
+        //mlc.loadAll();
         loadUI("member_list");
     }
 
@@ -68,6 +68,7 @@ public class ProjectController implements Initializable {
                 mlc = loader.getController();
                 mlc.setPc(this);
                 mlc.setMt(mt);
+                mlc.setMs(ms);
                 mlc.loadAll();
 
                 listPane = root;

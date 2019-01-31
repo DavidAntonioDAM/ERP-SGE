@@ -20,7 +20,6 @@ public class MemberListController {
 
     private ArrayList<Task> tasks = new ArrayList<>();
     private ManagerTask mt;
-    private ProjectsListController plc = new ProjectsListController();
     private ManagerStaff ms;
     private ProjectController pc;
 
@@ -30,7 +29,8 @@ public class MemberListController {
 
     void loadAll() {
         try {
-            tasks = mt.getProjectTask(plc.getProjectSelected().getId_project());
+            System.out.println(pc.getSelectedProject().getId_project());
+            tasks = mt.getProjectTask(1);
             loadList();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -41,14 +41,13 @@ public class MemberListController {
 
         try {
             list.getItems().clear();
-            Staff st;
             for (Task t : tasks) {
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("member_card.fxml"));
                 AnchorPane card = loader.load();
 
                 MemberCardController mcc = loader.getController();
-                st = ms.getStaff(t.getDni());
+                Staff st = ms.getStaff(t.getDni());
                 mcc.getJlName().setText(st.getName() + " " + st.getSurname());
                 mcc.getJlTask().setText(t.getName());
 
@@ -64,6 +63,10 @@ public class MemberListController {
 
     public void setMt(ManagerTask mt) {
         this.mt = mt;
+    }
+
+    public void setMs(ManagerStaff ms) {
+        this.ms = ms;
     }
 
     public void setPc(ProjectController pc) {
