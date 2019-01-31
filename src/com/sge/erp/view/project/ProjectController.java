@@ -27,6 +27,7 @@ public class ProjectController implements Initializable {
     private MemberListController mlc;
     private ManagerTask mt;
     private ManagerStaff ms;
+    private TaskListController tlc = new TaskListController();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,14 +48,20 @@ public class ProjectController implements Initializable {
     private AnchorPane container;
 
     @FXML
-    void addClient(MouseEvent event) {
-
+    void loadAll(MouseEvent event) {
+        //mlc.loadAll();
+        //loadUI("member_list");
     }
 
     @FXML
-    void loadAll(MouseEvent event) {
-        //mlc.loadAll();
+    void loadMembers(MouseEvent event) {
         loadUI("member_list");
+    }
+
+    @FXML
+    void loasTaskList(MouseEvent event) {
+        tlc.loadAll();
+        loadUI("task_list");
     }
 
     public void loadUI(String ui){
@@ -87,7 +94,22 @@ public class ProjectController implements Initializable {
 
                         MemberListController mlc = loader.getController();
                         mlc.setMt(mt);
+                        mlc.setMs(ms);
                         mlc.setPc(this);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "task_list":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader.load();
+
+                        TaskListController tlc = loader.getController();
+                        tlc.setMt(mt);
+                        tlc.setMs(ms);
+                        tlc.setPc(this);
 
                     } catch (IOException e) {
                         e.printStackTrace();

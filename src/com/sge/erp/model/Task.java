@@ -5,13 +5,15 @@ public class Task {
     private int id_project;
     private String dni;
     private String name;
+    private String description;
     private String state;
 
-    public Task(int id_task, int id_project, String dni, String name, String state) {
+    public Task(int id_task, int id_project, String dni, String name, String description, String state) {
         this.id_task = id_task;
         this.id_project = id_project;
         this.dni = dni;
         this.name = name;
+        this.description = description;
         this.state = state;
     }
 
@@ -45,6 +47,14 @@ public class Task {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getState() {

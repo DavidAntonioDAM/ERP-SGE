@@ -42,7 +42,13 @@ public class ManagerTask extends AdminDataBase {
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
 
-            tks.add(new Task(rs.getInt("id_task"), rs.getInt("id_project"), rs.getString("dni"), rs.getString("name"), rs.getString("state")));
+            tks.add(new Task(
+                    rs.getInt("id_task"),
+                    rs.getInt("id_project"),
+                    rs.getString("dni"),
+                    rs.getString("name"),
+                    rs.getString("description"),
+                    rs.getString("state")));
 
         }
         rs.close();
@@ -59,8 +65,13 @@ public class ManagerTask extends AdminDataBase {
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
 
-            tks.add(new Task(rs.getInt("id_task"), rs.getInt("id_project"), rs.getString("dni"), rs.getString("name"), rs.getString("state")));
-
+            tks.add(new Task(
+                    rs.getInt("id_task"),
+                    rs.getInt("id_project"),
+                    rs.getString("dni"),
+                    rs.getString("name"),
+                    rs.getString("description"),
+                    rs.getString("state")));
         }
         rs.close();
         st.close();
@@ -91,6 +102,7 @@ public class ManagerTask extends AdminDataBase {
                     rs.getInt("id_project"),
                     rs.getString("dni"),
                     rs.getString("name"),
+                    rs.getString("description"),
                     rs.getString("state")));
         }
 

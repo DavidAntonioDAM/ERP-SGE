@@ -1,13 +1,10 @@
 package com.sge.erp.view.project;
 
 import com.jfoenix.controls.JFXListView;
-import com.sge.erp.model.Client;
 import com.sge.erp.model.Staff;
 import com.sge.erp.model.Task;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
-import com.sge.erp.view.clients.ClientCardController;
-import com.sge.erp.view.projects.ProjectsListController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -16,7 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class MemberListController {
+public class TaskListController {
 
     private ArrayList<Task> tasks = new ArrayList<>();
     private ManagerTask mt;
@@ -29,7 +26,7 @@ public class MemberListController {
 
     void loadAll() {
         try {
-            tasks = mt.getProjectTask(1);
+            tasks = mt.getProjectTask(4);
             loadList();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,13 +39,16 @@ public class MemberListController {
             list.getItems().clear();
             for (Task t : tasks) {
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("member_card.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("task_card.fxml"));
                 AnchorPane card = loader.load();
 
-                MemberCardController mcc = loader.getController();
+                TaskCardController tcc = loader.getController();
                 Staff st = ms.getStaff(t.getDni());
-                mcc.getJlName().setText(st.getName() + " " + st.getSurname());
-                mcc.getJlTask().setText(t.getName());
+
+                tcc.getJlNameTask().setText(t.getName());
+                tcc.getJlMember().setText(st.getName() + " " + st.getSurname());
+                tcc.getJtaDescription().setText(t.getDescription());
+                tcc.getJlState().setText(t.getState());
 
                 list.getItems().add(card);
             }
