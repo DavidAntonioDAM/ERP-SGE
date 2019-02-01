@@ -32,7 +32,7 @@ public class HomeController {
 
     @FXML
     void goReports(MouseEvent event) {
-        //mainController.loadUI("../reports/reports");
-        //mainController.getTitleWindow().setText("Informes");
+        mainController.loadUI("../reports/reports");
+        mainController.getTitleWindow().setText("Informes");
     }
 }
