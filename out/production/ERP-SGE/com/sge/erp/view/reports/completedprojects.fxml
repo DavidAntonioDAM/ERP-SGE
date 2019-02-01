@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
 <AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.reports.CompletedprojectsController">
-
+   <children>
+      <JFXButton layoutX="265.0" layoutY="230.0" prefHeight="149.0" prefWidth="434.0" style="-fx-background-color: black;" textFill="#fc0707" />
+   </children>
 </AnchorPane>
