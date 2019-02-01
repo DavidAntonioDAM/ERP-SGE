@@ -18,18 +18,17 @@ import java.util.ArrayList;
 
 public class MemberListController {
 
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList<Staff> members = new ArrayList<>();
     private ManagerTask mt;
     private ManagerStaff ms;
     private ProjectController pc;
-
 
     @FXML
     private JFXListView<AnchorPane> list;
 
     void loadAll() {
         try {
-            tasks = mt.getProjectTask(pc.getSelectedProject().getId_project());
+            members = ms.getStaffsTeam(pc.getSelectedProject().getId_project());
             loadList();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -40,15 +39,15 @@ public class MemberListController {
 
         try {
             list.getItems().clear();
-            for (Task t : tasks) {
+            for (Staff s : members) {
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("member_card.fxml"));
                 AnchorPane card = loader.load();
 
                 MemberCardController mcc = loader.getController();
-                Staff st = ms.getStaff(t.getDni());
-                mcc.getJlName().setText(st.getName() + " " + st.getSurname());
-                mcc.getJlTask().setText(t.getName());
+                String taskName = mt.getTaskName(s.getDni());
+                mcc.getJlName().setText(s.getName() + " " + s.getSurname());
+                mcc.getJlTask().setText(taskName);
 
                 list.getItems().add(card);
             }
