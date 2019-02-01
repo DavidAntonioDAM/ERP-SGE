@@ -137,7 +137,7 @@ public class ProjectController implements Initializable {
                                         "Pendiente",
                                         "Pausada",
                                         "En Curso",
-                                        "Terminada"
+                                        "Completada"
                                 );
                         tac.getJcbState().setItems(items);
 

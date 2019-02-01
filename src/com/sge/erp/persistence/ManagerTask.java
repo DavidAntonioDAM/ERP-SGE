@@ -112,6 +112,20 @@ public class ManagerTask extends AdminDataBase {
 
     }
 
+    public String getTaskName(String dni) throws SQLException {
+        String taskName = "";
+
+        verifyConnection();
+        String sql = "SELECT * FROM task WHERE dni='" + dni + "';";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        if (rs.next()) {
+            taskName = rs.getString("dni");
+        }
+        return taskName;
+    }
+
     public ArrayList<Task> getTasksFilter(String name, int id_project) throws SQLException {
         ArrayList<Task> tasks = new ArrayList<>();
         verifyConnection();

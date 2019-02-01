@@ -19,6 +19,11 @@ public class Staff {
         this.surname = surname;
     }
 
+    public Staff(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
     public String getDni() {
         return dni;
     }

@@ -56,6 +56,7 @@ public class TaskListController {
     }
 
     private void loadList() {
+        Staff st;
 
         try {
             list.getItems().clear();
@@ -65,10 +66,13 @@ public class TaskListController {
                 AnchorPane card = loader.load();
 
                 TaskCardController tcc = loader.getController();
-                Staff st = ms.getStaff(t.getDni());
 
                 tcc.getJlNameTask().setText(t.getName());
-                tcc.getJlMember().setText(st.getName() + " " + st.getSurname());
+
+                if (t.getDni()!=null){
+                    st = ms.getStaff(t.getDni());
+                    tcc.getJlMember().setText(st.getName() + " " + st.getSurname());
+                }
                 tcc.getJtaDescription().setText(t.getDescription());
                 tcc.getJlState().setText(t.getState());
 
@@ -82,7 +86,7 @@ public class TaskListController {
                     case "En curso":
                         tcc.getJlState().setStyle("-fx-text-fill: blue");
                         break;
-                    case "Terminada":
+                    case "Completada":
                         tcc.getJlState().setStyle("-fx-text-fill: green");
                         break;
                 }

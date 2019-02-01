@@ -102,6 +102,28 @@ public class ManagerStaff extends AdminDataBase {
 
     }
 
+    public ArrayList<Staff> getStaffsTeam(int idProject) throws SQLException {
+        ArrayList<Staff> sfs = new ArrayList<>();
+        verifyConnection();
+        String sql = "SELECT s.name, s.surname\n" +
+                "FROM team t, staff_team st, staff s\n" +
+                "WHERE t.id_team=st.id_team AND st.dni=s.dni AND t.id_project=" + idProject + ";";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+
+            sfs.add(new Staff(
+                    rs.getString("name"),
+                    rs.getString("surname")));
+
+        }
+        rs.close();
+        st.close();
+
+        return sfs;
+
+    }
+
     public void deleteStaff(String dni) throws SQLException {
         verifyConnection();
         String sql = "DELETE FROM staff WHERE dni = '" + dni + "'";
