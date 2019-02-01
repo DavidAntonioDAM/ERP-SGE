@@ -15,13 +15,13 @@ public class ManagerTask extends AdminDataBase {
 
     public void insertTask(Task tk) throws SQLException {
         verifyConnection();
-        String sql = "INSERT INTO task (id_task, id_project, dni, name, state) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO task (id_project, dni, name, description, state) VALUES (?, ?, ?, ?, ?);";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setInt(1, tk.getId_task());
-        ps.setInt(2, tk.getId_project());
-        ps.setString(3, tk.getDni());
-        ps.setString(4, tk.getName());
-        ps.setString(5,tk.getState());
+        ps.setInt(1, tk.getId_project());
+        ps.setString(2, tk.getDni());
+        ps.setString(3, tk.getName());
+        ps.setString(4, tk.getDescription());
+        ps.setString(5, tk.getState());
         ps.executeUpdate();
 
     }
@@ -110,6 +110,28 @@ public class ManagerTask extends AdminDataBase {
         st.close();
         return tks;
 
+    }
+
+    public ArrayList<Task> getTasksFilter(String name, int id_project) throws SQLException {
+        ArrayList<Task> tasks = new ArrayList<>();
+        verifyConnection();
+        String sql = "SELECT * FROM task WHERE name LIKE '%" + name + "%' AND id_project=" + id_project + ";";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+            tasks.add(new Task(
+                    rs.getInt("id_task"),
+                    rs.getInt("id_project"),
+                    rs.getString("dni"),
+                    rs.getString("name"),
+                    rs.getString("description"),
+                    rs.getString("state")));
+        }
+
+        rs.close();
+        st.close();
+        return  tasks;
     }
 
 }

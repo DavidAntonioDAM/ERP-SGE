@@ -7,6 +7,8 @@ import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
 import com.sge.erp.utility.DialogCreator;
 import com.sge.erp.view.mainWindow.MainWindowController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -65,6 +67,10 @@ public class ProjectController implements Initializable {
         loadUI("task_list");
     }
 
+    public void reloadTaskList() {
+        loadUI("task_list");
+    }
+
     public void loadUI(String ui){
         Parent root = null;
 
@@ -113,6 +119,27 @@ public class ProjectController implements Initializable {
                         tlc.setMs(ms);
                         tlc.setPc(this);
                         tlc.loadAll();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "add_task":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader.load();
+
+                        TaskAddController tac = loader.getController();
+                        tac.setMt(mt);
+                        tac.setPc(this);
+                        ObservableList<String> items =
+                                FXCollections.observableArrayList(
+                                        "Pendiente",
+                                        "Pausada",
+                                        "En Curso",
+                                        "Terminada"
+                                );
+                        tac.getJcbState().setItems(items);
 
                     } catch (IOException e) {
                         e.printStackTrace();

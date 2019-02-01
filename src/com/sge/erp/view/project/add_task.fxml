@@ -2,24 +2,15 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.coke.PruebasController">
+<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.project.TaskAddController">
     <children>
-        <Label layoutX="299.0" layoutY="57.0" prefHeight="29.0" prefWidth="464.0" text="Nombre Proyecto">
-            <font>
-                <Font name="Segoe UI Bold" size="24.0" />
-            </font>
-        </Label>
-        <JFXTextField fx:id="jtfProjectId" focusColor="#004878" layoutX="299.0" layoutY="86.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
-            <font>
-                <Font name="Segoe UI" size="18.0" />
-            </font>
-        </JFXTextField>
-        <JFXButton fx:id="jbAccept" buttonType="RAISED" layoutX="325.0" layoutY="645.0" onMouseClicked="#addClient" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
+        <JFXButton fx:id="jbAccept" buttonType="RAISED" layoutX="325.0" layoutY="645.0" onMouseClicked="#addTask" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
@@ -29,31 +20,41 @@
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </JFXButton>
-        <Label layoutX="299.0" layoutY="166.0" prefHeight="29.0" prefWidth="464.0" text="DNI del Empleado">
+        <Label layoutX="299.0" layoutY="46.0" prefHeight="29.0" prefWidth="464.0" text="DNI del Empleado">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXTextField fx:id="jtfDNI" focusColor="#004878" layoutX="299.0" layoutY="195.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+        <JFXTextField fx:id="jtfDNI" focusColor="#004878" layoutX="299.0" layoutY="75.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
             <font>
                 <Font name="Segoe UI" size="18.0" />
             </font>
         </JFXTextField>
-        <Label layoutX="299.0" layoutY="275.0" prefHeight="29.0" prefWidth="464.0" text="Nombre de Tarea">
+        <Label layoutX="299.0" layoutY="155.0" prefHeight="29.0" prefWidth="464.0" text="Nombre de Tarea">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXTextField fx:id="jtfName" focusColor="#004878" layoutX="299.0" layoutY="304.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
+        <JFXTextField fx:id="jtfName" focusColor="#004878" layoutX="299.0" layoutY="184.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
             <font>
                 <Font name="Segoe UI" size="18.0" />
             </font>
         </JFXTextField>
-        <Label layoutX="299.0" layoutY="384.0" prefHeight="29.0" prefWidth="464.0" text="Estado">
+        <Label layoutX="299.0" layoutY="483.0" prefHeight="29.0" prefWidth="464.0" text="Estado">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-      <JFXComboBox layoutX="299.0" layoutY="413.0" prefHeight="35.0" prefWidth="464.0" />
+        <JFXComboBox fx:id="jcbState" layoutX="299.0" layoutY="512.0" prefHeight="35.0" prefWidth="464.0" />
+        <Label layoutX="299.0" layoutY="264.0" prefHeight="29.0" prefWidth="464.0" text="Descripción de la Tarea">
+            <font>
+                <Font name="Segoe UI Bold" size="24.0" />
+            </font>
+        </Label>
+        <JFXTextArea fx:id="jtaDesc" focusColor="#004878" layoutX="299.0" layoutY="289.0" prefHeight="145.0" prefWidth="464.0">
+            <font>
+                <Font name="Segoe UI" size="18.0" />
+            </font>
+        </JFXTextArea>
     </children>
 </AnchorPane>

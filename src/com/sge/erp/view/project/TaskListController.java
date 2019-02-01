@@ -1,12 +1,14 @@
 package com.sge.erp.view.project;
 
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Staff;
 import com.sge.erp.model.Task;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -20,9 +22,29 @@ public class TaskListController {
     private ManagerStaff ms;
     private ProjectController pc;
 
-
     @FXML
     private JFXListView<AnchorPane> list;
+
+    @FXML
+    private JFXTextField jtfSearch;
+
+    @FXML
+    void addTask(MouseEvent event) {
+        pc.loadUI("add_task");
+    }
+
+    @FXML
+    void filter(MouseEvent event) {
+        try {
+            tasks = mt.getTasksFilter(
+                    jtfSearch.getText(),
+                    pc.getSelectedProject().getId_project()
+            );
+            loadList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     void loadAll() {
         try {
@@ -50,8 +72,24 @@ public class TaskListController {
                 tcc.getJtaDescription().setText(t.getDescription());
                 tcc.getJlState().setText(t.getState());
 
+                switch (t.getState()) {
+                    case "Pendiente":
+                        tcc.getJlState().setStyle("-fx-text-fill: red");
+                        break;
+                    case "Pausada":
+                        tcc.getJlState().setStyle("-fx-text-fill: orange");
+                        break;
+                    case "En curso":
+                        tcc.getJlState().setStyle("-fx-text-fill: blue");
+                        break;
+                    case "Terminada":
+                        tcc.getJlState().setStyle("-fx-text-fill: green");
+                        break;
+                }
+
                 list.getItems().add(card);
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {

@@ -17,6 +17,14 @@ public class Task {
         this.state = state;
     }
 
+    public Task(int id_project, String dni, String name, String description, String state) {
+        this.id_project = id_project;
+        this.dni = dni;
+        this.name = name;
+        this.description = description;
+        this.state = state;
+    }
+
     public int getId_task() {
         return id_task;
     }
