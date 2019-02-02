@@ -77,7 +77,7 @@ public class ProjectsmoreadvanceController implements Initializable {
 
                 }
 
-                if(projectComplete>=0.5){
+                if(tasks.size()>=0.5){
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("projects_card.fxml"));
                     AnchorPane card = loader.load();
                     ProjectCardController cc = loader.getController();

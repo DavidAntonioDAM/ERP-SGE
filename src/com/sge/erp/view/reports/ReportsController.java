@@ -27,6 +27,7 @@ public class ReportsController implements Initializable {
     private CompletedprojectsController cpc;
     private ProjectstoendController ptec;
     private ProjectsmoreadvanceController pmac;
+    private ProyectswithmoretasksController ptask;
 
 
     @FXML
@@ -157,6 +158,11 @@ public class ReportsController implements Initializable {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                     root = loader.load();
+
+                    ptask = loader.getController();
+                    ptask.setPc(this);
+                    ptask.setMp(mp);
+                    ptask.loadAll();
 
 
                 } catch (IOException e) {
