@@ -29,7 +29,7 @@
             <children>
                 <Label fx:id="jlState" alignment="CENTER" layoutX="11.0" layoutY="10.0" prefHeight="114.0" prefWidth="220.0" text="Estado">
                     <font>
-                        <Font name="Segoe UI" size="36.0" />
+                        <Font name="Segoe UI Bold" size="36.0" />
                     </font>
                 </Label>
             </children>
