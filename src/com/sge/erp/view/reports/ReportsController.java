@@ -1,6 +1,8 @@
 package com.sge.erp.view.reports;
 
+import com.sge.erp.persistence.ManagerClient;
 import com.sge.erp.persistence.ManagerProjects;
+import com.sge.erp.persistence.ManagerStaff;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,17 +19,22 @@ public class ReportsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             mp = new ManagerProjects();
+            mc = new ManagerClient();
+            ms = new ManagerStaff();
             loadUI("completedprojects");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
-
+    private ManagerClient mc;
     private ManagerProjects mp;
+    private ManagerStaff ms;
     private CompletedprojectsController cpc;
     private ProjectstoendController ptec;
     private ProjectsmoreadvanceController pmac;
     private ProyectswithmoretasksController ptask;
+    private ProjectswithmoreclientsController cl;
+    private EmployeeswithoutteamController ewtc;
 
 
     @FXML
@@ -108,6 +115,10 @@ public class ReportsController implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                     root = loader.load();
 
+                    ewtc = loader.getController();
+                    ewtc.setPc(this);
+                    ewtc.setMs(ms);
+                    ewtc.loadAll();
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -148,6 +159,12 @@ public class ReportsController implements Initializable {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                     root = loader.load();
+
+                    cl = loader.getController();
+                    cl.setPc(this);
+                    cl.setMc(mc);
+                    cl.setMp(mp);
+                    cl.loadAll();
 
 
                 } catch (IOException e) {
