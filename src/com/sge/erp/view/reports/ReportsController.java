@@ -3,6 +3,7 @@ package com.sge.erp.view.reports;
 import com.sge.erp.persistence.ManagerClient;
 import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerStaff;
+import com.sge.erp.persistence.ManagerTask;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +22,7 @@ public class ReportsController implements Initializable {
             mp = new ManagerProjects();
             mc = new ManagerClient();
             ms = new ManagerStaff();
+            mk = new ManagerTask();
             loadUI("completedprojects");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -29,12 +31,14 @@ public class ReportsController implements Initializable {
     private ManagerClient mc;
     private ManagerProjects mp;
     private ManagerStaff ms;
+    private ManagerTask mk;
     private CompletedprojectsController cpc;
     private ProjectstoendController ptec;
     private ProjectsmoreadvanceController pmac;
     private ProyectswithmoretasksController ptask;
     private ProjectswithmoreclientsController cl;
     private EmployeeswithoutteamController ewtc;
+    private EfficientworkersController ewc;
 
 
     @FXML
@@ -104,6 +108,12 @@ public class ReportsController implements Initializable {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                     root = loader.load();
+
+                    ewc = loader.getController();
+                    ewc.setPc(this);
+                    ewc.setMs(ms);
+                    ewc.setMk(mk);
+                    ewc.loadAll();
 
 
                 } catch (IOException e) {

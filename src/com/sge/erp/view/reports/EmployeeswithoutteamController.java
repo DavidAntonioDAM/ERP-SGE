@@ -1,18 +1,11 @@
 package com.sge.erp.view.reports;
 
 import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Staff;
 import com.sge.erp.persistence.ManagerStaff;
-import com.sge.erp.view.employees.EmployeesCardController;
-import com.sge.erp.view.employees.EmployeesController;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.SQLException;
