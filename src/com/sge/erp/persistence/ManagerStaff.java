@@ -136,7 +136,7 @@ public class ManagerStaff extends AdminDataBase {
 
         ArrayList<Staff> sfs = new ArrayList<>();
         verifyConnection();
-        String sql = "select * from staff where dni != any (SELECT dni FROM `task` WHERE dni != '' OR dni is not null);";
+        String sql = "SELECT * FROM staff WHERE dni != all(SELECT dni FROM staff_team);";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
