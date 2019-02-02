@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.reports.CompletedprojectsController">
    <children>
-      <JFXButton layoutX="265.0" layoutY="230.0" prefHeight="149.0" prefWidth="434.0" style="-fx-background-color: black;" textFill="#fc0707" />
+      <JFXListView fx:id="list" layoutX="14.0" layoutY="14.0" prefHeight="688.0" prefWidth="1032.0" />
    </children>
 </AnchorPane>

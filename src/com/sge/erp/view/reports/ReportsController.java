@@ -15,10 +15,18 @@ import java.util.ResourceBundle;
 public class ReportsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //  loadUI("completedprojects");
+        try {
+            mp = new ManagerProjects();
+            loadUI("completedprojects");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private ManagerProjects mp;
+    private CompletedprojectsController cpc;
+    private ProjectstoendController ptec;
+    private ProjectsmoreadvanceController pmac;
 
 
     @FXML
@@ -63,17 +71,26 @@ public class ReportsController implements Initializable {
 
     public void loadUI(String ui) {
         Parent root = null;
+        if (listPane == null) {
 
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                root = loader.load();
+
+                cpc = loader.getController();
+                cpc.setPc(this);
+                cpc.setMp(mp);
+                cpc.loadAll();
+
+                listPane = root;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
         switch (ui) {
             case "completedprojects":
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
-                    root = loader.load();
+                    root = listPane;
 
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 break;
             case "efficientworkers":
                 try {
@@ -100,6 +117,12 @@ public class ReportsController implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                     root = loader.load();
 
+                    pmac = loader.getController();
+                    pmac.setPc(this);
+                    pmac.setMp(mp);
+                    pmac.loadAll();
+
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -109,6 +132,11 @@ public class ReportsController implements Initializable {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                     root = loader.load();
+
+                    ptec = loader.getController();
+                    ptec.setPc(this);
+                    ptec.setMp(mp);
+                    ptec.loadAll();
 
 
                 } catch (IOException e) {
@@ -135,6 +163,7 @@ public class ReportsController implements Initializable {
                     e.printStackTrace();
                 }
                 break;
+        }
         }
 
         container.getChildren().setAll(root);
