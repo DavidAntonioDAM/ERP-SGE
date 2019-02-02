@@ -78,16 +78,16 @@ public class TaskListController {
 
                 switch (t.getState()) {
                     case "Pendiente":
-                        tcc.getJlState().setStyle("-fx-text-fill: red");
+                        tcc.getJlState().setStyle("-fx-text-fill: #923dba");
                         break;
                     case "Pausada":
-                        tcc.getJlState().setStyle("-fx-text-fill: orange");
+                        tcc.getJlState().setStyle("-fx-text-fill: #ff5d27");
                         break;
                     case "En curso":
-                        tcc.getJlState().setStyle("-fx-text-fill: blue");
+                        tcc.getJlState().setStyle("-fx-text-fill: #0075f3");
                         break;
                     case "Completada":
-                        tcc.getJlState().setStyle("-fx-text-fill: green");
+                        tcc.getJlState().setStyle("-fx-text-fill: #0ed145");
                         break;
                 }
 
