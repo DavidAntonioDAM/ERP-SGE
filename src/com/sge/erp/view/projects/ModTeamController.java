@@ -1,9 +1,6 @@
 package com.sge.erp.view.projects;
 
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableColumn;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.sge.erp.model.Project;
 import com.sge.erp.model.Staff;
@@ -82,6 +79,9 @@ public class ModTeamController implements Initializable {
 
         employees = FXCollections.observableArrayList();
         team = FXCollections.observableArrayList();
+        newInTeam = FXCollections.observableArrayList();
+        outOfTeam = FXCollections.observableArrayList();
+
 
         ArrayList<Staff> staffs = new ArrayList<>();
         ArrayList<Staff> teamList = new ArrayList<>();
@@ -152,10 +152,13 @@ public class ModTeamController implements Initializable {
     private ManagerTeam mt;
     private ManagerProjects mp;
     private ManagerStaff_Team mst;
-    private ArrayList<Staff> allStaff;
+    ArrayList<Staff> allStaff;
+    private Team selectedTeam;
 
     ObservableList<Employee> employees;
     ObservableList<Employee> team;
+    ObservableList<Employee> outOfTeam;
+    ObservableList<Employee> newInTeam;
     private ProjectsController pc;
 
     @FXML
@@ -174,13 +177,14 @@ public class ModTeamController implements Initializable {
     private JFXTextField jtfTeamName;
 
     @FXML
-    private JFXTextField jtfProjectName;
+    private JFXComboBox<String> jcbProjectsName;
 
     @FXML
     void pasarEmpleado(MouseEvent event) {
 
         int index = tableEmployees.getSelectionModel().getSelectedIndex();
         team.add(employees.get(index));
+        newInTeam.add(employees.get(index));
         employees.remove(index);
 
     }
@@ -190,6 +194,7 @@ public class ModTeamController implements Initializable {
 
         int index = tableTeam.getSelectionModel().getSelectedIndex();
         employees.add(team.get(index));
+        outOfTeam.add(team.get(index));
         team.remove(index);
     }
 
@@ -220,6 +225,55 @@ public class ModTeamController implements Initializable {
         }
     }
 
+    @FXML
+    void cancel(MouseEvent event) {
+        pc.loadUI("team_list");
+    }
+
+    @FXML
+    void modifyTeam(MouseEvent event) {
+        try {
+            if(jcbProjectsName.getValue().trim().length() > 0 && jtfTeamName.getText().trim().length() > 0){
+                Project p = mp.getProject(jcbProjectsName.getValue());
+                Team t1 = new Team(selectedTeam.getId_team(),p.getId_project(), jtfTeamName.getText());
+                mt.updateTeam(t1);
+                Team t2 = mt.getTeamByName(jtfTeamName.getText());
+                if (outOfTeam.size() > 0) {
+                    for (Employee e : outOfTeam) {
+                        String[] completeName = e.getName().split(",");
+                        Staff staff = ms.getStaffByNameSurnameJob(completeName[1].trim(), completeName[0], e.getJob());
+                        Staff_Team st = new Staff_Team(t2.getId_team(), staff.getDni());
+                        mst.deleteStaff_Team(st);
+                    }
+                }
+
+                if (newInTeam.size() > 0) {
+                    for (Employee e : newInTeam) {
+                        String[] completeName = e.getName().split(",");
+                        Staff staff = ms.getStaffByNameSurnameJob(completeName[1].trim(), completeName[0], e.getJob());
+                        Staff_Team st = new Staff_Team(t2.getId_team(), staff.getDni());
+                        mst.insertStaff_Team(st);
+                    }
+                }
+                pc.reloadProjectlist();
+                pc.loadUI("team_list");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setFields(){
+
+       // try {
+
+            jtfTeamName.setText(selectedTeam.getName());
+            jcbProjectsName.setValue("HOLA");
+       /* } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+    }
 
     public void setMt(ManagerTeam mt) {
         this.mt = mt;
@@ -237,7 +291,35 @@ public class ModTeamController implements Initializable {
         this.mst = mst;
     }
 
+    public ManagerStaff getMs() {
+        return ms;
+    }
+
+    public void setMs(ManagerStaff ms) {
+        this.ms = ms;
+    }
+
+    public Team getSelectedTeam() {
+        return selectedTeam;
+    }
+
+    public void setSelectedTeam(Team selectedTeam) {
+        this.selectedTeam = selectedTeam;
+    }
+
+    public ArrayList<Staff> getAllStaff() {
+        return allStaff;
+    }
+
     public void setAllStaff(ArrayList<Staff> allStaff) {
         this.allStaff = allStaff;
+    }
+
+    public JFXComboBox<String> getJcbProjectsName() {
+        return jcbProjectsName;
+    }
+
+    public void setJcbProjectsName(JFXComboBox<String> jcbProjectsName) {
+        this.jcbProjectsName = jcbProjectsName;
     }
 }

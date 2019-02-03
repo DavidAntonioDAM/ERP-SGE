@@ -220,7 +220,7 @@ public class AddTeamController implements Initializable {
             Team t2 = mt.getTeamByName(jtfTeamName.getText());
             for (Employee e : team){
                 String[] completeName = e.getName().split(",");
-                Staff staff = ms.getStaffByNameSurnameJob(completeName[1].trim(),completeName[0].trim(), e.getJob());
+                Staff staff = ms.getStaffByNameSurnameJob(completeName[1].trim(),completeName[0], e.getJob());
                 System.out.println(staff.getDni());
                 Staff_Team st = new Staff_Team(t2.getId_team(), staff.getDni());
                 mst.insertStaff_Team(st);

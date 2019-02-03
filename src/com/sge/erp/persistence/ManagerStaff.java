@@ -105,7 +105,7 @@ public class ManagerStaff extends AdminDataBase {
     public ArrayList<Staff> getStaffsTeam(int idProject) throws SQLException {
         ArrayList<Staff> sfs = new ArrayList<>();
         verifyConnection();
-        String sql = "SELECT s.dni, s.name, s.surname\n" +
+        String sql = "SELECT s.job, s.dni, s.name, s.surname\n" +
                 "FROM team t, staff_team st, staff s\n" +
                 "WHERE t.id_team=st.id_team AND st.dni=s.dni AND t.id_project=" + idProject + ";";
         Statement st = connection.createStatement();
@@ -115,7 +115,8 @@ public class ManagerStaff extends AdminDataBase {
             sfs.add(new Staff(
                     rs.getString("dni"),
                     rs.getString("name"),
-                    rs.getString("surname")));
+                    rs.getString("surname"),
+                    rs.getString("job")));
 
         }
         rs.close();

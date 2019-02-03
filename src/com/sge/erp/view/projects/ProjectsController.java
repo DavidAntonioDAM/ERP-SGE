@@ -8,6 +8,8 @@ import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerStaff_Team;
 import com.sge.erp.persistence.ManagerTeam;
 import com.sge.erp.view.mainWindow.MainWindowController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -148,13 +150,21 @@ public class ProjectsController implements Initializable {
                         root = loader.load();
 
                         ModTeamController mtc = loader.getController();
-                        ArrayList<Staff> teamList = new ArrayList<>();
-                        teamList = ms.getStaffsTeam(teamSelected.getId_project());
-
-                        mtc.setAllStaff(teamList);
                         mtc.setMt(mt);
                         mtc.setMp(mp);
+                        mtc.setMst(mst);
+                        ArrayList<Project> projects = mp.getProjectsNoTeam(teamSelected.getId_project());
+                        ObservableList<String> itemsProjects = FXCollections.observableArrayList();
+
+                        for (Project p: projects) {
+                            itemsProjects.add("(" + p.getNif_client() + ") " + p.getName());
+                        }
+
+                        mtc.getJcbProjectsName().setItems(itemsProjects);
+
+                        mtc.setSelectedTeam(teamSelected);
                         mtc.setPc(this);
+                        mtc.setFields();
 
                     } catch (IOException e) {
                         e.printStackTrace();

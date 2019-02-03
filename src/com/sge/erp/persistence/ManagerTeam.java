@@ -93,9 +93,9 @@ public class ManagerTeam extends AdminDataBase {
         return teams;
     }
 
-    public void updateTeam(Team t, int id_team) throws SQLException {
+    public void updateTeam(Team t) throws SQLException {
         verifyConnection();
-        String sql = "UPDATE team SET id_team = '" + t.getId_team() + "', name = '" + t.getName() + "', id_project = '" + t.getId_project() + "' WHERE id_team = '" + id_team + "';";
+        String sql = "UPDATE team SET name = '" + t.getName() + "', id_project = '" + t.getId_project() + "' WHERE id_team = '" + t.getId_team() + "';";
         Statement st = connection.createStatement();
         st.executeUpdate(sql);
         st.close();
