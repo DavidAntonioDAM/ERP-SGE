@@ -83,22 +83,22 @@ public class AddTeamController implements Initializable {
             e.printStackTrace();
         }
 
-        for (Staff s:staffs) {
+        for (Staff s : staffs) {
 
             Employee e = new Employee(
-                    s.getName()+" "+s.getSurname(),
+                    s.getName() + " " + s.getSurname(),
                     s.getJob());
             employees.add(e);
         }
 
-        TreeItem<Employee> root = new RecursiveTreeItem<Employee>(employees,  RecursiveTreeObject::getChildren);
-        TreeItem<Employee> root2 = new RecursiveTreeItem<Employee>(team,  RecursiveTreeObject::getChildren);
+        TreeItem<Employee> root = new RecursiveTreeItem<Employee>(employees, RecursiveTreeObject::getChildren);
+        TreeItem<Employee> root2 = new RecursiveTreeItem<Employee>(team, RecursiveTreeObject::getChildren);
 
         tableEmployees.getColumns().setAll(name, job);
         tableEmployees.setRoot(root);
         tableEmployees.setShowRoot(false);
 
-        tableTeam.getColumns().setAll(name2,job2);
+        tableTeam.getColumns().setAll(name2, job2);
         tableTeam.setRoot(root2);
         tableTeam.setShowRoot(false);
 
@@ -133,6 +133,7 @@ public class AddTeamController implements Initializable {
     private ManagerStaff ms;
     ObservableList<Employee> employees;
     ObservableList<Employee> team;
+    private ProjectsController pc;
 
     @FXML
     private JFXTreeTableView<Employee> tableEmployees;
@@ -166,7 +167,7 @@ public class AddTeamController implements Initializable {
         team.remove(index);
     }
 
-    class Employee extends RecursiveTreeObject<Employee>{
+    class Employee extends RecursiveTreeObject<Employee> {
 
         StringProperty name;
         StringProperty job;
@@ -192,4 +193,24 @@ public class AddTeamController implements Initializable {
             return job;
         }
     }
+
+    @FXML
+    void addTeam(MouseEvent event) {
+
+    }
+
+    @FXML
+    void cancel(MouseEvent event) {
+        pc.loadUI("team_list");
+
+    }
+
+    public ProjectsController getPc() {
+        return pc;
+    }
+
+    public void setPc(ProjectsController pc) {
+        this.pc = pc;
+    }
 }
+

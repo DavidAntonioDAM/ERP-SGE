@@ -120,6 +120,9 @@ public class ProjectsController implements Initializable {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                         root = loader.load();
 
+                        AddTeamController atc = loader.getController();
+                        atc.setPc(this);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

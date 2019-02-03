@@ -31,12 +31,12 @@
                 <Font name="Segoe UI" size="18.0" />
             </font>
         </JFXTextField>
-        <JFXButton buttonType="RAISED" layoutX="271.0" layoutY="645.0" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
+        <JFXButton buttonType="RAISED" layoutX="271.0" layoutY="645.0" onMouseClicked="#addTeam" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </JFXButton>
-        <JFXButton buttonType="RAISED" layoutX="661.0" layoutY="645.0" style="-fx-background-color: #780000;" text="Cancelar" textFill="WHITE">
+        <JFXButton buttonType="RAISED" layoutX="661.0" layoutY="645.0" onMouseClicked="#cancel" style="-fx-background-color: #780000;" text="Cancelar" textFill="WHITE">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
