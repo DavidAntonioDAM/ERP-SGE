@@ -1,6 +1,11 @@
 .text-area .scroll-pane:disabled{
     -fx-opacity: 1;
+    -fx-background-insets: 0;
+    -fx-background-color: white;
+}
 
+.text-area .content {
+    -fx-background-color: white;
 }
 
 .pane {

@@ -40,6 +40,7 @@ public class TeamListController {
     }
 
     public void loadList(){
+        int counter = 0;
         try {
 
             list.getItems().clear();
@@ -54,7 +55,13 @@ public class TeamListController {
                 tcc.getJlProjectName().setText(projectName);
                 ArrayList<Staff> members = mt.getMembers(t.getId_team());
                 for (Staff s : members){
-                    tcc.getJtaMembers().appendText(s.getName() + " " + s.getSurname() + " (" + s.getDni() + ") \n");
+                    if (counter == 1) {
+                        tcc.getJtaMembers1().appendText(s.getName() + " " + s.getSurname() + " (" + s.getDni() + ") \n");
+                        counter = 0;
+                    } else {
+                        tcc.getJtaMembers().appendText(s.getName() + " " + s.getSurname() + " (" + s.getDni() + ") \n");
+                        counter++;
+                    }
                 }
                 list.getItems().add(card);
             }
