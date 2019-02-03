@@ -15,7 +15,7 @@
                 <Font name="Segoe UI" size="18.0" />
             </font>
         </JFXTextField>
-        <JFXButton fx:id="jbSearch" contentDisplay="CENTER" layoutX="936.0" layoutY="18.0" prefHeight="37.0" prefWidth="45.0" style="-fx-background-color: #14385B;">
+        <JFXButton fx:id="jbSearch" contentDisplay="CENTER" layoutX="936.0" layoutY="18.0" onMouseClicked="#filterTeams" prefHeight="37.0" prefWidth="45.0" style="-fx-background-color: #14385B;">
             <graphic>
                 <MaterialDesignIconView fill="WHITE" glyphName="MAGNIFY" scaleX="1.5" scaleY="1.5" scaleZ="1.5" size="25" />
             </graphic>

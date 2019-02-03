@@ -1,6 +1,7 @@
 package com.sge.erp.view.projects;
 
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Staff;
 import com.sge.erp.model.Team;
 import com.sge.erp.persistence.ManagerProjects;
@@ -25,9 +26,22 @@ public class TeamListController {
     @FXML
     private JFXListView<AnchorPane> list;
 
+    @FXML
+    private JFXTextField jtfSearch;
+
     public void loadAll(){
         try {
             teams = mt.getTeams();
+            loadList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void filterTeams(MouseEvent event) {
+        try {
+            teams = mt.getTeamsFilter(jtfSearch.getText());
             loadList();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -72,6 +72,8 @@ public class TaskListController {
                 if (t.getDni()!=null){
                     st = ms.getStaff(t.getDni());
                     tcc.getJlMember().setText(st.getName() + " " + st.getSurname());
+                } else {
+                    tcc.getJlMember().setText("");
                 }
                 tcc.getJtaDescription().setText(t.getDescription());
                 tcc.getJlState().setText(t.getState());
@@ -83,7 +85,7 @@ public class TaskListController {
                     case "Pausada":
                         tcc.getJlState().setStyle("-fx-text-fill: #ff5d27");
                         break;
-                    case "En curso":
+                    case "En Curso":
                         tcc.getJlState().setStyle("-fx-text-fill: #0075f3");
                         break;
                     case "Completada":

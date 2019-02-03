@@ -32,15 +32,15 @@ public class TaskAddController {
     @FXML
     void addTask(MouseEvent event) {
         Task t = new Task(
-                4,
+                pc.getSelectedProject().getId_project(),
                 jtfDNI.getText(),
                 jtfName.getText(),
                 jtaDesc.getText(),
                 jcbState.getValue()
         );
 
-        if (t.getName().trim().length()==0){
-            t.setName(null);
+        if (t.getDni().trim().length()==0){
+            t.setDni(null);
         }
 
         try {

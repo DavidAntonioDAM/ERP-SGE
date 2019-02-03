@@ -70,6 +70,29 @@ public class ManagerTeam extends AdminDataBase {
         return team;
     }
 
+    public ArrayList<Team> getTeamsFilter(String name) throws SQLException {
+        ArrayList<Team> teams = new ArrayList<>();
+        verifyConnection();
+
+        String sql = "SELECT * FROM team WHERE name LIKE '%" + name + "%';";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+
+            teams.add(new Team(
+                    rs.getInt("id_team"),
+                    rs.getInt("id_project"),
+                    rs.getString("name")));
+
+        }
+
+        rs.close();
+        st.close();
+
+        return teams;
+    }
+
     public void updateTeam(Team t, int id_team) throws SQLException {
         verifyConnection();
         String sql = "UPDATE team SET id_team = '" + t.getId_team() + "', name = '" + t.getName() + "', id_project = '" + t.getId_project() + "' WHERE id_team = '" + id_team + "';";
