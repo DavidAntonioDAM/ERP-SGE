@@ -40,18 +40,18 @@
                 <Font name="Segoe UI" size="18.0" />
             </font>
         </JFXTextField>
-        <Label layoutX="299.0" layoutY="483.0" prefHeight="29.0" prefWidth="464.0" text="Estado">
+        <Label layoutX="299.0" layoutY="264.0" prefHeight="29.0" prefWidth="464.0" text="Estado">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXComboBox fx:id="jcbState" layoutX="299.0" layoutY="512.0" prefHeight="35.0" prefWidth="464.0" />
-        <Label layoutX="299.0" layoutY="264.0" prefHeight="29.0" prefWidth="464.0" text="Descripción de la Tarea">
+        <JFXComboBox fx:id="jcbState" layoutX="299.0" layoutY="293.0" prefHeight="35.0" prefWidth="464.0" />
+        <Label layoutX="299.0" layoutY="377.0" prefHeight="29.0" prefWidth="464.0" text="Descripción de la Tarea">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXTextArea fx:id="jtaDesc" focusColor="#004878" layoutX="299.0" layoutY="289.0" prefHeight="145.0" prefWidth="464.0">
+        <JFXTextArea fx:id="jtaDesc" focusColor="#004878" layoutX="299.0" layoutY="402.0" prefHeight="145.0" prefWidth="464.0">
             <font>
                 <Font name="Segoe UI" size="18.0" />
             </font>

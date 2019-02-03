@@ -40,16 +40,12 @@ public class TaskAddController {
         );
 
         try {
-            if (fieldValidation()){
-                if (dniValidate()) {
-                    mt.insertTask(t);
+            if (fieldValidation()) {
+                mt.insertTask(t);
 
-                    pc.reloadTaskList();
-                    pc.loadUI("task_list");
-                    // EXITO
-                } else {
-                    // ERROR DNI
-                }
+                pc.reloadTaskList();
+                pc.loadUI("task_list");
+                // EXITO
             } else {
                 // ERROR CAMPOS
             }
@@ -63,45 +59,12 @@ public class TaskAddController {
         pc.loadUI("task_list");
     }
 
-    private boolean dniValidate() {
-        String dni = jtfDNI.getText();
-
-        if (dni.length() != 9 || !Character.isLetter(dni.charAt(8))){
-            return false;
-        } else if (numbersOnly(dni)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean numbersOnly(String dni) {
-        String number;
-        String dniTMP = "";
-
-        for (int i = 0; i < dni.length() - 1; i++){
-            number = dni.substring(i, i+1);
-
-            for (int j = 0; j < 10; j++){
-                if (number.equals(String.valueOf(j))){
-                    dniTMP += String.valueOf(j);
-                }
-            }
-        }
-
-        if (dniTMP.length() != 8) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     private boolean fieldValidation() {
         String name = jtfName.getText();
         String desc = jtaDesc.getText();
         String state = jcbState.getValue();
 
-        if (name.length() == 0 || state.length() == 0 || desc.length() == 0){
+        if (name.length() == 0 || state.length() == 0 || desc.length() == 0) {
             return false;
         } else {
             return true;

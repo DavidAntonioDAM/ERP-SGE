@@ -42,7 +42,7 @@
          </children></Pane>
       <Pane layoutX="645.0" prefHeight="67.0" prefWidth="155.0" style="-fx-border-color: #17212B; -fx-background-color: #004878;">
          <children>
-            <Label fx:id="lProjectName1" layoutX="10.0" layoutY="5.0" prefHeight="58.0" prefWidth="137.0" style="-fx-text-fill: white;" text="99/99/9999">
+            <Label fx:id="lDate" layoutX="10.0" layoutY="5.0" prefHeight="58.0" prefWidth="137.0" style="-fx-text-fill: white;" text="99/99/9999">
                <font>
                   <Font name="Segoe UI Bold" size="24.0" />
                </font>

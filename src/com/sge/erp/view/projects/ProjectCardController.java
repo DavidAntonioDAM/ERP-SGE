@@ -28,6 +28,9 @@ public class ProjectCardController implements Initializable {
     @FXML
     private Label percent;
 
+    @FXML
+    private Label lDate;
+
     public Label getPercent() {
         return percent;
     }
@@ -58,5 +61,13 @@ public class ProjectCardController implements Initializable {
 
     public void setJtaProjectDesc(TextArea jtaProjectDesc) {
         this.jtaProjectDesc = jtaProjectDesc;
+    }
+
+    public Label getlDate() {
+        return lDate;
+    }
+
+    public void setlDate(Label lDate) {
+        this.lDate = lDate;
     }
 }
