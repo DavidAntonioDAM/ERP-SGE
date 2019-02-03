@@ -36,8 +36,12 @@ public class TaskAddController {
                 jtfDNI.getText(),
                 jtfName.getText(),
                 jtaDesc.getText(),
-                jcbState.getValue().toString()
+                jcbState.getValue()
         );
+
+        if (t.getName().trim().length()==0){
+            t.setName(null);
+        }
 
         try {
             if (fieldValidation()) {

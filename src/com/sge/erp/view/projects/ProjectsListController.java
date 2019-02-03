@@ -52,12 +52,12 @@ public class ProjectsListController implements Initializable {
 
     @FXML
     void filterName(MouseEvent event) {
-        /*try {
-            projects = mp.getFilterProject(jtfSearch.getText());
+        try {
+            projects = mp.getProjectsFilter(jtfSearch.getText());
             loadList();
         } catch (SQLException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     @FXML
