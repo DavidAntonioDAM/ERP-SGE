@@ -173,6 +173,29 @@ public class ManagerStaff extends AdminDataBase {
         st.close();
 
         return sfs;
+    }
 
+    public ArrayList<Staff> getStaffByProject(int idProject) throws SQLException {
+        ArrayList<Staff> employees = new ArrayList<>();
+
+        verifyConnection();
+        String sql = "SELECT s.* \n" +
+                "FROM staff s, staff_team st, team t\n" +
+                "WHERE t.id_team=st.id_team AND st.dni=s.dni AND t.id_project=" + idProject + ";";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while(rs.next()){
+            employees.add(new Staff(
+                    rs.getString("dni"),
+                    rs.getString("name"),
+                    rs.getString("surname"),
+                    rs.getString("job")));
+        }
+
+        rs.close();
+        st.close();
+
+        return employees;
     }
 }

@@ -20,16 +20,11 @@
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </JFXButton>
-        <Label layoutX="299.0" layoutY="46.0" prefHeight="29.0" prefWidth="464.0" text="DNI del Empleado">
+        <Label layoutX="299.0" layoutY="46.0" prefHeight="29.0" prefWidth="464.0" text="Nombre del Empleado">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXTextField fx:id="jtfDNI" focusColor="#004878" layoutX="299.0" layoutY="75.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
-            <font>
-                <Font name="Segoe UI" size="18.0" />
-            </font>
-        </JFXTextField>
         <Label layoutX="299.0" layoutY="155.0" prefHeight="29.0" prefWidth="464.0" text="Nombre de Tarea">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
@@ -56,5 +51,6 @@
                 <Font name="Segoe UI" size="18.0" />
             </font>
         </JFXTextArea>
+      <JFXComboBox fx:id="jcbName" layoutX="299.0" layoutY="75.0" prefHeight="35.0" prefWidth="464.0" />
     </children>
 </AnchorPane>
