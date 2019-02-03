@@ -153,4 +153,25 @@ public class ManagerStaff extends AdminDataBase {
 
         return sfs;
     }
+
+    public Staff getStaffByNameSurnameJob(String name, String surname, String job) throws SQLException {
+
+        verifyConnection();
+        String sql = "SELECT * FROM staff WHERE name = '" + name + "' AND surname = '" + surname + "' AND job = '" + job + "';";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        rs.next();
+
+        Staff sfs = new Staff(
+                rs.getString("dni"),
+                rs.getString("name"),
+                rs.getString("surname"),
+                rs.getString("job"));
+
+        rs.close();
+        st.close();
+
+        return sfs;
+
+    }
 }

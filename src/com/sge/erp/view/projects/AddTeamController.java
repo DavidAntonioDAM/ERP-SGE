@@ -5,8 +5,14 @@ import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import com.sge.erp.model.Project;
 import com.sge.erp.model.Staff;
+import com.sge.erp.model.Staff_Team;
+import com.sge.erp.model.Team;
+import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerStaff;
+import com.sge.erp.persistence.ManagerStaff_Team;
+import com.sge.erp.persistence.ManagerTeam;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -45,6 +51,7 @@ public class AddTeamController implements Initializable {
                 return param.getValue().getValue().name;
             }
         });
+
 
         JFXTreeTableColumn<Employee, String> job2 = new JFXTreeTableColumn<>("Puesto");
         job2.setPrefWidth(190);
@@ -86,7 +93,7 @@ public class AddTeamController implements Initializable {
         for (Staff s : staffs) {
 
             Employee e = new Employee(
-                    s.getName() + " " + s.getSurname(),
+                    s.getSurname() + ", " + s.getName(),
                     s.getJob());
             employees.add(e);
         }
@@ -131,6 +138,10 @@ public class AddTeamController implements Initializable {
     }
 
     private ManagerStaff ms;
+    private ManagerTeam mt;
+    private ManagerProjects mp;
+    private ManagerStaff_Team mst;
+
     ObservableList<Employee> employees;
     ObservableList<Employee> team;
     private ProjectsController pc;
@@ -146,6 +157,12 @@ public class AddTeamController implements Initializable {
 
     @FXML
     private JFXTextField fieldFilterTeam;
+
+    @FXML
+    private JFXTextField jtfTeamName;
+
+    @FXML
+    private JFXTextField jtfProjectName;
 
     @FXML
     void pasarEmpleado(MouseEvent event) {
@@ -196,21 +213,45 @@ public class AddTeamController implements Initializable {
 
     @FXML
     void addTeam(MouseEvent event) {
-
+        try {
+            Project p = mp.getProject(jtfProjectName.getText());
+            Team t1 = new Team(p.getId_project(), jtfTeamName.getText());
+            mt.insertTeam(t1);
+            Team t2 = mt.getTeamByName(jtfTeamName.getText());
+            for (Employee e : team){
+                String[] completeName = e.getName().split(",");
+                Staff staff = ms.getStaffByNameSurnameJob(completeName[1].trim(),completeName[0].trim(), e.getJob());
+                System.out.println(staff.getDni());
+                Staff_Team st = new Staff_Team(t2.getId_team(), staff.getDni());
+                mst.insertStaff_Team(st);
+            }
+            pc.reloadProjectlist();
+            pc.loadUI("team_list");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void cancel(MouseEvent event) {
         pc.loadUI("team_list");
-
     }
 
-    public ProjectsController getPc() {
-        return pc;
+
+    public void setMt(ManagerTeam mt) {
+        this.mt = mt;
     }
 
     public void setPc(ProjectsController pc) {
         this.pc = pc;
+    }
+
+    public void setMp(ManagerProjects mp) {
+        this.mp = mp;
+    }
+
+    public void setMst(ManagerStaff_Team mst) {
+        this.mst = mst;
     }
 }
 

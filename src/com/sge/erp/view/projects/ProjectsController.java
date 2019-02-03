@@ -2,6 +2,7 @@ package com.sge.erp.view.projects;
 
 import com.sge.erp.model.Project;
 import com.sge.erp.persistence.ManagerProjects;
+import com.sge.erp.persistence.ManagerStaff_Team;
 import com.sge.erp.persistence.ManagerTeam;
 import com.sge.erp.view.mainWindow.MainWindowController;
 import javafx.fxml.FXML;
@@ -23,6 +24,8 @@ public class ProjectsController implements Initializable {
         try {
             mp = new ManagerProjects();
             mt = new ManagerTeam();
+            mst = new ManagerStaff_Team();
+
             loadUI("projects_list");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -32,6 +35,7 @@ public class ProjectsController implements Initializable {
     private ManagerProjects mp;
     private Parent listPane;
     private ProjectsListController pl;
+    private ManagerStaff_Team mst;
 
     private TeamListController tlc;
     private ManagerTeam mt;
@@ -121,6 +125,9 @@ public class ProjectsController implements Initializable {
                         root = loader.load();
 
                         AddTeamController atc = loader.getController();
+                        atc.setMt(mt);
+                        atc.setMp(mp);
+                        atc.setMst(mst);
                         atc.setPc(this);
 
                     } catch (IOException e) {

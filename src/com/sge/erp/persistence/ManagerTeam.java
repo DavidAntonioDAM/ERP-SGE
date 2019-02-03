@@ -108,4 +108,25 @@ public class ManagerTeam extends AdminDataBase {
         return members;
     }
 
+    public Team getTeamByName(String name) throws SQLException {
+        verifyConnection();
+
+        String sql = "SELECT * FROM team WHERE name = '" + name + "';";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        rs.next();
+
+        Team t = new Team(
+                rs.getInt("id_team"),
+                rs.getInt("id_project"),
+                rs.getString("name"));
+
+
+        rs.close();
+        st.close();
+
+        return t;
+    }
+
 }

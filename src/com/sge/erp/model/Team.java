@@ -11,6 +11,11 @@ public class Team {
         this.name = name;
     }
 
+    public Team(int id_project, String name) {
+        this.id_project = id_project;
+        this.name = name;
+    }
+
     public int getId_team() {
         return id_team;
     }
