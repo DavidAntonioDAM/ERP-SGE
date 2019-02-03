@@ -121,7 +121,7 @@ public class ManagerTask extends AdminDataBase {
         ResultSet rs = st.executeQuery(sql);
 
         if (rs.next()) {
-            taskName = rs.getString("dni");
+            taskName = rs.getString("description");
         }
         return taskName;
     }
