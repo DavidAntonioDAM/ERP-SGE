@@ -64,10 +64,7 @@ public class ProjectswithmoreclientsController {
                 cc.getlNIF().setText(c.getNif());
                 cc.getlTelf().setText(c.getPhone());
                 cc.getlEmail().setText(c.getEmail());
-                cc.getlNumberProjects().setText("Proyectos: " +numprojects);
-
-
-
+                cc.getlNumberProjects().setText("Proyectos: " + numprojects);
 
                 list.getItems().add(card);
             }

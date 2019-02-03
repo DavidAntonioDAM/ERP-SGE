@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.project.TaskAddController">
+<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.project.TaskAddController">
     <children>
         <JFXButton fx:id="jbAccept" buttonType="RAISED" layoutX="325.0" layoutY="645.0" onMouseClicked="#addTask" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
             <font>
@@ -32,7 +32,7 @@
         </Label>
         <JFXTextField fx:id="jtfName" focusColor="#004878" layoutX="299.0" layoutY="184.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
             <font>
-                <Font name="Segoe UI" size="18.0" />
+                <Font name="Segoe UI" size="16.0" />
             </font>
         </JFXTextField>
         <Label layoutX="299.0" layoutY="264.0" prefHeight="29.0" prefWidth="464.0" text="Estado">
@@ -40,17 +40,17 @@
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXComboBox fx:id="jcbState" layoutX="299.0" layoutY="293.0" prefHeight="35.0" prefWidth="464.0" />
+        <JFXComboBox fx:id="jcbState" focusColor="#004878" layoutX="299.0" layoutY="293.0" prefHeight="35.0" prefWidth="464.0" stylesheets="@../../css/comboBox.css" unFocusColor="BLACK" />
         <Label layoutX="299.0" layoutY="377.0" prefHeight="29.0" prefWidth="464.0" text="Descripción de la Tarea">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
-        <JFXTextArea fx:id="jtaDesc" focusColor="#004878" layoutX="299.0" layoutY="402.0" prefHeight="145.0" prefWidth="464.0">
+        <JFXTextArea fx:id="jtaDesc" focusColor="#004878" layoutX="299.0" layoutY="402.0" prefHeight="145.0" prefWidth="464.0" unFocusColor="BLACK">
             <font>
-                <Font name="Segoe UI" size="18.0" />
+                <Font name="Segoe UI" size="16.0" />
             </font>
         </JFXTextArea>
-      <JFXComboBox fx:id="jcbName" layoutX="299.0" layoutY="75.0" prefHeight="35.0" prefWidth="464.0" />
+      <JFXComboBox fx:id="jcbName" focusColor="#004878" layoutX="299.0" layoutY="75.0" prefHeight="35.0" prefWidth="464.0" stylesheets="@../../css/comboBox.css" unFocusColor="BLACK" />
     </children>
 </AnchorPane>

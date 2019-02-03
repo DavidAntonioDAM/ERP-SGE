@@ -92,8 +92,6 @@ public class ProyectswithmoretasksController implements Initializable {
                     list.getItems().add(card);
                // }
                 contador++;
-
-
             }
 
         } catch (IOException e) {
