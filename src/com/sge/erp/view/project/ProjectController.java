@@ -2,6 +2,7 @@ package com.sge.erp.view.project;
 
 import com.jfoenix.controls.JFXButton;
 import com.sge.erp.model.Project;
+import com.sge.erp.model.Staff;
 import com.sge.erp.persistence.ManagerClient;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
@@ -18,6 +19,8 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ProjectController implements Initializable {
@@ -132,16 +135,29 @@ public class ProjectController implements Initializable {
                         TaskAddController tac = loader.getController();
                         tac.setMt(mt);
                         tac.setPc(this);
-                        ObservableList<String> items =
+
+                        ArrayList<Staff> employees = ms.getStaffByProject(getSelectedProject().getId_project());
+
+                        ObservableList<String> itemsEmployees = FXCollections.observableArrayList();
+                        for (Staff s: employees) {
+                            itemsEmployees.add(
+                                    "(" + s.getDni() + ") " + s.getSurname() + ", " + s.getName()
+                            );
+                        }
+                        tac.getJcbName().setItems(itemsEmployees);
+
+                        ObservableList<String> itemsState =
                                 FXCollections.observableArrayList(
                                         "Pendiente",
                                         "Pausada",
                                         "En Curso",
                                         "Completada"
                                 );
-                        tac.getJcbState().setItems(items);
+                        tac.getJcbState().setItems(itemsState);
 
                     } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (SQLException e) {
                         e.printStackTrace();
                     }
                     break;
