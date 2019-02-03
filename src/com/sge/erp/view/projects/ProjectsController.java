@@ -162,7 +162,7 @@ public class ProjectsController implements Initializable {
 
                         mtc.getJcbProjectsName().setItems(itemsProjects);
 
-                        mtc.setSelectedTeam(teamSelected);
+                        mtc.setTeamSelected(teamSelected);
                         mtc.setPc(this);
                         mtc.setFields();
 

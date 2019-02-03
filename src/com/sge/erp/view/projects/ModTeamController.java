@@ -153,7 +153,7 @@ public class ModTeamController implements Initializable {
     private ManagerProjects mp;
     private ManagerStaff_Team mst;
     ArrayList<Staff> allStaff;
-    private Team selectedTeam;
+    private Team teamSelected;
 
     ObservableList<Employee> employees;
     ObservableList<Employee> team;
@@ -235,7 +235,7 @@ public class ModTeamController implements Initializable {
         try {
             if(jcbProjectsName.getValue().trim().length() > 0 && jtfTeamName.getText().trim().length() > 0){
                 Project p = mp.getProject(jcbProjectsName.getValue());
-                Team t1 = new Team(selectedTeam.getId_team(),p.getId_project(), jtfTeamName.getText());
+                Team t1 = new Team(teamSelected.getId_team(),p.getId_project(), jtfTeamName.getText());
                 mt.updateTeam(t1);
                 Team t2 = mt.getTeamByName(jtfTeamName.getText());
                 if (outOfTeam.size() > 0) {
@@ -268,7 +268,7 @@ public class ModTeamController implements Initializable {
 
        // try {
 
-            jtfTeamName.setText(selectedTeam.getName());
+            jtfTeamName.setText(teamSelected.getName());
             jcbProjectsName.setValue("HOLA");
        /* } catch (SQLException e) {
             e.printStackTrace();
@@ -299,14 +299,6 @@ public class ModTeamController implements Initializable {
         this.ms = ms;
     }
 
-    public Team getSelectedTeam() {
-        return selectedTeam;
-    }
-
-    public void setSelectedTeam(Team selectedTeam) {
-        this.selectedTeam = selectedTeam;
-    }
-
     public ArrayList<Staff> getAllStaff() {
         return allStaff;
     }
@@ -321,5 +313,13 @@ public class ModTeamController implements Initializable {
 
     public void setJcbProjectsName(JFXComboBox<String> jcbProjectsName) {
         this.jcbProjectsName = jcbProjectsName;
+    }
+
+    public Team getTeamSelected() {
+        return teamSelected;
+    }
+
+    public void setTeamSelected(Team teamSelected) {
+        this.teamSelected = teamSelected;
     }
 }
