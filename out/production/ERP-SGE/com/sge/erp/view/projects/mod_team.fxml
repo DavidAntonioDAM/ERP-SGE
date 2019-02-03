@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="717.0" prefWidth="1061.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.projects.ModTeamController">
+    <children>
+        <Label layoutX="40.0" layoutY="45.0" prefHeight="29.0" prefWidth="400.0" text="Nombre del equipo">
+            <font>
+                <Font name="Segoe UI Bold" size="24.0" />
+            </font>
+        </Label>
+      <MaterialDesignIconView fill="#004878" glyphName="ACCOUNT_SEARCH" layoutX="40.0" layoutY="258.0" size="35" />
+        <JFXTextField fx:id="jtfTeamName" focusColor="#004878" layoutX="40.0" layoutY="74.0" prefHeight="35.0" prefWidth="400.0" unFocusColor="BLACK">
+            <font>
+                <Font name="Segoe UI" size="18.0" />
+            </font>
+        </JFXTextField>
+        <Label layoutX="621.0" layoutY="45.0" prefHeight="29.0" prefWidth="400.0" text="Nombre del Proyecto">
+            <font>
+                <Font name="Segoe UI Bold" size="24.0" />
+            </font>
+        </Label>
+        <JFXTextField fx:id="jtfProjectName" focusColor="#004878" layoutX="621.0" layoutY="74.0" prefHeight="35.0" prefWidth="400.0" unFocusColor="BLACK">
+            <font>
+                <Font name="Segoe UI" size="18.0" />
+            </font>
+        </JFXTextField>
+        <JFXButton buttonType="RAISED" layoutX="271.0" layoutY="645.0" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
+            <font>
+                <Font name="Segoe UI Bold" size="24.0" />
+            </font>
+        </JFXButton>
+        <JFXButton buttonType="RAISED" layoutX="661.0" layoutY="645.0"  style="-fx-background-color: #780000;" text="Cancelar" textFill="WHITE">
+            <font>
+                <Font name="Segoe UI Bold" size="24.0" />
+            </font>
+        </JFXButton>
+        <Label layoutX="621.0" layoutY="183.0" prefHeight="29.0" prefWidth="400.0" text="Integrantes del Equipo">
+            <font>
+                <Font name="Segoe UI Bold" size="24.0" />
+            </font>
+        </Label>
+      <JFXTreeTableView fx:id="tableEmployees" layoutX="40.0" layoutY="270.0" prefHeight="320.0" prefWidth="400.0" stylesheets="@../../css/tableStyle.css" />
+      <JFXTreeTableView fx:id="tableTeam" layoutX="621.0" layoutY="270.0" prefHeight="320.0" prefWidth="400.0" stylesheets="@../../css/tableStyle.css" />
+      <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="488.0" layoutY="333.0" onMouseClicked="#pasarEmpleado" prefHeight="68.0" prefWidth="61.0">
+         <graphic>
+            <MaterialDesignIconView fill="#004878" glyphName="ARROW_RIGHT_BOLD_CIRCLE_OUTLINE" size="70" />
+         </graphic></JFXButton>
+      <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="488.0" layoutY="457.0" onMouseClicked="#quitarEmpleado" prefHeight="68.0" prefWidth="68.0">
+         <graphic>
+            <MaterialDesignIconView fill="#780000" glyphName="ARROW_LEFT_BOLD_CIRCLE_OUTLINE" size="70" />
+         </graphic></JFXButton>
+      <Label layoutX="40.0" layoutY="183.0" prefHeight="29.0" prefWidth="400.0" text="Empleados sin equipo">
+         <font>
+            <Font name="Segoe UI Bold" size="24.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="fieldFilterEmployeess" focusColor="#004878" layoutX="82.0" layoutY="220.0" prefHeight="35.0" prefWidth="358.0" unFocusColor="BLACK">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font></JFXTextField>
+      <JFXTextField fx:id="fieldFilterTeam" focusColor="#004878" layoutX="663.0" layoutY="220.0" prefHeight="35.0" prefWidth="358.0" unFocusColor="BLACK">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font></JFXTextField>
+      <MaterialDesignIconView fill="#004878" glyphName="ACCOUNT_SEARCH" layoutX="621.0" layoutY="258.0" size="35" />
+    </children>
+</AnchorPane>

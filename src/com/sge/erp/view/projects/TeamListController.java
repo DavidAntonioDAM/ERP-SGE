@@ -6,10 +6,13 @@ import com.sge.erp.model.Staff;
 import com.sge.erp.model.Team;
 import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerTeam;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,6 +25,7 @@ public class TeamListController {
     private ManagerProjects mp;
     private ProjectsController pc;
     private ArrayList<Team> teams;
+    private Team teamSelected;
 
     @FXML
     private JFXListView<AnchorPane> list;
@@ -84,6 +88,23 @@ public class TeamListController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    void selectTeam(MouseEvent event) {
+        String team = "";
+
+        ObservableList<AnchorPane> selected = list.getSelectionModel().getSelectedItems();
+
+        Pane panel = (Pane)  selected.get(0).getChildren().get(0);
+        team = ((Label)panel.getChildren().get(0)).getText();
+
+        try {
+            teamSelected = mt.getTeamByName(team);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        pc.setTeamSelected(teamSelected);
+        pc.loadUI("mod_team");
     }
 
     public void setMt(ManagerTeam mt) {

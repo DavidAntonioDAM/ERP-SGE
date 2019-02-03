@@ -1,7 +1,10 @@
 package com.sge.erp.view.projects;
 
 import com.sge.erp.model.Project;
+import com.sge.erp.model.Staff;
+import com.sge.erp.model.Team;
 import com.sge.erp.persistence.ManagerProjects;
+import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerStaff_Team;
 import com.sge.erp.persistence.ManagerTeam;
 import com.sge.erp.view.mainWindow.MainWindowController;
@@ -14,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ProjectsController implements Initializable {
@@ -25,6 +30,7 @@ public class ProjectsController implements Initializable {
             mp = new ManagerProjects();
             mt = new ManagerTeam();
             mst = new ManagerStaff_Team();
+            ms = new ManagerStaff();
 
             loadUI("projects_list");
         } catch (ClassNotFoundException e) {
@@ -36,11 +42,13 @@ public class ProjectsController implements Initializable {
     private Parent listPane;
     private ProjectsListController pl;
     private ManagerStaff_Team mst;
+    private ManagerStaff ms;
 
     private TeamListController tlc;
     private ManagerTeam mt;
     private Project projectSelected;
     private MainWindowController mwc;
+    private Team teamSelected;
 
     @FXML
     private AnchorPane container;
@@ -134,6 +142,26 @@ public class ProjectsController implements Initializable {
                         e.printStackTrace();
                     }
                     break;
+                case "mod_team":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader.load();
+
+                        ModTeamController mtc = loader.getController();
+                        ArrayList<Staff> teamList = new ArrayList<>();
+                        teamList = ms.getStaffsTeam(teamSelected.getId_project());
+
+                        mtc.setAllStaff(teamList);
+                        mtc.setMt(mt);
+                        mtc.setMp(mp);
+                        mtc.setPc(this);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
             }
         }
         container.getChildren().setAll(root);
@@ -153,5 +181,13 @@ public class ProjectsController implements Initializable {
 
     public MainWindowController getMwc() {
         return mwc;
+    }
+
+    public Team getTeamSelected() {
+        return teamSelected;
+    }
+
+    public void setTeamSelected(Team teamSelected) {
+        this.teamSelected = teamSelected;
     }
 }
