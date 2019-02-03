@@ -88,7 +88,7 @@ public class ModTeamController implements Initializable {
 
         try {
             staffs = ms.getStandbyEmployees();
-            teamList = ms.getStaffsTeam(1);
+            teamList = ms.getStaffsTeam(teamSelected.getId_project());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -273,6 +273,10 @@ public class ModTeamController implements Initializable {
        /* } catch (SQLException e) {
             e.printStackTrace();
         }*/
+    }
+
+    public ModTeamController(Team teamSelected) {
+        this.teamSelected = teamSelected;
     }
 
     public void setMt(ManagerTeam mt) {

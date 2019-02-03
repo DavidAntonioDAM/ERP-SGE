@@ -147,9 +147,12 @@ public class ProjectsController implements Initializable {
                 case "mod_team":
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        loader.setControllerFactory(c -> {return  new ModTeamController(teamSelected);});
                         root = loader.load();
 
                         ModTeamController mtc = loader.getController();
+
+                        mtc.setTeamSelected(teamSelected);
                         mtc.setMt(mt);
                         mtc.setMp(mp);
                         mtc.setMst(mst);
@@ -162,7 +165,6 @@ public class ProjectsController implements Initializable {
 
                         mtc.getJcbProjectsName().setItems(itemsProjects);
 
-                        mtc.setTeamSelected(teamSelected);
                         mtc.setPc(this);
                         mtc.setFields();
 
