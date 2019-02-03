@@ -6,20 +6,25 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Staff;
 import com.sge.erp.model.Task;
+import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 
 import java.sql.SQLException;
 
-public class TaskAddController {
+public class TaskModController {
 
     private ManagerTask mt;
+    private ManagerStaff ms;
     private ProjectController pc;
+    private Task taskToModify;
 
     @FXML
-    private JFXComboBox<String> jcbName;
+    private JFXButton jbAccept;
+
+    @FXML
+    private JFXButton jbCancel;
 
     @FXML
     private JFXTextField jtfName;
@@ -31,7 +36,10 @@ public class TaskAddController {
     private JFXTextArea jtaDesc;
 
     @FXML
-    void addTask(MouseEvent event) {
+    private JFXComboBox<String> jcbName;
+
+    @FXML
+    void modTask(MouseEvent event) {
         String employeeName = jcbName.getValue();
         String dni = "";
 
@@ -53,7 +61,7 @@ public class TaskAddController {
 
         try {
             if (fieldValidation()) {
-                mt.insertTask(t);
+                mt.updateTask(taskToModify.getName(), taskToModify.getDescription(), t);
 
                 pc.reloadTaskList();
                 pc.loadUI("task_list");
@@ -69,6 +77,21 @@ public class TaskAddController {
     @FXML
     void cancel(MouseEvent event) {
         pc.loadUI("task_list");
+    }
+
+    public void setFields() throws SQLException {
+        Staff st;
+
+        if (taskToModify.getDni()==null){
+            jcbName.setValue("");
+        } else {
+            st = ms.getStaff(taskToModify.getDni());
+            jcbName.setValue("(" + st.getDni() + ") " + st.getSurname() + ", " + st.getName());
+        }
+
+        jtfName.setText(taskToModify.getName());
+        jtaDesc.setText(taskToModify.getDescription());
+        jcbState.setValue(taskToModify.getState());
     }
 
     private boolean fieldValidation() {
@@ -105,5 +128,17 @@ public class TaskAddController {
 
     public void setJcbName(JFXComboBox<String> jcbName) {
         this.jcbName = jcbName;
+    }
+
+    public Task getTaskToModify() {
+        return taskToModify;
+    }
+
+    public void setTaskToModify(Task taskToModify) {
+        this.taskToModify = taskToModify;
+    }
+
+    public void setMs(ManagerStaff ms) {
+        this.ms = ms;
     }
 }

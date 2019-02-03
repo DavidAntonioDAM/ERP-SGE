@@ -3,6 +3,7 @@ package com.sge.erp.view.project;
 import com.jfoenix.controls.JFXButton;
 import com.sge.erp.model.Project;
 import com.sge.erp.model.Staff;
+import com.sge.erp.model.Task;
 import com.sge.erp.persistence.ManagerClient;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
@@ -45,6 +46,7 @@ public class ProjectController implements Initializable {
     private ManagerTask mt;
     private ManagerStaff ms;
     private TaskListController tlc;
+    private Task taskSelected;
 
     @FXML
     private JFXButton jbMembers;
@@ -161,6 +163,44 @@ public class ProjectController implements Initializable {
                         e.printStackTrace();
                     }
                     break;
+                case "mod_task":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader.load();
+
+                        TaskModController tmc = loader.getController();
+                        tmc.setMt(mt);
+                        tmc.setMs(ms);
+                        tmc.setPc(this);
+
+                        ArrayList<Staff> employees = ms.getStaffByProject(getSelectedProject().getId_project());
+
+                        ObservableList<String> itemsEmployees = FXCollections.observableArrayList();
+                        itemsEmployees.add("");
+                        for (Staff s: employees) {
+                            itemsEmployees.add(
+                                    "(" + s.getDni() + ") " + s.getSurname() + ", " + s.getName()
+                            );
+                        }
+                        tmc.getJcbName().setItems(itemsEmployees);
+
+                        ObservableList<String> itemsState =
+                                FXCollections.observableArrayList(
+                                        "Pendiente",
+                                        "Pausada",
+                                        "En Curso",
+                                        "Completada"
+                                );
+                        tmc.getJcbState().setItems(itemsState);
+                        tmc.setTaskToModify(taskSelected);
+                        tmc.setFields();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
            // }
         }
         container.getChildren().setAll(root);
@@ -188,5 +228,9 @@ public class ProjectController implements Initializable {
 
     public void setMs(ManagerStaff ms) {
         this.ms = ms;
+    }
+
+    public void setTaskSelected(Task taskSelected) {
+        this.taskSelected = taskSelected;
     }
 }
