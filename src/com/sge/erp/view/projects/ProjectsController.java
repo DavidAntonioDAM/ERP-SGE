@@ -7,6 +7,7 @@ import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerStaff_Team;
 import com.sge.erp.persistence.ManagerTeam;
+import com.sge.erp.utility.DialogCreator;
 import com.sge.erp.view.mainWindow.MainWindowController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +35,7 @@ public class ProjectsController implements Initializable {
             mt = new ManagerTeam();
             mst = new ManagerStaff_Team();
             ms = new ManagerStaff();
+            dg = new DialogCreator(mainContainer);
 
             loadUI("projects_list");
         } catch (ClassNotFoundException e) {
@@ -51,6 +54,10 @@ public class ProjectsController implements Initializable {
     private Project projectSelected;
     private MainWindowController mwc;
     private Team teamSelected;
+    private DialogCreator dg;
+
+    @FXML
+    private StackPane mainContainer;
 
     @FXML
     private AnchorPane container;
@@ -201,5 +208,9 @@ public class ProjectsController implements Initializable {
 
     public void setTeamSelected(Team teamSelected) {
         this.teamSelected = teamSelected;
+    }
+
+    public DialogCreator getDg() {
+        return dg;
     }
 }

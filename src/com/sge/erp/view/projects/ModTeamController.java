@@ -10,6 +10,7 @@ import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerStaff_Team;
 import com.sge.erp.persistence.ManagerTeam;
+import com.sge.erp.utility.DialogCreator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
@@ -21,6 +22,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 import java.net.URL;
@@ -36,6 +39,7 @@ public class ModTeamController implements Initializable {
 
         try {
             ms = new ManagerStaff();
+            dg = new DialogCreator(container);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -160,6 +164,10 @@ public class ModTeamController implements Initializable {
     ObservableList<Employee> outOfTeam;
     ObservableList<Employee> newInTeam;
     private ProjectsController pc;
+    private DialogCreator dg;
+
+    @FXML
+    private StackPane container;
 
     @FXML
     private JFXTreeTableView<Employee> tableEmployees;
@@ -233,7 +241,7 @@ public class ModTeamController implements Initializable {
     @FXML
     void modifyTeam(MouseEvent event) {
         try {
-            if(jcbProjectsName.getValue().trim().length() > 0 && jtfTeamName.getText().trim().length() > 0){
+            if(fieldValidation()){
                 String projectName = jcbProjectsName.getValue().substring(12);
                 System.out.println(projectName);
                 Project p = mp.getProject(projectName);
@@ -259,6 +267,13 @@ public class ModTeamController implements Initializable {
                 }
                 pc.reloadProjectlist();
                 pc.loadUI("team_list");
+                pc.getDg().showDialog(new Text("Éxito"),
+                        new Text("El Equipo ha sido modificado con éxito."));
+                pc.loadUI("team_list");
+            } else {
+                dg.showDialog(new Text("Error en los campos"),
+                        new Text("Alguno, o varios, de los campos no están correctamente rellenos.\n\n" +
+                                "Intentelo de nuevo."));
             }
 
         } catch (SQLException e) {
@@ -275,6 +290,17 @@ public class ModTeamController implements Initializable {
        /* } catch (SQLException e) {
             e.printStackTrace();
         }*/
+    }
+
+    public boolean fieldValidation(){
+        String teamName = jtfTeamName.getText();
+        String projectName = jcbProjectsName.getValue();
+
+        if (teamName.trim().length()==0 || projectName.trim().length()==0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public ModTeamController(Team teamSelected) {

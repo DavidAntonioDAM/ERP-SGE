@@ -72,9 +72,9 @@ public class TaskAddController implements Initializable {
 
                 pc.reloadTaskList();
                 pc.loadUI("task_list");
-                /*pc.getDc().showDialog(new Text("Éxito"),
+                pc.getDg().showDialog(new Text("Éxito"),
                         new Text("La Tarea ha sido agregada con éxito a la base de datos."));
-                pc.loadUI("task_list");*/
+                pc.loadUI("task_list");
             } else {
                 dg.showDialog(new Text("Error en los campos"),
                         new Text("Alguno, o varios, de los campos no están correctamente rellenos.\n\n" +

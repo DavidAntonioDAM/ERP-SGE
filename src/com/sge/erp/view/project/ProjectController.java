@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +34,7 @@ public class ProjectController implements Initializable {
             mt = new ManagerTask();
             ms = new ManagerStaff();
             tlc = new TaskListController();
-            //dc = new DialogCreator(mainContainer);
+            dg = new DialogCreator(mainContainer);
             loadUI("projectResume");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -48,6 +49,10 @@ public class ProjectController implements Initializable {
     private ManagerStaff ms;
     private TaskListController tlc;
     private Task taskSelected;
+    private DialogCreator dg;
+
+    @FXML
+    private StackPane mainContainer;
 
     @FXML
     private JFXButton jbMembers;
@@ -232,5 +237,9 @@ public class ProjectController implements Initializable {
 
     public ProjectController(Project selectedProject) {
         this.selectedProject = selectedProject;
+    }
+
+    public DialogCreator getDg() {
+        return dg;
     }
 }

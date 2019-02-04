@@ -7,17 +7,28 @@ import com.sge.erp.model.Project;
 import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.utility.DialogCreator;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class ProjectAddController {
+public class ProjectAddController implements Initializable {
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        dg = new DialogCreator(container);
+    }
 
     private ManagerProjects mp;
     private ProjectsController pc;
     private DialogCreator dg;
+
+    @FXML
+    private StackPane container;
 
     @FXML
     private JFXTextField jtfNif;
@@ -42,21 +53,20 @@ public class ProjectAddController {
 
         );
         try {
-            if (fieldValidation()){
-                    if (nifValidate()){
-                        mp.insertProject(p);
-                        pc.reloadProjectlist();
-                        pc.loadUI("projects_list");
+            if (fieldValidation()) {
+                if (nifValidate()) {
+                    mp.insertProject(p);
+                    pc.reloadProjectlist();
 
-
-                       /* pc.getDc().showDialog(new Text("Éxito"),
-                                new Text("El empleado ha sido añadido con éxito."));*/
-
-                    } else {
-                        dg.showDialog(new Text("Error con el NIF"),
-                                new Text("El NIF del cliente no está puesto correctamente.\n\n" +
-                                        "Intentelo de nuevo."));
-                    }
+                    pc.loadUI("projects_list");
+                    pc.getDg().showDialog(new Text("Éxito"),
+                            new Text("El proyecto ha sido añadido con éxito."));
+                    pc.loadUI("projects_list");
+                } else {
+                    dg.showDialog(new Text("Error con el NIF"),
+                            new Text("El NIF del cliente no está puesto correctamente.\n\n" +
+                                    "Intentelo de nuevo."));
+                }
 
             } else {
                 dg.showDialog(new Text("Error en los campos"),
@@ -91,11 +101,11 @@ public class ProjectAddController {
         String number;
         String nifTMP = "";
 
-        for (int i = 1; i < dni.length() - 1; i++){
-            number = dni.substring(i, i+1);
+        for (int i = 1; i < dni.length() - 1; i++) {
+            number = dni.substring(i, i + 1);
 
-            for (int j = 0; j < 10; j++){
-                if (number.equals(String.valueOf(j))){
+            for (int j = 0; j < 10; j++) {
+                if (number.equals(String.valueOf(j))) {
                     nifTMP += String.valueOf(j);
                 }
             }
@@ -113,7 +123,7 @@ public class ProjectAddController {
         String description = jtaDescription.getText();
         String deliver_date = String.valueOf(jdpDate.getValue());
 
-        if (name.length() == 0 || description.length() == 0 || deliver_date.length() == 0){
+        if (name.length() == 0 || description.length() == 0 || deliver_date.length() == 0) {
             return false;
         } else {
             return true;

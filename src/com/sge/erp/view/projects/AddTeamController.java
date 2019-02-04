@@ -13,6 +13,7 @@ import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerStaff_Team;
 import com.sge.erp.persistence.ManagerTeam;
+import com.sge.erp.utility.DialogCreator;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -25,6 +26,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 import java.net.URL;
@@ -39,6 +42,7 @@ public class AddTeamController implements Initializable {
 
         try {
             ms = new ManagerStaff();
+            dg = new DialogCreator(container);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -145,6 +149,10 @@ public class AddTeamController implements Initializable {
     ObservableList<Employee> employees;
     ObservableList<Employee> team;
     private ProjectsController pc;
+    private DialogCreator dg;
+
+    @FXML
+    private StackPane container;
 
     @FXML
     private JFXTreeTableView<Employee> tableEmployees;
@@ -214,19 +222,28 @@ public class AddTeamController implements Initializable {
     @FXML
     void addTeam(MouseEvent event) {
         try {
-            Project p = mp.getProject(jtfProjectName.getText());
-            Team t1 = new Team(p.getId_project(), jtfTeamName.getText());
-            mt.insertTeam(t1);
-            Team t2 = mt.getTeamByName(jtfTeamName.getText());
-            for (Employee e : team){
-                String[] completeName = e.getName().split(",");
-                Staff staff = ms.getStaffByNameSurnameJob(completeName[1].trim(),completeName[0], e.getJob());
-                System.out.println(staff.getDni());
-                Staff_Team st = new Staff_Team(t2.getId_team(), staff.getDni());
-                mst.insertStaff_Team(st);
+            if (fieldValidation()){
+                Project p = mp.getProject(jtfProjectName.getText());
+                Team t1 = new Team(p.getId_project(), jtfTeamName.getText());
+                mt.insertTeam(t1);
+                Team t2 = mt.getTeamByName(jtfTeamName.getText());
+                for (Employee e : team){
+                    String[] completeName = e.getName().split(",");
+                    Staff staff = ms.getStaffByNameSurnameJob(completeName[1].trim(),completeName[0], e.getJob());
+                    System.out.println(staff.getDni());
+                    Staff_Team st = new Staff_Team(t2.getId_team(), staff.getDni());
+                    mst.insertStaff_Team(st);
+                }
+                pc.reloadProjectlist();
+                pc.loadUI("team_list");
+                pc.getDg().showDialog(new Text("Éxito"),
+                        new Text("El Equipo ha sido agregado con éxito a la base de datos."));
+                pc.loadUI("team_list");
+            } else {
+                dg.showDialog(new Text("Error en los campos"),
+                        new Text("Alguno, o varios, de los campos no están correctamente rellenos.\n\n" +
+                                "Intentelo de nuevo."));
             }
-            pc.reloadProjectlist();
-            pc.loadUI("team_list");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -237,6 +254,16 @@ public class AddTeamController implements Initializable {
         pc.loadUI("team_list");
     }
 
+    public boolean fieldValidation(){
+        String teamName = jtfTeamName.getText();
+        String projectName = jtfProjectName.getText();
+
+        if (teamName.trim().length()==0 || projectName.trim().length()==0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public void setMt(ManagerTeam mt) {
         this.mt = mt;
