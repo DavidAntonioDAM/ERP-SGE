@@ -14,17 +14,17 @@
             <items>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="719.0" prefWidth="305.0" style="-fx-background-color: #17212b;">
                     <children>
-                        <JFXButton alignment="TOP_LEFT" layoutY="81.0" onMouseClicked="#completedprojects" prefHeight="67.0" prefWidth="305.0" text="Projectos Completados" textFill="WHITE">
+                        <JFXButton alignment="TOP_LEFT" layoutY="81.0" onMouseClicked="#completedprojects" prefHeight="67.0" prefWidth="305.0" text="Proyectos Completados" textFill="WHITE">
                             <font>
                                 <Font name="Segoe UI" size="25.0" />
                             </font>
                         </JFXButton>
-                  <JFXButton alignment="TOP_LEFT" layoutY="148.0" onMouseClicked="#moreadvanceprojects" prefHeight="67.0" prefWidth="305.0" text="Projectos mas avanzados" textFill="WHITE">
+                  <JFXButton alignment="TOP_LEFT" layoutY="148.0" onMouseClicked="#moreadvanceprojects" prefHeight="67.0" prefWidth="305.0" text="Proyectos mas avanzados" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="TOP_LEFT" layoutY="349.0" onMouseClicked="#projectswithmoreclients" prefHeight="67.0" prefWidth="305.0" text="Clientes con mas projectos" textFill="WHITE">
+                  <JFXButton alignment="TOP_LEFT" layoutY="349.0" onMouseClicked="#projectswithmoreclients" prefHeight="67.0" prefWidth="305.0" text="Clientes con mas proyectos" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="23.0" />
                      </font>
@@ -34,12 +34,12 @@
                                 <Image url="@../../resources/desarrollap.png" />
                             </image>
                         </ImageView>
-                  <JFXButton alignment="TOP_LEFT" layoutY="282.0" onMouseClicked="#projectstoend" prefHeight="67.0" prefWidth="305.0" text="Projectos a Finalizar" textFill="WHITE">
+                  <JFXButton alignment="TOP_LEFT" layoutY="282.0" onMouseClicked="#projectstoend" prefHeight="67.0" prefWidth="305.0" text="Proyectos a Finalizar" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="25.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="TOP_LEFT" layoutY="215.0" onMouseClicked="#projectswithmoretasks" prefHeight="67.0" prefWidth="305.0" text="Projectos con mas tareas" textFill="WHITE">
+                  <JFXButton alignment="TOP_LEFT" layoutY="215.0" onMouseClicked="#projectswithmoretasks" prefHeight="67.0" prefWidth="305.0" text="Proyectos con mas tareas" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font>
