@@ -82,39 +82,40 @@ public class MainWindowController implements Initializable {
         } else {
             try {
 
+                if (!ui.equalsIgnoreCase("../project/project")){
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                    root = loader.load();
 
-                switch (ui) {
-                    case "../home/home":
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
-                        root = loader.load();
-                        HomeController hc = loader.getController();
-                        hc.setMainController(this);
-                        break;
+                    switch (ui) {
+                        case "../home/home":
+                            HomeController hc = loader.getController();
+                            hc.setMainController(this);
+                            break;
 
-                    case "../login/login":
-                        FXMLLoader loader1 = new FXMLLoader(getClass().getResource(ui + ".fxml"));
-                        root = loader1.load();
-                        LoginController lc = loader1.getController();
-                        lc.setMainController(this);
-                        break;
+                        case "../login/login":
 
-                    case "../projects/projects":
-                        FXMLLoader loader2 = new FXMLLoader(getClass().getResource(ui + ".fxml"));
-                        root = loader2.load();
-                        ProjectsController psc = loader2.getController();
-                        psc.setMwc(this);
-                        break;
+                            LoginController lc = loader.getController();
+                            lc.setMainController(this);
+                            break;
 
-                    case "../project/project":
-                        FXMLLoader loader3 = new FXMLLoader(getClass().getResource(ui + ".fxml"));
-                        loader3.setControllerFactory(c -> {return  new ProjectController(selectedProject);});
-                        root = loader3.load();
-                        ProjectController pc = loader3.getController();
+                        case "../projects/projects":
 
-                        pc.setMwc(this);
-                        pc.setSelectedProject(selectedProject);
-                        break;
+                            ProjectsController psc = loader.getController();
+                            psc.setMwc(this);
+                            break;
+
+                    }
+                } else {
+                    FXMLLoader loader3 = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                    loader3.setControllerFactory(c -> {return  new ProjectController(selectedProject);});
+                    root = loader3.load();
+                    ProjectController pc = loader3.getController();
+
+                    pc.setMwc(this);
+                    pc.setSelectedProject(selectedProject);
+
                 }
+
                 if (!ui.equalsIgnoreCase("../project/project")){
                     windows.put(ui, root);
             }
@@ -130,10 +131,6 @@ public class MainWindowController implements Initializable {
 
     public Label getTitleWindow() {
         return titleWindow;
-    }
-
-    public Project getSelectedProject() {
-        return selectedProject;
     }
 
     public void setSelectedProject(Project selectedProject) {
