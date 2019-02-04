@@ -282,14 +282,8 @@ public class ModTeamController implements Initializable {
     }
 
     public void setFields(){
-
-       // try {
-
-            jtfTeamName.setText(teamSelected.getName());
-            jcbProjectsName.setValue("HOLA");
-       /* } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
+        jtfTeamName.setText(teamSelected.getName());
+        jcbProjectsName.getSelectionModel().selectFirst();
     }
 
     public boolean fieldValidation(){
