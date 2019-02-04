@@ -234,7 +234,9 @@ public class ModTeamController implements Initializable {
     void modifyTeam(MouseEvent event) {
         try {
             if(jcbProjectsName.getValue().trim().length() > 0 && jtfTeamName.getText().trim().length() > 0){
-                Project p = mp.getProject(jcbProjectsName.getValue());
+                String projectName = jcbProjectsName.getValue().substring(12);
+                System.out.println(projectName);
+                Project p = mp.getProject(projectName);
                 Team t1 = new Team(teamSelected.getId_team(),p.getId_project(), jtfTeamName.getText());
                 mt.updateTeam(t1);
                 Team t2 = mt.getTeamByName(jtfTeamName.getText());
