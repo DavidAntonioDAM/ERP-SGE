@@ -19,6 +19,7 @@ public class Staff {
         this.surname = surname;
     }
 
+
     public String getDni() {
         return dni;
     }

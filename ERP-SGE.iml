@@ -11,5 +11,6 @@
     <orderEntry type="library" exported="" name="de.jensd:fontawesomefx:8.9" level="project" />
     <orderEntry type="library" exported="" name="com.jfoenix:jfoenix:8.0.8" level="project" />
     <orderEntry type="library" exported="" name="charm-glisten-5.0.2" level="project" />
+    <orderEntry type="library" exported="" name="poi-examples-4.0.1" level="project" />
   </component>
 </module>
