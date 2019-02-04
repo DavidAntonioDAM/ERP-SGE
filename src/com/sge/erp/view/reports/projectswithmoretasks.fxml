@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXListView?>
-<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.reports.ProyectswithmoretasksController">
-   <children>
-      <JFXListView fx:id="list" layoutX="14.0" layoutY="66.0" prefHeight="644.0" prefWidth="1033.0" stylesheets="@../../css/delSplit.css" />
-      <JFXButton fx:id="jbSave" ellipsisString="" layoutX="970.0" layoutY="6.0" prefHeight="54.0" prefWidth="65.0" style="-fx-background-color: #004878;" textFill="WHITE">
-         <font>
-            <Font name="Segoe UI" size="10.0" />
-         </font>
-         <graphic>
-            <MaterialDesignIconView fill="WHITE" glyphName="CONTENT_SAVE" size="45" wrappingWidth="41.0" />
-         </graphic>
-      </JFXButton>
-   </children>
+
+<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.reports.ProyectswithmoretasksController">
+
 </AnchorPane>
