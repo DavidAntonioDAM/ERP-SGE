@@ -5,26 +5,31 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.project.ResumeProjectController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <PieChart prefHeight="717.0" prefWidth="718.0" style="-fx-background-color: green;" />
+            <PieChart fx:id="ProjectChart" layoutX="34.0" layoutY="-2.0" prefHeight="685.0" prefWidth="718.0" />
             <Label alignment="CENTER" layoutX="776.0" layoutY="22.0" prefHeight="40.0" prefWidth="231.0" style="-fx-background-color: #004878; -fx-text-fill: white;" text="Proyecto Completado">
                <font>
                   <Font name="Segoe UI Bold" size="20.0" />
                </font></Label>
-            <Label alignment="CENTER" layoutX="776.0" layoutY="220.0" prefHeight="40.0" prefWidth="231.0" style="-fx-background-color: #004878; -fx-text-fill: white;" text="\%">
+            <Label fx:id="percent" alignment="CENTER" layoutX="776.0" layoutY="220.0" prefHeight="40.0" prefWidth="231.0" style="-fx-background-color: #004878; -fx-text-fill: white;" text="\%">
                <font>
                   <Font name="Segoe UI Bold" size="20.0" />
                </font>
             </Label>
             <AnchorPane layoutX="776.0" layoutY="62.0" prefHeight="158.0" prefWidth="231.0" style="-fx-border-color: #004878;">
                <children>
-                  <ProgressIndicator layoutX="42.0" layoutY="5.0" prefWidth="169.0" progress="0.23" radius="70.0" />
+                  <Pane layoutX="41.0" layoutY="4.0" prefHeight="150.0" prefWidth="150.0" style="-fx-border-color: #004878; -fx-border-radius: 100%; -fx-border-width: 5; -fx-padding: 50;">
+                     <children>
+                        <ProgressIndicator fx:id="charPercent" layoutX="7.0" layoutY="7.0" prefWidth="169.0" progress="0.15" radius="65.0" scaleZ="0.0" />
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
             <Label alignment="CENTER" layoutX="776.0" layoutY="300.0" prefHeight="40.0" prefWidth="231.0" style="-fx-background-color: #004878; -fx-text-fill: white;" text="Número de Tareas">
@@ -42,22 +47,22 @@
                   <Font name="Segoe UI Bold" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="776.0" layoutY="340.0" prefHeight="40.0" prefWidth="231.0" style="-fx-border-color: #004878;">
+            <Label fx:id="numberTask" alignment="CENTER" layoutX="776.0" layoutY="340.0" prefHeight="40.0" prefWidth="231.0" style="-fx-border-color: #004878;">
                <font>
                   <Font name="Segoe UI Bold" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="776.0" layoutY="460.0" prefHeight="40.0" prefWidth="231.0" style="-fx-border-color: #004878;">
+            <Label fx:id="Client" alignment="CENTER" layoutX="776.0" layoutY="460.0" prefHeight="40.0" prefWidth="231.0" style="-fx-border-color: #004878;">
                <font>
                   <Font name="Segoe UI Bold" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="776.0" layoutY="580.0" prefHeight="40.0" prefWidth="231.0" style="-fx-border-color: #004878;">
+            <Label fx:id="deliveryDate" alignment="CENTER" layoutX="776.0" layoutY="580.0" prefHeight="40.0" prefWidth="231.0" style="-fx-border-color: #004878;">
                <font>
                   <Font name="Segoe UI Bold" size="20.0" />
                </font>
             </Label>
-            <JFXButton buttonType="RAISED" layoutX="776.0" layoutY="660.0" prefHeight="40.0" prefWidth="231.0" style="-fx-background-color: #004878;" text="Cambiar Color" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="776.0" layoutY="660.0" onMouseClicked="#SwitchColors" prefHeight="40.0" prefWidth="231.0" style="-fx-background-color: #004878;" text="Cambiar Color" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="20.0" />
                </font></JFXButton>

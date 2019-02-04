@@ -9,6 +9,7 @@ import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
 import com.sge.erp.utility.DialogCreator;
 import com.sge.erp.view.mainWindow.MainWindowController;
+import com.sge.erp.view.projects.ModTeamController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -33,7 +34,7 @@ public class ProjectController implements Initializable {
             ms = new ManagerStaff();
             tlc = new TaskListController();
             //dc = new DialogCreator(mainContainer);
-          //  loadUI("task_list");
+            loadUI("projectResume");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -56,19 +57,19 @@ public class ProjectController implements Initializable {
 
     @FXML
     void loadAll(MouseEvent event) {
-        //mlc.loadAll();
-        //loadUI("member_list");
+
+        loadUI("projectResume");
     }
 
     @FXML
     void loadMembers(MouseEvent event) {
-        //mlc.loadAll();
+
         loadUI("member_list");
     }
 
     @FXML
     void loasTaskList(MouseEvent event) {
-        //tlc.loadAll();
+
         loadUI("task_list");
     }
 
@@ -79,24 +80,19 @@ public class ProjectController implements Initializable {
     public void loadUI(String ui){
         Parent root = null;
 
-       /* if (listPane == null) {
+        if (listPane == null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                loader.setControllerFactory(c -> {return  new ResumeProjectController(selectedProject, mt);});
                 root = loader.load();
-
-                tlc = loader.getController();
-                tlc.setPc(this);
-                tlc.setMt(mt);
-                tlc.setMs(ms);
-                tlc.loadAll();
 
                 listPane = root;
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {*/
+        } else {
             switch (ui) {
-                case "project_list":
+                case "projectResume":
                     root = listPane;
                     break;
                 case "member_list":
@@ -201,7 +197,7 @@ public class ProjectController implements Initializable {
                         e.printStackTrace();
                     }
                     break;
-           // }
+            }
         }
         container.getChildren().setAll(root);
     }
@@ -232,5 +228,9 @@ public class ProjectController implements Initializable {
 
     public void setTaskSelected(Task taskSelected) {
         this.taskSelected = taskSelected;
+    }
+
+    public ProjectController(Project selectedProject) {
+        this.selectedProject = selectedProject;
     }
 }
