@@ -3,8 +3,10 @@ package com.sge.erp.view.reports;
 import com.jfoenix.controls.JFXListView;
 import com.sge.erp.model.Staff;
 import com.sge.erp.persistence.ManagerStaff;
+import com.sge.erp.utility.StandbyEmployeesExcel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -54,6 +56,18 @@ public class StaffsWithOutTeamController {
         }
     }
 
+    @FXML
+    void btnStandbyEmployees(MouseEvent event) {
+
+        try {
+            StandbyEmployeesExcel see = new StandbyEmployeesExcel();
+            see.create();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void setMs(ManagerStaff ms) {
         this.ms = ms;

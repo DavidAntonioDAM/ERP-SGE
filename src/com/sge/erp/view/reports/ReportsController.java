@@ -23,7 +23,7 @@ public class ReportsController implements Initializable {
             mc = new ManagerClient();
             ms = new ManagerStaff();
             mk = new ManagerTask();
-            loadUI("completedprojects");
+            loadUI("completed_projects");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -46,37 +46,37 @@ public class ReportsController implements Initializable {
 
     @FXML
     void completedprojects(MouseEvent event) {
-        loadUI("completedprojects");
+        loadUI("completed_projects");
     }
 
     @FXML
     void efficientworkers(MouseEvent event) {
-        loadUI("efficientworkers");
+        loadUI("efficient_workers");
     }
 
     @FXML
     void employeeswithoutteam(MouseEvent event) {
-        loadUI("employeeswithoutteam");
+        loadUI("staffs_with_out_team");
     }
 
     @FXML
     void moreadvanceprojects(MouseEvent event) {
-        loadUI("projectsmoreadvance");
+        loadUI("more_advanced_projects");
     }
 
     @FXML
     void projectstoend(MouseEvent event) {
-        loadUI("projectstoend");
+        loadUI("projects_to_end");
     }
 
     @FXML
     void projectswithmoreclients(MouseEvent event) {
-        loadUI("projectswithmoreclients");
+        loadUI("more_client_projects");
     }
 
     @FXML
     void projectswithmoretasks(MouseEvent event) {
-        loadUI("projectswithmoretasks");
+        loadUI("more_project_tasks");
     }
 
     private Parent listPane;
@@ -100,11 +100,11 @@ public class ReportsController implements Initializable {
             }
         } else {
         switch (ui) {
-            case "completedprojects":
+            case "completed_projects":
                     root = listPane;
 
                 break;
-            case "efficientworkers":
+            case "efficient_workers":
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                     root = loader.load();
@@ -120,7 +120,7 @@ public class ReportsController implements Initializable {
                     e.printStackTrace();
                 }
                 break;
-            case "employeeswithoutteam":
+            case "staffs_with_out_team":
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                     root = loader.load();
@@ -134,7 +134,7 @@ public class ReportsController implements Initializable {
                     e.printStackTrace();
                 }
                 break;
-            case "projectsmoreadvance":
+            case "more_advanced_projects":
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                     root = loader.load();
@@ -150,7 +150,7 @@ public class ReportsController implements Initializable {
                     e.printStackTrace();
                 }
                 break;
-            case "projectstoend":
+            case "projects_to_end":
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                     root = loader.load();
@@ -165,7 +165,7 @@ public class ReportsController implements Initializable {
                     e.printStackTrace();
                 }
                 break;
-            case "projectswithmoreclients":
+            case "more_client_projects":
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                     root = loader.load();
@@ -181,7 +181,7 @@ public class ReportsController implements Initializable {
                     e.printStackTrace();
                 }
                 break;
-            case "projectswithmoretasks":
+            case "more_project_tasks":
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                     root = loader.load();
