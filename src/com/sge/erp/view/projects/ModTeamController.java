@@ -1,9 +1,6 @@
 package com.sge.erp.view.projects;
 
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableColumn;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.sge.erp.model.Project;
 import com.sge.erp.model.Staff;
@@ -13,7 +10,6 @@ import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerStaff_Team;
 import com.sge.erp.persistence.ManagerTeam;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
@@ -33,7 +29,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
-public class AddTeamController implements Initializable {
+public class ModTeamController implements Initializable {
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -45,7 +42,7 @@ public class AddTeamController implements Initializable {
 
         JFXTreeTableColumn<Employee, String> name = new JFXTreeTableColumn<>("Nombre");
         name.setPrefWidth(190);
-        name.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Employee, String>, ObservableValue<String>>() {
+        name.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ModTeamController.Employee, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Employee, String> param) {
                 return param.getValue().getValue().name;
@@ -55,7 +52,7 @@ public class AddTeamController implements Initializable {
 
         JFXTreeTableColumn<Employee, String> job2 = new JFXTreeTableColumn<>("Puesto");
         job2.setPrefWidth(190);
-        job2.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Employee, String>, ObservableValue<String>>() {
+        job2.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ModTeamController.Employee, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Employee, String> param) {
                 return param.getValue().getValue().job;
@@ -64,7 +61,7 @@ public class AddTeamController implements Initializable {
 
         JFXTreeTableColumn<Employee, String> name2 = new JFXTreeTableColumn<>("Nombre");
         name2.setPrefWidth(190);
-        name2.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Employee, String>, ObservableValue<String>>() {
+        name2.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ModTeamController.Employee, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Employee, String> param) {
                 return param.getValue().getValue().name;
@@ -73,7 +70,7 @@ public class AddTeamController implements Initializable {
 
         JFXTreeTableColumn<Employee, String> job = new JFXTreeTableColumn<>("Puesto");
         job.setPrefWidth(190);
-        job.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Employee, String>, ObservableValue<String>>() {
+        job.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ModTeamController.Employee, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Employee, String> param) {
                 return param.getValue().getValue().job;
@@ -82,10 +79,16 @@ public class AddTeamController implements Initializable {
 
         employees = FXCollections.observableArrayList();
         team = FXCollections.observableArrayList();
+        newInTeam = FXCollections.observableArrayList();
+        outOfTeam = FXCollections.observableArrayList();
+
 
         ArrayList<Staff> staffs = new ArrayList<>();
+        ArrayList<Staff> teamList = new ArrayList<>();
+
         try {
             staffs = ms.getStandbyEmployees();
+            teamList = ms.getStaffsTeam(teamSelected.getId_project());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -96,6 +99,14 @@ public class AddTeamController implements Initializable {
                     s.getSurname() + ", " + s.getName(),
                     s.getJob());
             employees.add(e);
+        }
+
+        for (Staff s : teamList) {
+
+            Employee e = new Employee(
+                    s.getSurname() + ", " + s.getName(),
+                    s.getJob());
+            team.add(e);
         }
 
         TreeItem<Employee> root = new RecursiveTreeItem<Employee>(employees, RecursiveTreeObject::getChildren);
@@ -112,7 +123,7 @@ public class AddTeamController implements Initializable {
         fieldFilterEmployeess.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                tableEmployees.setPredicate(new Predicate<TreeItem<Employee>>() {
+                tableEmployees.setPredicate(new Predicate<TreeItem<ModTeamController.Employee>>() {
                     @Override
                     public boolean test(TreeItem<Employee> employee) {
                         Boolean flag = employee.getValue().getName().contains(newValue);
@@ -125,7 +136,7 @@ public class AddTeamController implements Initializable {
         fieldFilterTeam.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                tableTeam.setPredicate(new Predicate<TreeItem<Employee>>() {
+                tableTeam.setPredicate(new Predicate<TreeItem<ModTeamController.Employee>>() {
                     @Override
                     public boolean test(TreeItem<Employee> employee) {
                         Boolean flag = employee.getValue().getName().contains(newValue);
@@ -141,9 +152,13 @@ public class AddTeamController implements Initializable {
     private ManagerTeam mt;
     private ManagerProjects mp;
     private ManagerStaff_Team mst;
+    ArrayList<Staff> allStaff;
+    private Team teamSelected;
 
     ObservableList<Employee> employees;
     ObservableList<Employee> team;
+    ObservableList<Employee> outOfTeam;
+    ObservableList<Employee> newInTeam;
     private ProjectsController pc;
 
     @FXML
@@ -162,16 +177,14 @@ public class AddTeamController implements Initializable {
     private JFXTextField jtfTeamName;
 
     @FXML
-    private JFXTextField jtfProjectName;
+    private JFXComboBox<String> jcbProjectsName;
 
     @FXML
     void pasarEmpleado(MouseEvent event) {
 
-        //TreeItem<Employee> employee = tableEmployees.getSelectionModel().getSelectedItem();
-        //employee.getParent().getChildren().remove(employee);
-
         int index = tableEmployees.getSelectionModel().getSelectedIndex();
         team.add(employees.get(index));
+        newInTeam.add(employees.get(index));
         employees.remove(index);
 
     }
@@ -181,6 +194,7 @@ public class AddTeamController implements Initializable {
 
         int index = tableTeam.getSelectionModel().getSelectedIndex();
         employees.add(team.get(index));
+        outOfTeam.add(team.get(index));
         team.remove(index);
     }
 
@@ -212,31 +226,60 @@ public class AddTeamController implements Initializable {
     }
 
     @FXML
-    void addTeam(MouseEvent event) {
+    void cancel(MouseEvent event) {
+        pc.loadUI("team_list");
+    }
+
+    @FXML
+    void modifyTeam(MouseEvent event) {
         try {
-            Project p = mp.getProject(jtfProjectName.getText());
-            Team t1 = new Team(p.getId_project(), jtfTeamName.getText());
-            mt.insertTeam(t1);
-            Team t2 = mt.getTeamByName(jtfTeamName.getText());
-            for (Employee e : team){
-                String[] completeName = e.getName().split(",");
-                Staff staff = ms.getStaffByNameSurnameJob(completeName[1].trim(),completeName[0], e.getJob());
-                System.out.println(staff.getDni());
-                Staff_Team st = new Staff_Team(t2.getId_team(), staff.getDni());
-                mst.insertStaff_Team(st);
+            if(jcbProjectsName.getValue().trim().length() > 0 && jtfTeamName.getText().trim().length() > 0){
+                String projectName = jcbProjectsName.getValue().substring(12);
+                System.out.println(projectName);
+                Project p = mp.getProject(projectName);
+                Team t1 = new Team(teamSelected.getId_team(),p.getId_project(), jtfTeamName.getText());
+                mt.updateTeam(t1);
+                Team t2 = mt.getTeamByName(jtfTeamName.getText());
+                if (outOfTeam.size() > 0) {
+                    for (Employee e : outOfTeam) {
+                        String[] completeName = e.getName().split(",");
+                        Staff staff = ms.getStaffByNameSurnameJob(completeName[1].trim(), completeName[0], e.getJob());
+                        Staff_Team st = new Staff_Team(t2.getId_team(), staff.getDni());
+                        mst.deleteStaff_Team(st);
+                    }
+                }
+
+                if (newInTeam.size() > 0) {
+                    for (Employee e : newInTeam) {
+                        String[] completeName = e.getName().split(",");
+                        Staff staff = ms.getStaffByNameSurnameJob(completeName[1].trim(), completeName[0], e.getJob());
+                        Staff_Team st = new Staff_Team(t2.getId_team(), staff.getDni());
+                        mst.insertStaff_Team(st);
+                    }
+                }
+                pc.reloadProjectlist();
+                pc.loadUI("team_list");
             }
-            pc.reloadProjectlist();
-            pc.loadUI("team_list");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    @FXML
-    void cancel(MouseEvent event) {
-        pc.loadUI("team_list");
+    public void setFields(){
+
+       // try {
+
+            jtfTeamName.setText(teamSelected.getName());
+            jcbProjectsName.setValue("HOLA");
+       /* } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
     }
 
+    public ModTeamController(Team teamSelected) {
+        this.teamSelected = teamSelected;
+    }
 
     public void setMt(ManagerTeam mt) {
         this.mt = mt;
@@ -253,5 +296,36 @@ public class AddTeamController implements Initializable {
     public void setMst(ManagerStaff_Team mst) {
         this.mst = mst;
     }
-}
 
+    public ManagerStaff getMs() {
+        return ms;
+    }
+
+    public void setMs(ManagerStaff ms) {
+        this.ms = ms;
+    }
+
+    public ArrayList<Staff> getAllStaff() {
+        return allStaff;
+    }
+
+    public void setAllStaff(ArrayList<Staff> allStaff) {
+        this.allStaff = allStaff;
+    }
+
+    public JFXComboBox<String> getJcbProjectsName() {
+        return jcbProjectsName;
+    }
+
+    public void setJcbProjectsName(JFXComboBox<String> jcbProjectsName) {
+        this.jcbProjectsName = jcbProjectsName;
+    }
+
+    public Team getTeamSelected() {
+        return teamSelected;
+    }
+
+    public void setTeamSelected(Team teamSelected) {
+        this.teamSelected = teamSelected;
+    }
+}

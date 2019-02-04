@@ -12,6 +12,9 @@ public class TeamCardController {
     private TextArea jtaMembers;
 
     @FXML
+    private TextArea jtaMembers1;
+
+    @FXML
     private Label jlProjectName;
 
 
@@ -29,6 +32,14 @@ public class TeamCardController {
 
     public void setJtaMembers(TextArea jtaMembers) {
         this.jtaMembers = jtaMembers;
+    }
+
+    public TextArea getJtaMembers1() {
+        return jtaMembers1;
+    }
+
+    public void setJtaMembers1(TextArea jtaMembers1) {
+        this.jtaMembers1 = jtaMembers1;
     }
 
     public Label getJlProjectName() {

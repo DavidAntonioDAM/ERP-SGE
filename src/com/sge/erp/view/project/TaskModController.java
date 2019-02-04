@@ -6,12 +6,12 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Staff;
 import com.sge.erp.model.Task;
+import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
 import com.sge.erp.utility.DialogCreator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
@@ -19,7 +19,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class TaskAddController implements Initializable {
+public class TaskModController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -27,14 +27,19 @@ public class TaskAddController implements Initializable {
     }
 
     private ManagerTask mt;
+    private ManagerStaff ms;
     private ProjectController pc;
+    private Task taskToModify;
     private DialogCreator dg;
 
     @FXML
     private StackPane container;
 
     @FXML
-    private JFXComboBox<String> jcbName;
+    private JFXButton jbAccept;
+
+    @FXML
+    private JFXButton jbCancel;
 
     @FXML
     private JFXTextField jtfName;
@@ -46,7 +51,10 @@ public class TaskAddController implements Initializable {
     private JFXTextArea jtaDesc;
 
     @FXML
-    void addTask(MouseEvent event) {
+    private JFXComboBox<String> jcbName;
+
+    @FXML
+    void modTask(MouseEvent event) {
         String employeeName = jcbName.getValue();
         String dni = "";
 
@@ -68,12 +76,12 @@ public class TaskAddController implements Initializable {
 
         try {
             if (fieldValidation()) {
-                mt.insertTask(t);
+                mt.updateTask(taskToModify.getName(), taskToModify.getDescription(), t);
 
                 pc.reloadTaskList();
                 pc.loadUI("task_list");
                 /*pc.getDc().showDialog(new Text("Éxito"),
-                        new Text("La Tarea ha sido agregada con éxito a la base de datos."));
+                        new Text("La Tarea ha sido modificada con éxito."));
                 pc.loadUI("task_list");*/
             } else {
                 dg.showDialog(new Text("Error en los campos"),
@@ -88,6 +96,21 @@ public class TaskAddController implements Initializable {
     @FXML
     void cancel(MouseEvent event) {
         pc.loadUI("task_list");
+    }
+
+    public void setFields() throws SQLException {
+        Staff st;
+
+        if (taskToModify.getDni()==null || taskToModify.getDni().equalsIgnoreCase("null")){
+            jcbName.setValue("");
+        } else {
+            st = ms.getStaff(taskToModify.getDni());
+            jcbName.setValue("(" + st.getDni() + ") " + st.getSurname() + ", " + st.getName());
+        }
+
+        jtfName.setText(taskToModify.getName());
+        jtaDesc.setText(taskToModify.getDescription());
+        jcbState.setValue(taskToModify.getState());
     }
 
     private boolean fieldValidation() {
@@ -124,5 +147,17 @@ public class TaskAddController implements Initializable {
 
     public void setJcbName(JFXComboBox<String> jcbName) {
         this.jcbName = jcbName;
+    }
+
+    public Task getTaskToModify() {
+        return taskToModify;
+    }
+
+    public void setTaskToModify(Task taskToModify) {
+        this.taskToModify = taskToModify;
+    }
+
+    public void setMs(ManagerStaff ms) {
+        this.ms = ms;
     }
 }

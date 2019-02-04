@@ -4,6 +4,7 @@ import com.sge.erp.model.Project;
 import com.sge.erp.view.home.HomeController;
 import com.sge.erp.view.login.LoginController;
 import com.sge.erp.view.project.ProjectController;
+import com.sge.erp.view.project.ResumeProjectController;
 import com.sge.erp.view.projects.ProjectsController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +32,7 @@ public class MainWindowController implements Initializable {
         back.put("../employees/employees", "../home/home");
         back.put("../clients/clients", "../home/home");
         back.put("../project/project", "../projects/projects");
+        back.put("../reports/reports", "../home/home");
 
         loadUI("../login/login");
     }
@@ -79,33 +81,43 @@ public class MainWindowController implements Initializable {
 
         } else {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
-                root = loader.load();
+
 
                 switch (ui) {
                     case "../home/home":
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader.load();
                         HomeController hc = loader.getController();
                         hc.setMainController(this);
                         break;
 
                     case "../login/login":
-                        LoginController lc = loader.getController();
+                        FXMLLoader loader1 = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader1.load();
+                        LoginController lc = loader1.getController();
                         lc.setMainController(this);
                         break;
 
                     case "../projects/projects":
-                        ProjectsController psc = loader.getController();
+                        FXMLLoader loader2 = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader2.load();
+                        ProjectsController psc = loader2.getController();
                         psc.setMwc(this);
                         break;
 
                     case "../project/project":
-                        ProjectController pc = loader.getController();
+                        FXMLLoader loader3 = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        loader3.setControllerFactory(c -> {return  new ProjectController(selectedProject);});
+                        root = loader3.load();
+                        ProjectController pc = loader3.getController();
+
                         pc.setMwc(this);
                         pc.setSelectedProject(selectedProject);
                         break;
                 }
-
-                windows.put(ui, root);
+                if (!ui.equalsIgnoreCase("../project/project")){
+                    windows.put(ui, root);
+            }
 
             } catch (IOException e) {
                 e.printStackTrace();

@@ -2,10 +2,14 @@ package com.sge.erp.view.project;
 
 import com.jfoenix.controls.JFXButton;
 import com.sge.erp.model.Project;
+import com.sge.erp.model.Staff;
+import com.sge.erp.model.Task;
+import com.sge.erp.persistence.ManagerClient;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
 import com.sge.erp.utility.DialogCreator;
 import com.sge.erp.view.mainWindow.MainWindowController;
+import com.sge.erp.view.projects.ModTeamController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,12 +21,24 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class ProjectController implements Initializable {
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            mt = new ManagerTask();
+            ms = new ManagerStaff();
+            tlc = new TaskListController();
+            //dc = new DialogCreator(mainContainer);
+            loadUI("projectResume");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     private MainWindowController mwc;
     private Project selectedProject;
@@ -30,19 +46,8 @@ public class ProjectController implements Initializable {
     private MemberListController mlc;
     private ManagerTask mt;
     private ManagerStaff ms;
-    private TaskListController tlc = new TaskListController();
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        try {
-            mt = new ManagerTask();
-            ms = new ManagerStaff();
-            //dc = new DialogCreator(mainContainer);
-            loadUI("task_list");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+    private TaskListController tlc;
+    private Task taskSelected;
 
     @FXML
     private JFXButton jbMembers;
@@ -52,19 +57,19 @@ public class ProjectController implements Initializable {
 
     @FXML
     void loadAll(MouseEvent event) {
-        //mlc.loadAll();
-        //loadUI("member_list");
+
+        loadUI("projectResume");
     }
 
     @FXML
     void loadMembers(MouseEvent event) {
-        //mlc.loadAll();
+
         loadUI("member_list");
     }
 
     @FXML
     void loasTaskList(MouseEvent event) {
-        //tlc.loadAll();
+
         loadUI("task_list");
     }
 
@@ -78,13 +83,8 @@ public class ProjectController implements Initializable {
         if (listPane == null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                loader.setControllerFactory(c -> {return  new ResumeProjectController(selectedProject, mt);});
                 root = loader.load();
-
-                tlc = loader.getController();
-                tlc.setPc(this);
-                tlc.setMt(mt);
-                tlc.setMs(ms);
-                tlc.loadAll();
 
                 listPane = root;
             } catch (IOException e) {
@@ -92,7 +92,7 @@ public class ProjectController implements Initializable {
             }
         } else {
             switch (ui) {
-                case "project_list":
+                case "projectResume":
                     root = listPane;
                     break;
                 case "member_list":
@@ -133,16 +133,67 @@ public class ProjectController implements Initializable {
                         TaskAddController tac = loader.getController();
                         tac.setMt(mt);
                         tac.setPc(this);
-                        ObservableList<String> items =
+
+                        ArrayList<Staff> employees = ms.getStaffByProject(getSelectedProject().getId_project());
+
+                        ObservableList<String> itemsEmployees = FXCollections.observableArrayList();
+                        for (Staff s: employees) {
+                            itemsEmployees.add(
+                                    "(" + s.getDni() + ") " + s.getSurname() + ", " + s.getName()
+                            );
+                        }
+                        tac.getJcbName().setItems(itemsEmployees);
+
+                        ObservableList<String> itemsState =
                                 FXCollections.observableArrayList(
                                         "Pendiente",
                                         "Pausada",
                                         "En Curso",
-                                        "Terminada"
+                                        "Completada"
                                 );
-                        tac.getJcbState().setItems(items);
+                        tac.getJcbState().setItems(itemsState);
 
                     } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "mod_task":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        root = loader.load();
+
+                        TaskModController tmc = loader.getController();
+                        tmc.setMt(mt);
+                        tmc.setMs(ms);
+                        tmc.setPc(this);
+
+                        ArrayList<Staff> employees = ms.getStaffByProject(getSelectedProject().getId_project());
+
+                        ObservableList<String> itemsEmployees = FXCollections.observableArrayList();
+                        itemsEmployees.add("");
+                        for (Staff s: employees) {
+                            itemsEmployees.add(
+                                    "(" + s.getDni() + ") " + s.getSurname() + ", " + s.getName()
+                            );
+                        }
+                        tmc.getJcbName().setItems(itemsEmployees);
+
+                        ObservableList<String> itemsState =
+                                FXCollections.observableArrayList(
+                                        "Pendiente",
+                                        "Pausada",
+                                        "En Curso",
+                                        "Completada"
+                                );
+                        tmc.getJcbState().setItems(itemsState);
+                        tmc.setTaskToModify(taskSelected);
+                        tmc.setFields();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (SQLException e) {
                         e.printStackTrace();
                     }
                     break;
@@ -173,5 +224,13 @@ public class ProjectController implements Initializable {
 
     public void setMs(ManagerStaff ms) {
         this.ms = ms;
+    }
+
+    public void setTaskSelected(Task taskSelected) {
+        this.taskSelected = taskSelected;
+    }
+
+    public ProjectController(Project selectedProject) {
+        this.selectedProject = selectedProject;
     }
 }

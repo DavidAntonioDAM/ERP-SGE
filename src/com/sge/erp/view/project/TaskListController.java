@@ -6,10 +6,13 @@ import com.sge.erp.model.Staff;
 import com.sge.erp.model.Task;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,6 +23,7 @@ public class TaskListController {
     private ArrayList<Task> tasks = new ArrayList<>();
     private ManagerTask mt;
     private ManagerStaff ms;
+    private Task taskSelected;
     private ProjectController pc;
 
     @FXML
@@ -31,6 +35,24 @@ public class TaskListController {
     @FXML
     void addTask(MouseEvent event) {
         pc.loadUI("add_task");
+    }
+
+    @FXML
+    void selectTask(MouseEvent event) {
+        String name = "";
+
+        ObservableList<AnchorPane> listTask = list.getSelectionModel().getSelectedItems();
+        Pane panel = (Pane)  listTask.get(0).getChildren().get(0);
+        name = ((Label)panel.getChildren().get(0)).getText();
+
+        try {
+            taskSelected = mt.getTask(name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        pc.setTaskSelected(taskSelected);
+        pc.loadUI("mod_task");
     }
 
     @FXML
@@ -48,7 +70,7 @@ public class TaskListController {
 
     void loadAll() {
         try {
-            tasks = mt.getProjectTask(4);
+            tasks = mt.getProjectTask(pc.getSelectedProject().getId_project());
             loadList();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,6 +78,7 @@ public class TaskListController {
     }
 
     private void loadList() {
+        Staff st;
 
         try {
             list.getItems().clear();
@@ -65,25 +88,30 @@ public class TaskListController {
                 AnchorPane card = loader.load();
 
                 TaskCardController tcc = loader.getController();
-                Staff st = ms.getStaff(t.getDni());
 
                 tcc.getJlNameTask().setText(t.getName());
-                tcc.getJlMember().setText(st.getName() + " " + st.getSurname());
+
+                if (t.getDni()!=null && !t.getDni().equalsIgnoreCase("null")){
+                    st = ms.getStaff(t.getDni());
+                    tcc.getJlMember().setText(st.getName() + " " + st.getSurname());
+                } else {
+                    tcc.getJlMember().setText("");
+                }
                 tcc.getJtaDescription().setText(t.getDescription());
                 tcc.getJlState().setText(t.getState());
 
                 switch (t.getState()) {
                     case "Pendiente":
-                        tcc.getJlState().setStyle("-fx-text-fill: red");
+                        tcc.getJlState().setStyle("-fx-text-fill: #923dba");
                         break;
                     case "Pausada":
-                        tcc.getJlState().setStyle("-fx-text-fill: orange");
+                        tcc.getJlState().setStyle("-fx-text-fill: #ff5d27");
                         break;
-                    case "En curso":
-                        tcc.getJlState().setStyle("-fx-text-fill: blue");
+                    case "En Curso":
+                        tcc.getJlState().setStyle("-fx-text-fill: #0075f3");
                         break;
-                    case "Terminada":
-                        tcc.getJlState().setStyle("-fx-text-fill: green");
+                    case "Completada":
+                        tcc.getJlState().setStyle("-fx-text-fill: #0ed145");
                         break;
                 }
 

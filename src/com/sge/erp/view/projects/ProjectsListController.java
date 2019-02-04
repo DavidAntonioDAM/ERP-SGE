@@ -52,7 +52,12 @@ public class ProjectsListController implements Initializable {
 
     @FXML
     void filterName(MouseEvent event) {
-
+        try {
+            projects = mp.getProjectsFilter(jtfSearch.getText());
+            loadList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -113,6 +118,7 @@ public class ProjectsListController implements Initializable {
 
                 cc.getlProjectName().setText(p.getName());
                 cc.getJtaProjectDesc().setText(p.getDescription());
+                cc.getlDate().setText(p.getDeliver_date());
                 cc.getChart().setProgress(projectComplete);
                 cc.getPercent().setText(String.valueOf(((int)(projectComplete*100)))+"%");
 

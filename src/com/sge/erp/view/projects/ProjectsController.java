@@ -1,10 +1,15 @@
 package com.sge.erp.view.projects;
 
 import com.sge.erp.model.Project;
+import com.sge.erp.model.Staff;
+import com.sge.erp.model.Team;
 import com.sge.erp.persistence.ManagerProjects;
+import com.sge.erp.persistence.ManagerStaff;
+import com.sge.erp.persistence.ManagerStaff_Team;
 import com.sge.erp.persistence.ManagerTeam;
-import com.sge.erp.view.home.HomeController;
 import com.sge.erp.view.mainWindow.MainWindowController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +19,8 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ProjectsController implements Initializable {
@@ -24,6 +31,9 @@ public class ProjectsController implements Initializable {
         try {
             mp = new ManagerProjects();
             mt = new ManagerTeam();
+            mst = new ManagerStaff_Team();
+            ms = new ManagerStaff();
+
             loadUI("projects_list");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -33,11 +43,14 @@ public class ProjectsController implements Initializable {
     private ManagerProjects mp;
     private Parent listPane;
     private ProjectsListController pl;
+    private ManagerStaff_Team mst;
+    private ManagerStaff ms;
 
     private TeamListController tlc;
     private ManagerTeam mt;
     private Project projectSelected;
     private MainWindowController mwc;
+    private Team teamSelected;
 
     @FXML
     private AnchorPane container;
@@ -121,7 +134,43 @@ public class ProjectsController implements Initializable {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
                         root = loader.load();
 
+                        AddTeamController atc = loader.getController();
+                        atc.setMt(mt);
+                        atc.setMp(mp);
+                        atc.setMst(mst);
+                        atc.setPc(this);
+
                     } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "mod_team":
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ui + ".fxml"));
+                        loader.setControllerFactory(c -> {return  new ModTeamController(teamSelected);});
+                        root = loader.load();
+
+                        ModTeamController mtc = loader.getController();
+
+                        mtc.setTeamSelected(teamSelected);
+                        mtc.setMt(mt);
+                        mtc.setMp(mp);
+                        mtc.setMst(mst);
+                        ArrayList<Project> projects = mp.getProjectsNoTeam(teamSelected.getId_project());
+                        ObservableList<String> itemsProjects = FXCollections.observableArrayList();
+
+                        for (Project p: projects) {
+                            itemsProjects.add("(" + p.getNif_client() + ") " + p.getName());
+                        }
+
+                        mtc.getJcbProjectsName().setItems(itemsProjects);
+
+                        mtc.setPc(this);
+                        mtc.setFields();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (SQLException e) {
                         e.printStackTrace();
                     }
                     break;
@@ -144,5 +193,13 @@ public class ProjectsController implements Initializable {
 
     public MainWindowController getMwc() {
         return mwc;
+    }
+
+    public Team getTeamSelected() {
+        return teamSelected;
+    }
+
+    public void setTeamSelected(Team teamSelected) {
+        this.teamSelected = teamSelected;
     }
 }
