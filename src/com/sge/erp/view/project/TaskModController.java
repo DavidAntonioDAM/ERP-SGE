@@ -8,17 +8,32 @@ import com.sge.erp.model.Staff;
 import com.sge.erp.model.Task;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
+import com.sge.erp.utility.DialogCreator;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class TaskModController {
+public class TaskModController implements Initializable {
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        dg = new DialogCreator(container);
+    }
 
     private ManagerTask mt;
     private ManagerStaff ms;
     private ProjectController pc;
     private Task taskToModify;
+    private DialogCreator dg;
+
+    @FXML
+    private StackPane container;
 
     @FXML
     private JFXButton jbAccept;
@@ -65,9 +80,13 @@ public class TaskModController {
 
                 pc.reloadTaskList();
                 pc.loadUI("task_list");
-                // EXITO
+                /*pc.getDc().showDialog(new Text("Éxito"),
+                        new Text("La Tarea ha sido modificada con éxito."));
+                pc.loadUI("task_list");*/
             } else {
-                // ERROR CAMPOS
+                dg.showDialog(new Text("Error en los campos"),
+                        new Text("Alguno, o varios, de los campos no están correctamente rellenos.\n\n" +
+                                "Intentelo de nuevo."));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -82,7 +101,7 @@ public class TaskModController {
     public void setFields() throws SQLException {
         Staff st;
 
-        if (taskToModify.getDni()==null){
+        if (taskToModify.getDni()==null || taskToModify.getDni().equalsIgnoreCase("null")){
             jcbName.setValue("");
         } else {
             st = ms.getStaff(taskToModify.getDni());

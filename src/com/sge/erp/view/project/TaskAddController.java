@@ -7,16 +7,31 @@ import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Staff;
 import com.sge.erp.model.Task;
 import com.sge.erp.persistence.ManagerTask;
+import com.sge.erp.utility.DialogCreator;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class TaskAddController {
+public class TaskAddController implements Initializable {
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        dg = new DialogCreator(container);
+    }
 
     private ManagerTask mt;
     private ProjectController pc;
+    private DialogCreator dg;
+
+    @FXML
+    private StackPane container;
 
     @FXML
     private JFXComboBox<String> jcbName;
@@ -57,9 +72,13 @@ public class TaskAddController {
 
                 pc.reloadTaskList();
                 pc.loadUI("task_list");
-                // EXITO
+                /*pc.getDc().showDialog(new Text("Éxito"),
+                        new Text("La Tarea ha sido agregada con éxito a la base de datos."));
+                pc.loadUI("task_list");*/
             } else {
-                // ERROR CAMPOS
+                dg.showDialog(new Text("Error en los campos"),
+                        new Text("Alguno, o varios, de los campos no están correctamente rellenos.\n\n" +
+                                "Intentelo de nuevo."));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
