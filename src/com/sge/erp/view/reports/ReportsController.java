@@ -32,13 +32,13 @@ public class ReportsController implements Initializable {
     private ManagerProjects mp;
     private ManagerStaff ms;
     private ManagerTask mk;
-    private CompletedprojectsController cpc;
-    private ProjectstoendController ptec;
-    private ProjectsmoreadvanceController pmac;
-    private ProyectswithmoretasksController ptask;
-    private ProjectswithmoreclientsController cl;
-    private EmployeeswithoutteamController ewtc;
-    private EfficientworkersController ewc;
+    private CompletedProjectsController cpc;
+    private ProjectsToEndController ptec;
+    private MoreAdvancedProjectsController pmac;
+    private MoreProjectTasksController ptask;
+    private MoreClientProjectsController cl;
+    private StaffsWithOutTeamController ewtc;
+    private EfficientWorkersController ewc;
 
 
     @FXML

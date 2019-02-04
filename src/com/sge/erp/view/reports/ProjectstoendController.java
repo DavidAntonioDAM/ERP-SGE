@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
-public class ProjectstoendController implements Initializable {
+public class ProjectsToEndController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

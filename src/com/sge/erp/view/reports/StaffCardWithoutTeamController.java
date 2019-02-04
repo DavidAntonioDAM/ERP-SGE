@@ -3,7 +3,7 @@ package com.sge.erp.view.reports;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class EmployeesCardWithoutTeamController {
+public class StaffCardWithoutTeamController {
 
     @FXML
     private Label lEmployeeName;

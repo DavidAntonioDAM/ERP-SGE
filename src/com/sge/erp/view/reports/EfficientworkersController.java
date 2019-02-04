@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class EfficientworkersController {
+public class EfficientWorkersController {
 
     private ArrayList<Staff> staffs;
     private ArrayList<Task> tasks;

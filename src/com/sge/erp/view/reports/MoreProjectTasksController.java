@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ProyectswithmoretasksController implements Initializable {
+public class MoreProjectTasksController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

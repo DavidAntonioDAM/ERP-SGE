@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
-public class ProjectswithmoreclientsController {
+public class MoreClientProjectsController {
 
 
     private ArrayList<Client> clients;

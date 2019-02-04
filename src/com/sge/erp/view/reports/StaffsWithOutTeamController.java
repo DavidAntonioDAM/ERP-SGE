@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class EmployeeswithoutteamController {
+public class StaffsWithOutTeamController {
 
     private ArrayList<Staff> staffs;
     private ManagerStaff ms;
@@ -38,9 +38,9 @@ public class EmployeeswithoutteamController {
 
             for (Staff s : staffs) {
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("employee_card_withoutteam.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("staff_card_with_out_team.fxml"));
                 AnchorPane card = loader.load();
-                EmployeesCardWithoutTeamController cc = loader.getController();
+                StaffCardWithoutTeamController cc = loader.getController();
 
                 cc.getlEmployeeName().setText(s.getName());
                 cc.getlEmployeeSurname().setText(s.getSurname());

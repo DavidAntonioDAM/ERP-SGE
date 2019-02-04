@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class CompletedprojectsController implements Initializable {
+public class CompletedProjectsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
