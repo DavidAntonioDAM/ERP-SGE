@@ -39,12 +39,13 @@ public class ManagerProjects extends AdminDataBase {
 
     public Project getProject(String name) throws SQLException {
         verifyConnection();
-        String sql = "SELECT * FROM project WHERE name = '" + name + "'";
+        String sql = "SELECT * FROM project WHERE name = '" + name + "';";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
         rs.next();
 
         Project pjs = new Project(
+            rs.getInt("id_project"),
             rs.getString("nif_client"),
             rs.getString("name"),
             rs.getString("description"),
@@ -99,6 +100,54 @@ public class ManagerProjects extends AdminDataBase {
         st.executeUpdate(sql);
         st.close();
 
+    }
+
+    public ArrayList<Project> getProjectsFilter(String nameFilter) throws SQLException {
+        ArrayList<Project> projects = new ArrayList<>();
+        verifyConnection();
+
+        String sql = "SELECT * FROM project WHERE name LIKE '%" + nameFilter + "%';";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+
+            projects.add(new Project(
+                    rs.getInt("id_project"),
+                    rs.getString("nif_client"),
+                    rs.getString("name"),
+                    rs.getString("description"),
+                    rs.getString("deliver_date")
+            ));
+        }
+
+        rs.close();
+        st.close();
+        return projects;
+    }
+
+    public ArrayList<Project> getProjectsNoTeam(int id_project) throws SQLException {
+        ArrayList<Project> projects = new ArrayList<>();
+        verifyConnection();
+
+        String sql = "SELECT * FROM project WHERE id_project = " + id_project + " OR id_project NOT IN (SELECT id_project FROM team)";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+
+            projects.add(new Project(
+                    rs.getInt("id_project"),
+                    rs.getString("nif_client"),
+                    rs.getString("name"),
+                    rs.getString("description"),
+                    rs.getString("deliver_date")
+            ));
+        }
+
+        rs.close();
+        st.close();
+        return projects;
     }
 
 }

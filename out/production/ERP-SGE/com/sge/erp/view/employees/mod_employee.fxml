@@ -18,7 +18,7 @@
                 </Label>
                 <JFXTextField fx:id="jtfDNI" focusColor="#004878" layoutX="299.0" layoutY="129.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
                     <font>
-                        <Font name="Segoe UI" size="18.0" />
+                        <Font name="Segoe UI" size="16.0" />
                     </font>
                 </JFXTextField>
                 <Label layoutX="299.0" layoutY="229.0" prefHeight="29.0" prefWidth="464.0" text="Nombre del Empleado">
@@ -28,7 +28,7 @@
                 </Label>
                 <JFXTextField fx:id="jtfName" focusColor="#004878" layoutX="299.0" layoutY="258.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
                     <font>
-                        <Font name="Segoe UI" size="18.0" />
+                        <Font name="Segoe UI" size="16.0" />
                     </font>
                 </JFXTextField>
                 <JFXButton buttonType="RAISED" layoutX="325.0" layoutY="645.0" onMouseClicked="#modEmployee" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #004878;" text="Aceptar" textFill="WHITE">
@@ -48,7 +48,7 @@
                 </Label>
                 <JFXTextField fx:id="jtfSurname" focusColor="#004878" layoutX="299.0" layoutY="387.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
                     <font>
-                        <Font name="Segoe UI" size="18.0" />
+                        <Font name="Segoe UI" size="16.0" />
                     </font>
                 </JFXTextField>
                 <Label layoutX="299.0" layoutY="487.0" prefHeight="29.0" prefWidth="464.0" text="Cargo del Empleado">
@@ -58,7 +58,7 @@
                 </Label>
                 <JFXTextField fx:id="jtfJob" focusColor="#004878" layoutX="299.0" layoutY="516.0" prefHeight="35.0" prefWidth="464.0" unFocusColor="BLACK">
                     <font>
-                        <Font name="Segoe UI" size="18.0" />
+                        <Font name="Segoe UI" size="16.0" />
                     </font>
                 </JFXTextField>
             </children>

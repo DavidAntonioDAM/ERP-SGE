@@ -102,19 +102,12 @@ public class ManagerStaff extends AdminDataBase {
 
     }
 
-    public void deleteStaff(String dni) throws SQLException {
-        verifyConnection();
-        String sql = "DELETE FROM staff WHERE dni = '" + dni + "'";
-        Statement st = connection.createStatement();
-        st.executeUpdate(sql);
-        st.close();
-    }
-
-    public ArrayList<Staff> getStandbyEmployees() throws SQLException {
-
+    public ArrayList<Staff> getStaffsTeam(int idProject) throws SQLException {
         ArrayList<Staff> sfs = new ArrayList<>();
         verifyConnection();
-        String sql = "select * from staff where dni != any (SELECT dni FROM `task` WHERE dni != '' OR dni is not null);";
+        String sql = "SELECT s.job, s.dni, s.name, s.surname\n" +
+                "FROM team t, staff_team st, staff s\n" +
+                "WHERE t.id_team=st.id_team AND st.dni=s.dni AND t.id_project=" + idProject + ";";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
@@ -130,5 +123,80 @@ public class ManagerStaff extends AdminDataBase {
         st.close();
 
         return sfs;
+
+    }
+
+    public void deleteStaff(String dni) throws SQLException {
+        verifyConnection();
+        String sql = "DELETE FROM staff WHERE dni = '" + dni + "'";
+        Statement st = connection.createStatement();
+        st.executeUpdate(sql);
+        st.close();
+    }
+
+    public ArrayList<Staff> getStandbyEmployees() throws SQLException {
+
+        ArrayList<Staff> sfs = new ArrayList<>();
+        verifyConnection();
+        String sql = "SELECT * FROM staff WHERE dni != all(SELECT dni FROM staff_team);";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+
+            sfs.add(new Staff(
+                    rs.getString("dni"),
+                    rs.getString("name"),
+                    rs.getString("surname"),
+                    rs.getString("job")));
+
+        }
+        rs.close();
+        st.close();
+
+        return sfs;
+    }
+
+    public Staff getStaffByNameSurnameJob(String name, String surname, String job) throws SQLException {
+
+        verifyConnection();
+        String sql = "SELECT * FROM staff WHERE name = '" + name + "' AND surname = '" + surname + "' AND job = '" + job + "';";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        rs.next();
+
+        Staff sfs = new Staff(
+                rs.getString("dni"),
+                rs.getString("name"),
+                rs.getString("surname"),
+                rs.getString("job"));
+
+        rs.close();
+        st.close();
+
+        return sfs;
+    }
+
+    public ArrayList<Staff> getStaffByProject(int idProject) throws SQLException {
+        ArrayList<Staff> employees = new ArrayList<>();
+
+        verifyConnection();
+        String sql = "SELECT s.* \n" +
+                "FROM staff s, staff_team st, team t\n" +
+                "WHERE t.id_team=st.id_team AND st.dni=s.dni AND t.id_project=" + idProject + ";";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while(rs.next()){
+            employees.add(new Staff(
+                    rs.getString("dni"),
+                    rs.getString("name"),
+                    rs.getString("surname"),
+                    rs.getString("job")));
+        }
+
+        rs.close();
+        st.close();
+
+        return employees;
     }
 }

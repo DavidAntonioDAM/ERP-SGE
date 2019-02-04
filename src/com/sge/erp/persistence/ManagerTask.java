@@ -26,35 +26,36 @@ public class ManagerTask extends AdminDataBase {
 
     }
 
-    public void updateTask(int id_task, Task tk) throws SQLException {
+    public void updateTask(String name, String desc, Task tk) throws SQLException {
         verifyConnection();
-        String sql = "UPDATE task SET id_project = '" + tk.getId_project() + "' , dni = '" + tk.getDni() + "' , name = '" + tk.getName() + "' , state = '" + tk.getState() + "' WHERE id_task =  '" + id_task + "';";
+        String sql = "UPDATE task SET dni = '" + tk.getDni() + "' , name = '" +
+                tk.getName() + "' , state = '" + tk.getState() + "' WHERE name = '" +
+                name + "' AND description = '" + desc + "';";
         Statement st = connection.createStatement();
         st.executeUpdate(sql);
         st.close();
     }
 
-    public ArrayList<Task> getTask(int id_task) throws SQLException {
-        ArrayList<Task> tks = new ArrayList<>();
+    public Task getTask(String name) throws SQLException {
+        Task tks;
         verifyConnection();
-        String sql = "SELECT * FROM task WHERE id_task = '" + id_task + "';";
+        String sql = "SELECT * FROM task WHERE name = '" + name + "';";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
-        while (rs.next()) {
+        rs.next();
 
-            tks.add(new Task(
-                    rs.getInt("id_task"),
-                    rs.getInt("id_project"),
-                    rs.getString("dni"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getString("state")));
+        tks = new Task(
+                rs.getInt("id_task"),
+                rs.getInt("id_project"),
+                rs.getString("dni"),
+                rs.getString("name"),
+                rs.getString("description"),
+                rs.getString("state"));
 
-        }
         rs.close();
         st.close();
+        
         return tks;
-
     }
 
     public ArrayList<Task> getTasks() throws SQLException {
@@ -110,6 +111,20 @@ public class ManagerTask extends AdminDataBase {
         st.close();
         return tks;
 
+    }
+
+    public String getTaskName(String dni) throws SQLException {
+        String taskName = "";
+
+        verifyConnection();
+        String sql = "SELECT * FROM task WHERE dni='" + dni + "';";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        if (rs.next()) {
+            taskName = rs.getString("description");
+        }
+        return taskName;
     }
 
     public ArrayList<Task> getTasksFilter(String name, int id_project) throws SQLException {

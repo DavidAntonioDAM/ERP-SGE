@@ -76,9 +76,9 @@ public class ManagerStaff_Team extends AdminDataBase {
 
     }
 
-    public void deleteStaff_Team(int id_team) throws SQLException {
+    public void deleteStaff_Team(Staff_Team sTeam) throws SQLException {
         verifyConnection();
-        String sql = "DELETE FROM staff_team WHERE id_team = '" + id_team + "';";
+        String sql = "DELETE FROM staff_team WHERE id_team = " + sTeam.getId_team() + " AND dni = '" + sTeam.getDni() + "';";
         Statement st = connection.createStatement();
         st.executeUpdate(sql);
         st.close();
