@@ -42,7 +42,6 @@ public class ProjectswithmoreclientsController {
             list.getItems().clear();
             int numprojects = 0;
 
-
             for (Client c : clients) {
                 numprojects = 0;
                 for (Project p : projects) {
@@ -83,7 +82,6 @@ public class ProjectswithmoreclientsController {
     public void setPc(ReportsController rc) {
         this.rc = rc;
     }
-
 
 
 }

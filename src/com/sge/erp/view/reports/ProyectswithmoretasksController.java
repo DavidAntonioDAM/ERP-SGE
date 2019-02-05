@@ -28,7 +28,7 @@ public class ProyectswithmoretasksController implements Initializable {
         }
     }
 
-    private ArrayList<Project> projects ;
+    private ArrayList<Project> projects;
     private ManagerProjects mp;
     private ManagerTask mt;
     private ReportsController rc;
@@ -76,19 +76,19 @@ public class ProyectswithmoretasksController implements Initializable {
 
                 }
 
-                // if(contador!=5){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("projects_card_task.fxml"));
-                AnchorPane card = loader.load();
-                ProjectCardTaskController cc = loader.getController();
+                if (tasks.size() >= 1) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("projects_card_task.fxml"));
+                    AnchorPane card = loader.load();
+                    ProjectCardTaskController cc = loader.getController();
 
-                cc.getlProjectName().setText(p.getName());
-                cc.getJtaProjectDesc().setText(p.getDescription());
-                cc.getChart().setProgress(projectComplete);
-                cc.getPercent().setText(String.valueOf(((int)(projectComplete*100)))+"%");
-                cc.getlTareas().setText("Numero de tareas: "+tasks.size());
+                    cc.getlProjectName().setText(p.getName());
+                    cc.getJtaProjectDesc().setText(p.getDescription());
+                    cc.getChart().setProgress(projectComplete);
+                    cc.getPercent().setText(String.valueOf(((int) (projectComplete * 100))) + "%");
+                    cc.getlTareas().setText("Numero de tareas: " + tasks.size());
 
-                list.getItems().add(card);
-                // }
+                    list.getItems().add(card);
+                }
                 contador++;
             }
 

@@ -90,6 +90,24 @@ public class ManagerClient extends AdminDataBase {
         st.close();
         return client;
     }
+  /*  public ArrayList<Client> getClientswithmoreProjects() throws SQLException {
+        ArrayList<Client> client = new ArrayList<>();
+        verifyConnection();
+
+        String sql = "SELECT * FROM client WHERE nif = (SELECT nif_client FROM project WHERE ) ORDER BY 1;";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+
+            client.add(new Client(rs.getString("nif"), rs.getString("name"), rs.getString("email"), rs.getString("phone"), rs.getString("address")));
+
+        }
+
+        rs.close();
+        st.close();
+        return client;
+    }*/
 
     public void updateClient(Client c, String nifClient) throws SQLException {
         verifyConnection();
