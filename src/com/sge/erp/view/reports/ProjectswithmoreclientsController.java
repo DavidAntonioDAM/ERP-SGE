@@ -26,7 +26,7 @@ public class ProjectswithmoreclientsController {
 
     void loadAll() {
         try {
-            clients = mc.getClients();
+            clients = mc.getClientswithmoreProjects();
             projects = mp.getProjects();
             loadList();
         } catch (SQLException e) {
@@ -42,15 +42,20 @@ public class ProjectswithmoreclientsController {
             list.getItems().clear();
             int numprojects = 0;
 
+            int cont = 0;
             for (Client c : clients) {
+
+
+                String nif = clients.get(cont).getNif();
                 numprojects = 0;
                 for (Project p : projects) {
-                    if (p.getNif_client().equalsIgnoreCase(c.getNif())) {
+                    if (p.getNif_client().equalsIgnoreCase(nif)) {
                         numprojects++;
                     }
 
-                }
 
+                }
+                cont++;
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("client_card_project.fxml"));
                 AnchorPane card = loader.load();

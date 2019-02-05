@@ -1,6 +1,7 @@
 package com.sge.erp.persistence;
 
 import com.sge.erp.model.Project;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,7 +35,7 @@ public class ManagerProjects extends AdminDataBase {
         ps.setString(3, pj.getDescription());
         ps.setString(4, pj.getDeliver_date());
         ps.executeUpdate();
-        
+
     }
 
     public Project getProject(String name) throws SQLException {
@@ -45,11 +46,11 @@ public class ManagerProjects extends AdminDataBase {
         rs.next();
 
         Project pjs = new Project(
-            rs.getInt("id_project"),
-            rs.getString("nif_client"),
-            rs.getString("name"),
-            rs.getString("description"),
-            rs.getString("deliver_date")
+                rs.getInt("id_project"),
+                rs.getString("nif_client"),
+                rs.getString("name"),
+                rs.getString("description"),
+                rs.getString("deliver_date")
         );
         st.close();
         rs.close();
@@ -144,6 +145,32 @@ public class ManagerProjects extends AdminDataBase {
                     rs.getString("deliver_date")
             ));
         }
+
+        rs.close();
+        st.close();
+        return projects;
+    }
+
+    public ArrayList<Project> getProjectwithmoreTask() throws SQLException {
+        ArrayList<Project> projects = new ArrayList<>();
+        verifyConnection();
+
+        String sql = "SELECT p.* FROM project p, task t WHERE p.id_project = t.id_project GROUP BY p.id_project ORDER BY COUNT(p.id_project) DESC;";
+        Statement st = connection.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+
+        while (rs.next()) {
+
+            projects.add(new Project(
+                    rs.getInt("id_project"),
+                    rs.getString("nif_client"),
+                    rs.getString("name"),
+                    rs.getString("description"),
+                    rs.getString("deliver_date")
+            ));
+        }
+
 
         rs.close();
         st.close();

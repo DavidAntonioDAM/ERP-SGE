@@ -90,11 +90,11 @@ public class ManagerClient extends AdminDataBase {
         st.close();
         return client;
     }
-  /*  public ArrayList<Client> getClientswithmoreProjects() throws SQLException {
+    public ArrayList<Client> getClientswithmoreProjects() throws SQLException {
         ArrayList<Client> client = new ArrayList<>();
         verifyConnection();
 
-        String sql = "SELECT * FROM client WHERE nif = (SELECT nif_client FROM project WHERE ) ORDER BY 1;";
+        String sql = "SELECT c.* FROM client c inner join project p  on c.nif = p.nif_client GROUP BY c.nif ORDER BY c.nif DESC;";
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery(sql);
 
@@ -107,8 +107,7 @@ public class ManagerClient extends AdminDataBase {
         rs.close();
         st.close();
         return client;
-    }*/
-
+    }
     public void updateClient(Client c, String nifClient) throws SQLException {
         verifyConnection();
         String sql = "UPDATE client SET nif = '" + c.getNif() + "', name = '" + c.getName() + "', email = '" + c.getEmail() + "', phone = '" + c.getPhone() + "', address = '" + c.getAddress() + "' WHERE nif = '" + nifClient + "';";

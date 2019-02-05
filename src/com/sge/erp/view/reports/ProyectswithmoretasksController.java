@@ -38,7 +38,7 @@ public class ProyectswithmoretasksController implements Initializable {
 
     void loadAll() {
         try {
-            projects = mp.getProjects();
+            projects = mp.getProjectwithmoreTask();
             loadList();
         } catch (SQLException e) {
             e.printStackTrace();
