@@ -6,6 +6,7 @@ import com.sge.erp.view.login.LoginController;
 import com.sge.erp.view.project.ProjectController;
 import com.sge.erp.view.project.ResumeProjectController;
 import com.sge.erp.view.projects.ProjectsController;
+import com.sge.erp.view.reports.ReportsController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,6 +42,7 @@ public class MainWindowController implements Initializable {
     private HashMap windows;
     private String lastWindow;
     private Project selectedProject;
+    private Stage stage;
 
     @FXML
     private BorderPane mainWindow;
@@ -104,6 +106,11 @@ public class MainWindowController implements Initializable {
                             psc.setMwc(this);
                             break;
 
+                        case "../reports/reports":
+
+                            ReportsController rc = loader.getController();
+                            rc.setStage(stage);
+                            break;
                     }
                 } else {
                     FXMLLoader loader3 = new FXMLLoader(getClass().getResource(ui + ".fxml"));
@@ -127,6 +134,14 @@ public class MainWindowController implements Initializable {
 
         mainWindow.setCenter(root);
         lastWindow = ui;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     public Label getTitleWindow() {

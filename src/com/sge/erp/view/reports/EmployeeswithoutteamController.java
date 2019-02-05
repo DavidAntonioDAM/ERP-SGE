@@ -1,14 +1,17 @@
 package com.sge.erp.view.reports;
 
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Staff;
 import com.sge.erp.persistence.ManagerStaff;
+import com.sge.erp.utility.PathSelector;
 import com.sge.erp.utility.StandbyEmployeesExcel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,10 +21,33 @@ public class EmployeeswithoutteamController {
     private ArrayList<Staff> staffs;
     private ManagerStaff ms;
     private ReportsController rc;
+    private File f;
 
     @FXML
     private JFXListView<AnchorPane> list;
 
+    @FXML
+    private JFXTextField path;
+
+    @FXML
+    void selectPath(MouseEvent event) {
+
+        PathSelector ps = new PathSelector();
+        File f = ps.selectPath(rc.getStage());
+        path.setText(f.toString());
+    }
+
+    @FXML
+    void jfxbSave(MouseEvent event) {
+        try {
+            StandbyEmployeesExcel see = new StandbyEmployeesExcel();
+            see.create();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void loadAll() {
         try {
@@ -55,8 +81,6 @@ public class EmployeeswithoutteamController {
             e.printStackTrace();
         }
     }
-
-
     public void setMs(ManagerStaff ms) {
         this.ms = ms;
     }
@@ -64,17 +88,4 @@ public class EmployeeswithoutteamController {
     public void setPc(ReportsController rc) {
         this.rc = rc;
     }
-
-    @FXML
-    void jfxbSave(MouseEvent event) {
-        try {
-            StandbyEmployeesExcel see = new StandbyEmployeesExcel();
-            see.create();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

@@ -1,5 +1,6 @@
 package com.sge.erp.main;
 
+import com.sge.erp.view.mainWindow.MainWindowController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,10 @@ public class Main extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../view/mainWindow/mainWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/mainWindow/mainWindow.fxml"));
+        Parent root = loader.load();
+        MainWindowController mwc = loader.getController();
+        mwc.setStage(primaryStage);
 
         Scene scene = new Scene(root, 1366, 768);
 
@@ -40,7 +44,6 @@ public class Main extends Application {
 
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

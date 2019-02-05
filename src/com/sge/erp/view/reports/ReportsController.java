@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,6 +41,8 @@ public class ReportsController implements Initializable {
     private ProjectswithmoreclientsController cl;
     private EmployeeswithoutteamController ewtc;
     private EfficientworkersController ewc;
+
+    private Stage stage;
 
     @FXML
     private AnchorPane container;
@@ -114,7 +117,6 @@ public class ReportsController implements Initializable {
                         ewc.setMs(ms);
                         ewc.setMk(mk);
                         ewc.loadAll();
-
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -200,5 +202,13 @@ public class ReportsController implements Initializable {
         }
 
         container.getChildren().setAll(root);
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }
