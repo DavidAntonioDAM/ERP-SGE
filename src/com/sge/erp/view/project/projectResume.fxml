@@ -13,7 +13,7 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <PieChart fx:id="ProjectChart" layoutX="34.0" layoutY="-2.0" prefHeight="685.0" prefWidth="718.0" />
+            <PieChart fx:id="ProjectChart" layoutX="34.0" layoutY="27.0" prefHeight="656.0" prefWidth="718.0" title="Estado del Proyecto" />
             <Label alignment="CENTER" layoutX="776.0" layoutY="22.0" prefHeight="40.0" prefWidth="231.0" style="-fx-background-color: #004878; -fx-text-fill: white;" text="Proyecto Completado">
                <font>
                   <Font name="Segoe UI Bold" size="20.0" />

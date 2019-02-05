@@ -111,11 +111,61 @@ public class ResumeProjectController implements Initializable {
 
     @FXML
     void SwitchColors(MouseEvent event) {
-        ProjectChart.setData(dataChart);
+        loadChart();
     }
 
     public ResumeProjectController(Project selectedProject, ManagerTask mt) {
         this.selectedProject = selectedProject;
         this.mt = mt;
+    }
+
+    public void loadChart(){
+        ArrayList<Task> tasks = new ArrayList<>();
+
+        try {
+            mc = new ManagerClient();
+            tasks = mt.getProjectTask(selectedProject.getId_project());
+
+            mc = new ManagerClient();
+            Client c = mc.getClient(selectedProject.getNif_client());
+
+            Client.setText(c.getName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        int completed = 0;
+        int toDo = 0;
+        int pause = 0;
+        int doing = 0;
+
+        for (Task t:tasks) {
+            switch (t.getState()){
+                case "Pendiente":
+                    toDo++;
+                    break;
+                case "En Curso":
+                    doing++;
+                    break;
+                case "Completada":
+                    completed++;
+                    break;
+                case "Pausada":
+                    pause++;
+                    break;
+            }
+        }
+
+        dataChart = FXCollections.observableArrayList(
+                new PieChart.Data("Completadas", completed),
+                new PieChart.Data("Pendientes", toDo),
+                new PieChart.Data("Pausadas", pause),
+                new PieChart.Data("En curso", doing)
+        );
+
+        ProjectChart.setData(dataChart);
+
     }
 }
