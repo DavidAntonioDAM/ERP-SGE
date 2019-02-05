@@ -27,7 +27,7 @@ import com.sge.erp.persistence.ManagerStaff;
 
 public class StandbyEmployeesExcel {
 
-    public void create() throws ClassNotFoundException, SQLException {
+    public void create(File file) throws ClassNotFoundException, SQLException {
 
         final Logger LOGGER = Logger.getLogger("mx.com.hash.newexcel.ExcelOOXML");
 
@@ -37,9 +37,13 @@ public class StandbyEmployeesExcel {
 
         ArrayList<Staff> staffs = ms.getStandbyEmployees(); // Creamos un arraylist propietario con los empleados que no tienen equipo
 
-        File file = new File("StandbyEmployees.xlsx"); // Creamos el fichero
+        //File file = new File("StandbyEmployees.xlsx"); // Creamos el fichero
+        try{
+            file.delete(); // Si existe un fichero anterior, se borra
+        } catch (Exception e){
 
-        file.delete(); // Si existe un fichero anterior, se borra
+        }
+
 
         Workbook workbook = new XSSFWorkbook(); // Creamos el libro de trabajo
 

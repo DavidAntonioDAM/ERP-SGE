@@ -33,7 +33,7 @@ public class EmployeeswithoutteamController {
     void selectPath(MouseEvent event) {
 
         PathSelector ps = new PathSelector();
-        File f = ps.selectPath(rc.getStage());
+        f = ps.selectPath(rc.getStage());
         path.setText(f.toString());
     }
 
@@ -41,7 +41,8 @@ public class EmployeeswithoutteamController {
     void jfxbSave(MouseEvent event) {
         try {
             StandbyEmployeesExcel see = new StandbyEmployeesExcel();
-            see.create();
+            see.create(f);
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
