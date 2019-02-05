@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="200.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.reports.ClientCardProjectController">
+   <children>
+      <Pane prefHeight="67.0" prefWidth="690.0" style="-fx-background-color: #17212B; -fx-border-color: #17212B;">
+         <children>
+            <Label fx:id="lClientName" layoutX="14.0" layoutY="5.0" prefHeight="58.0" prefWidth="663.0" text="Nombre del Cliente" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutY="67.0" prefHeight="67.0" prefWidth="690.0" style="-fx-border-color: #17212B;">
+         <children>
+            <Label fx:id="lEmail" layoutX="14.0" layoutY="12.0" prefHeight="43.0" prefWidth="663.0" text="Email del Cliente">
+               <font>
+                  <Font name="Segoe UI" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutY="134.0" prefHeight="66.0" prefWidth="690.0" style="-fx-border-color: #17212B;">
+         <children>
+            <Label fx:id="lAddress" layoutX="14.0" layoutY="15.0" prefHeight="37.0" prefWidth="676.0" text="Direccion del Cliente">
+               <font>
+                  <Font name="Segoe UI" size="30.0" />
+               </font>
+            </Label>
+            <Pane layoutX="690.0" prefHeight="67.0" prefWidth="310.0" style="-fx-border-color: #17212B;">
+               <children>
+                  <Label fx:id="lNumberProjects" alignment="CENTER" layoutX="6.0" layoutY="15.0" prefHeight="37.0" prefWidth="298.0" text="Numero de Proyectos">
+                     <font>
+                        <Font name="Segoe UI" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="690.0" prefHeight="67.0" prefWidth="310.0" style="-fx-background-color: #14385B; -fx-border-color: #17212B;">
+         <children>
+            <Label fx:id="lNIF" alignment="CENTER" layoutX="13.0" layoutY="5.0" prefHeight="58.0" prefWidth="284.0" text="A-1234567Z" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="690.0" layoutY="67.0" prefHeight="67.0" prefWidth="310.0" style="-fx-border-color: #17212B;">
+         <children>
+            <Label fx:id="lTelf" alignment="CENTER" layoutX="13.0" layoutY="5.0" prefHeight="58.0" prefWidth="284.0" text="987654321">
+               <font>
+                  <Font name="Segoe UI" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
