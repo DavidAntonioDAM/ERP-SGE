@@ -29,7 +29,7 @@ import com.sge.erp.persistence.ManagerTask;
 
 public class EfficentStaffExcel {
 
-    public void create() throws ClassNotFoundException, SQLException {
+    public void create(File file) throws ClassNotFoundException, SQLException {
 
         final Logger LOGGER = Logger.getLogger("mx.com.hash.newexcel.ExcelOOXML");
 
@@ -68,9 +68,13 @@ public class EfficentStaffExcel {
 
         String[] titles = {"DNI", "NOMBRE", "APELLIDO", "TRABAJO"}; // Titulos de las columnas
 
-        File file = new File("EfficentStaff.xlsx"); // Creamos el fichero
+        //File file = new File("EfficentStaff.xlsx"); // Creamos el fichero
 
-        file.delete(); // Si existe un fichero anterior, se borra
+        try {
+            file.delete(); // Si existe un fichero anterior, se borra
+        }catch(Exception e){
+
+        }
 
         Workbook workbook = new XSSFWorkbook(); // Creamos el libro de trabajo
 

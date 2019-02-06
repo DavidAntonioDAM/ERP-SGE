@@ -9,6 +9,9 @@ public class PathSelector {
 
     public File selectPath(Stage stage){
         FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Excel", "*.xlsx"),
+                new FileChooser.ExtensionFilter("Todos", "*.*"));
         File file = fc.showSaveDialog(stage);
         return file;
     }

@@ -29,7 +29,7 @@ import com.sge.erp.persistence.ManagerTask;
 
 public class MoreAdvancedProjectsExcel {
 
-    public void create() throws ClassNotFoundException, SQLException {
+    public void create(File file) throws ClassNotFoundException, SQLException {
 
         final Logger LOGGER = Logger.getLogger("mx.com.hash.newexcel.ExcelOOXML");
 
@@ -61,10 +61,13 @@ public class MoreAdvancedProjectsExcel {
 
         String[] titles = {"ID", "NIF CLIENTE", "NOMBRE", "DESCRIPCION", "FECHA ENTREGA"}; // Titulos de las columnas
 
-        File file = new File("MoreAdvancedProjects.xlsx"); // Creamos el fichero
+        //File file = new File("MoreAdvancedProjects.xlsx"); // Creamos el fichero
 
-        file.delete(); // Si existe un fichero anterior, se borra
+        try{
+            file.delete(); // Si existe un fichero anterior, se borra
+        } catch (Exception e){
 
+        }
         Workbook workbook = new XSSFWorkbook(); // Creamos el libro de trabajo
 
         Sheet page = workbook.createSheet("Proyectos Más Avanzados"); // Creamos la pagina para el informe

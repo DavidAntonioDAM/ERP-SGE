@@ -1,11 +1,13 @@
 package com.sge.erp.view.reports;
 
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import com.sge.erp.model.Project;
 import com.sge.erp.model.Task;
 import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerTask;
 import com.sge.erp.utility.MoreAdvancedProjectsExcel;
+import com.sge.erp.utility.PathSelector;
 import com.sge.erp.view.projects.ProjectCardController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -20,6 +23,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ProjectsmoreadvanceController implements Initializable {
+
+    private File f;
+
+    @FXML
+    private JFXTextField path;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -102,10 +111,17 @@ public class ProjectsmoreadvanceController implements Initializable {
     }
 
     @FXML
+    void selectPath(MouseEvent event) {
+        PathSelector ps = new PathSelector();
+        f = ps.selectPath(rc.getStage());
+        path.setText(f.toString());
+    }
+
+    @FXML
     void jfxbSave(MouseEvent event) {
         try {
             MoreAdvancedProjectsExcel mape = new MoreAdvancedProjectsExcel();
-            mape.create();
+            mape.create(f);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

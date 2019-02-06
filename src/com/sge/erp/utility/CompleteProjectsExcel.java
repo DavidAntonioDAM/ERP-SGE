@@ -29,7 +29,7 @@ import com.sge.erp.persistence.ManagerTask;
 
 public class CompleteProjectsExcel {
 
-    public void create() throws ClassNotFoundException, SQLException {
+    public void create(File file) throws ClassNotFoundException, SQLException {
 
         final Logger LOGGER = Logger.getLogger("mx.com.hash.newexcel.ExcelOOXML");
 
@@ -61,9 +61,13 @@ public class CompleteProjectsExcel {
 
         String[] titles = {"ID", "NIF CLIENTE", "NOMBRE", "DESCRIPCION", "FECHA ENTREGA"}; // Titulos de las columnas
 
-        File file = new File("CompleteProjects.xlsx"); // Creamos el fichero
+        //File file = new File("CompleteProjects.xlsx"); // Creamos el fichero
 
-        file.delete(); // Si existe un fichero anterior, se borra
+        try{
+            file.delete(); // Si existe un fichero anterior, se borra
+        } catch (Exception e){
+
+        }
 
         Workbook workbook = new XSSFWorkbook(); // Creamos el libro de trabajo
 
