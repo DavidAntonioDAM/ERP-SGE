@@ -6,24 +6,31 @@ import com.sge.erp.model.Staff;
 import com.sge.erp.model.Task;
 import com.sge.erp.persistence.ManagerStaff;
 import com.sge.erp.persistence.ManagerTask;
+import com.sge.erp.utility.DialogCreator;
 import com.sge.erp.utility.EfficentStaffExcel;
 import com.sge.erp.utility.PathSelector;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class EfficientworkersController {
+public class EfficientworkersController implements Initializable {
 
 
     @FXML
     private StackPane stackpaneid;
+
+    private DialogCreator dg;
 
     private File f;
 
@@ -68,7 +75,7 @@ public class EfficientworkersController {
                         }
                     }
                 }
-                if (completada>=1) {
+                if (completada >= 1) {
 
 
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("efficientworkers_card.fxml"));
@@ -113,12 +120,26 @@ public class EfficientworkersController {
     void jfxbSave(MouseEvent event) {
         try {
             EfficentStaffExcel ese = new EfficentStaffExcel();
-            ese.create(f);
+            if (f != null) {
+                ese.create(f);
+            } else {
+                dg.showDialog(new Text("Error Con la ruta"),
+                        new Text("La ruta esta vacia.\n\n" +
+                                "Intentelo de nuevo."));
+            }
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            dg.showDialog(new Text("Error en la clase"),
+                    new Text("Hubo un pete en la clase .\n\n" +
+                            "Intentelo de nuevo."));
         } catch (SQLException e) {
-            e.printStackTrace();
+            dg.showDialog(new Text("Error Con la base de datos"),
+                    new Text("Error en la base de datos.\n\n" +
+                            "Intentelo de nuevo."));
         }
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        dg = new DialogCreator(stackpaneid);
+    }
 }

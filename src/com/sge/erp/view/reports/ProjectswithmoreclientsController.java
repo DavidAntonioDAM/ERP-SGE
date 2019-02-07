@@ -7,20 +7,25 @@ import com.sge.erp.model.Project;
 import com.sge.erp.persistence.ManagerClient;
 import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.utility.ClientWithMoreProjectsExcel;
+import com.sge.erp.utility.DialogCreator;
 import com.sge.erp.utility.MoreAdvancedProjectsExcel;
 import com.sge.erp.utility.PathSelector;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class ProjectswithmoreclientsController {
+public class ProjectswithmoreclientsController implements Initializable {
 
     private File f;
 
@@ -29,6 +34,8 @@ public class ProjectswithmoreclientsController {
 
     @FXML
     private StackPane stackpaneid;
+
+    private DialogCreator dg;
 
     private ArrayList<Client> clients;
     private ArrayList<Project> projects;
@@ -114,12 +121,27 @@ public class ProjectswithmoreclientsController {
     void jfxbSave(MouseEvent event) {
         try {
             ClientWithMoreProjectsExcel cwmp = new ClientWithMoreProjectsExcel();
-            cwmp.create(f);
+            if (f != null) {
+                cwmp.create(f);
+            } else {
+                dg.showDialog(new Text("Error Con la ruta"),
+                        new Text("La ruta esta vacia.\n\n" +
+                                "Intentelo de nuevo."));
+            }
+
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            dg.showDialog(new Text("Error en la clase"),
+                    new Text("Hubo un pete en la clase .\n\n" +
+                            "Intentelo de nuevo."));
         } catch (SQLException e) {
-            e.printStackTrace();
+            dg.showDialog(new Text("Error Con la base de datos"),
+                    new Text("Error en la base de datos.\n\n" +
+                            "Intentelo de nuevo."));
         }
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        dg = new DialogCreator(stackpaneid);
+    }
 }

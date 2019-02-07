@@ -6,6 +6,7 @@ import com.sge.erp.model.Project;
 import com.sge.erp.model.Task;
 import com.sge.erp.persistence.ManagerProjects;
 import com.sge.erp.persistence.ManagerTask;
+import com.sge.erp.utility.DialogCreator;
 import com.sge.erp.utility.MoreAdvancedProjectsExcel;
 import com.sge.erp.utility.PathSelector;
 import com.sge.erp.view.projects.ProjectCardController;
@@ -15,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,6 +37,7 @@ public class ProjectsmoreadvanceController implements Initializable {
 
         try {
             mt = new ManagerTask();
+            dg = new DialogCreator(stackpaneid);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -44,7 +47,9 @@ public class ProjectsmoreadvanceController implements Initializable {
     @FXML
     private StackPane stackpaneid;
 
-    private ArrayList<Project> projects ;
+    private DialogCreator dg;
+
+    private ArrayList<Project> projects;
     private ManagerProjects mp;
     private ManagerTask mt;
     private ReportsController rc;
@@ -91,7 +96,7 @@ public class ProjectsmoreadvanceController implements Initializable {
 
                 }
 
-                if(projectComplete>=0.5){
+                if (projectComplete >= 0.5) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("projects_card.fxml"));
                     AnchorPane card = loader.load();
                     ProjectCardController cc = loader.getController();
@@ -99,7 +104,7 @@ public class ProjectsmoreadvanceController implements Initializable {
                     cc.getlProjectName().setText(p.getName());
                     cc.getJtaProjectDesc().setText(p.getDescription());
                     cc.getChart().setProgress(projectComplete);
-                    cc.getPercent().setText(String.valueOf(((int)(projectComplete*100)))+"%");
+                    cc.getPercent().setText(String.valueOf(((int) (projectComplete * 100))) + "%");
 
                     list.getItems().add(card);
                 }
@@ -125,11 +130,21 @@ public class ProjectsmoreadvanceController implements Initializable {
     void jfxbSave(MouseEvent event) {
         try {
             MoreAdvancedProjectsExcel mape = new MoreAdvancedProjectsExcel();
-            mape.create(f);
+            if (f != null) {
+                mape.create(f);
+            } else {
+                dg.showDialog(new Text("Error Con la ruta"),
+                        new Text("La ruta esta vacia.\n\n" +
+                                "Intentelo de nuevo."));
+            }
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            dg.showDialog(new Text("Error en la clase"),
+                    new Text("Hubo un pete en la clase .\n\n" +
+                            "Intentelo de nuevo."));
         } catch (SQLException e) {
-            e.printStackTrace();
+            dg.showDialog(new Text("Error Con la base de datos"),
+                    new Text("Error en la base de datos.\n\n" +
+                            "Intentelo de nuevo."));
         }
     }
 }
