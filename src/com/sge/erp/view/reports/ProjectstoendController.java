@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +31,10 @@ public class ProjectstoendController implements Initializable {
 
     @FXML
     private JFXTextField path;
+
+
+    @FXML
+    private StackPane stackpaneid;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

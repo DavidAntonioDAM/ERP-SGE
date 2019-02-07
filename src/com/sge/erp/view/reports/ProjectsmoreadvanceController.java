@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +40,9 @@ public class ProjectsmoreadvanceController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private StackPane stackpaneid;
 
     private ArrayList<Project> projects ;
     private ManagerProjects mp;

@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +24,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CompletedprojectsController implements Initializable {
+
+
+    @FXML
+    private StackPane stackpaneid;
 
     private File f;
 

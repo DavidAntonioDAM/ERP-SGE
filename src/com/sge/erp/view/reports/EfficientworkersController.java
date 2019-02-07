@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +20,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class EfficientworkersController {
+
+
+    @FXML
+    private StackPane stackpaneid;
 
     private File f;
 

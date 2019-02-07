@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +26,9 @@ public class ProjectswithmoreclientsController {
 
     @FXML
     private JFXTextField path;
+
+    @FXML
+    private StackPane stackpaneid;
 
     private ArrayList<Client> clients;
     private ArrayList<Project> projects;

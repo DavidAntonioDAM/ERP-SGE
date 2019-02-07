@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +26,11 @@ public class EmployeeswithoutteamController {
 
     @FXML
     private JFXListView<AnchorPane> list;
+
+
+    @FXML
+    private StackPane stackpaneid;
+
 
     @FXML
     private JFXTextField path;
