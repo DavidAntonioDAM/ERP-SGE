@@ -2,20 +2,34 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.reports.ProjectstoendController">
+<AnchorPane prefHeight="717.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.reports.ProjectstoendController">
     <children>
         <JFXListView fx:id="list" layoutX="7.0" layoutY="66.0" prefHeight="644.0" prefWidth="1046.0" stylesheets="@../../css/delSplit.css" />
-        <JFXButton fx:id="jbSave" ellipsisString="" layoutX="970.0" layoutY="6.0" prefHeight="54.0" prefWidth="65.0" style="-fx-background-color: #004878;" textFill="WHITE">
+        <JFXButton fx:id="jbSave" ellipsisString="" layoutX="970.0" layoutY="6.0" onMouseClicked="#jfxbSave" prefHeight="54.0" prefWidth="65.0" style="-fx-background-color: #004878;" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="10.0" />
             </font>
             <graphic>
-                <MaterialDesignIconView fill="WHITE" glyphName="CONTENT_SAVE" size="45" wrappingWidth="41.0" />
+                <MaterialDesignIconView fill="WHITE" glyphName="CONTENT_SAVE" onMouseClicked="#jfxbSave" size="45" wrappingWidth="41.0" />
             </graphic>
         </JFXButton>
+      <JFXButton fx:id="jbSave1" ellipsisString="" layoutX="896.0" layoutY="6.0" onMouseClicked="#selectPath" prefHeight="54.0" prefWidth="65.0" style="-fx-background-color: #004878;" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI" size="10.0" />
+         </font>
+         <graphic>
+            <MaterialDesignIconView fill="WHITE" glyphName="FOLDER_DOWNLOAD" size="45" wrappingWidth="41.0" />
+         </graphic>
+      </JFXButton>
+      <JFXTextField fx:id="path" layoutX="34.0" layoutY="17.0" prefHeight="32.0" prefWidth="854.0">
+         <font>
+            <Font name="Georgia" size="17.0" />
+         </font>
+      </JFXTextField>
     </children>
 </AnchorPane>
