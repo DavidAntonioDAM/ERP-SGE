@@ -105,6 +105,7 @@ public class ProjectsmoreadvanceController implements Initializable {
                     cc.getJtaProjectDesc().setText(p.getDescription());
                     cc.getChart().setProgress(projectComplete);
                     cc.getPercent().setText(String.valueOf(((int) (projectComplete * 100))) + "%");
+                    cc.getlDate().setText(p.getDeliver_date());
 
                     list.getItems().add(card);
                 }

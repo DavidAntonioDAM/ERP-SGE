@@ -3,9 +3,11 @@
 <?import com.gluonhq.charm.glisten.control.ProgressIndicator?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="200.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.projects.ProjectCardController">
+
+<AnchorPane prefHeight="200.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sge.erp.view.projects.ProjectCardController">
     <children>
         <Pane prefHeight="67.0" prefWidth="645.0" style="-fx-background-color: #17212B; -fx-border-color: #17212B;">
             <children>
@@ -40,7 +42,7 @@
          </children></Pane>
       <Pane layoutX="645.0" prefHeight="67.0" prefWidth="155.0" style="-fx-border-color: #17212B; -fx-background-color: #004878;">
          <children>
-            <Label fx:id="lProjectName1" layoutX="10.0" layoutY="5.0" prefHeight="58.0" prefWidth="137.0" style="-fx-text-fill: white;" text="99/99/9999">
+            <Label fx:id="lDate" layoutX="10.0" layoutY="5.0" prefHeight="58.0" prefWidth="137.0" style="-fx-text-fill: white;" text="99/99/9999">
                <font>
                   <Font name="Segoe UI Bold" size="24.0" />
                </font>

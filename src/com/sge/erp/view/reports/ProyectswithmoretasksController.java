@@ -106,6 +106,7 @@ public class ProyectswithmoretasksController implements Initializable {
                     cc.getJtaProjectDesc().setText(p.getDescription());
                     cc.getChart().setProgress(projectComplete);
                     cc.getPercent().setText(String.valueOf(((int) (projectComplete * 100))) + "%");
+                    cc.getlDate().setText(p.getDeliver_date());
                     cc.getlTareas().setText("Numero de tareas: " + tasks.size());
 
                     list.getItems().add(card);
